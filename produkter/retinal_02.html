@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 02 — Before Your Skin Cells Clock Out</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #fffdd9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    /* CSS Clock */
+    .clock-wrap {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 32px;
+    }
+    .clock-face {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid #3d3935;
+      position: relative;
+      background: #fffdd9;
+    }
+    /* Hour marks */
+    .tick {
+      position: absolute;
+      width: 2px;
+      height: 12px;
+      background: #3d3935;
+      left: 50%;
+      transform-origin: 50% 100px;
+      top: 0;
+      margin-left: -1px;
+      opacity: 0.4;
+    }
+    .tick.major {
+      height: 18px;
+      opacity: 0.8;
+      width: 3px;
+      margin-left: -1.5px;
+    }
+    /* Clock hands */
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: 50% 100%;
+      border-radius: 3px;
+    }
+    .hand-hour {
+      width: 4px;
+      height: 56px;
+      background: #3d3935;
+      margin-left: -2px;
+      transform: rotate(90deg);
+    }
+    .hand-minute {
+      width: 3px;
+      height: 78px;
+      background: #3d3935;
+      margin-left: -1.5px;
+      transform: rotate(240deg);
+      opacity: 0.85;
+    }
+    .hand-second {
+      width: 2px;
+      height: 82px;
+      background: #746c64;
+      margin-left: -1px;
+      transform: rotate(320deg);
+    }
+    .clock-center {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #3d3935;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* Inner text */
+    .clock-inner-text {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Barlow', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3d3935;
+      white-space: nowrap;
+      opacity: 0.6;
+    }
+
+    .headline {
+      font-size: 26px;
+      font-weight: 700;
+      color: #3d3935;
+      text-align: center;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      max-width: 360px;
+    }
+    .headline em {
+      font-style: normal;
+      color: #746c64;
+    }
+
+    .subhead {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      color: #3d3935;
+      text-align: center;
+      line-height: 1.5;
+      max-width: 340px;
+      margin-bottom: 32px;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .footer-product {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #3d3935;
+      opacity: 0.5;
+    }
+    .footer-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3d3935;
+    }
+
+    /* decorative arcs */
+    .deco-arc {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(61,57,53,0.07);
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #fffdd9;
+      border-color: #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_01.html">← Prev</a>
+    <a href="retinal_03.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <!-- decorative background circles -->
+      <div class="deco-arc" style="width:480px;height:480px;top:-60px;left:-60px;"></div>
+      <div class="deco-arc" style="width:360px;height:360px;top:-20px;right:-80px;"></div>
+
+      <!-- CSS Clock -->
+      <div class="clock-wrap">
+        <div class="clock-face">
+          <!-- 12 tick marks -->
+          <div class="tick major" style="transform: rotate(0deg) translateX(-50%); transform-origin: 1px 100px; left:50%; top:0;"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(30deg);"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(60deg);"></div>
+          <div class="tick major" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(90deg);"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(120deg);"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(150deg);"></div>
+          <div class="tick major" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(180deg);"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(210deg);"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(240deg);"></div>
+          <div class="tick major" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(270deg);"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(300deg);"></div>
+          <div class="tick" style="transform-origin: 1px 100px; left:50%; top:0; transform: rotate(330deg);"></div>
+
+          <div class="hand hand-hour"></div>
+          <div class="hand hand-minute"></div>
+          <div class="hand hand-second"></div>
+          <div class="clock-center"></div>
+          <div class="clock-inner-text">28-day cycle</div>
+        </div>
+      </div>
+
+      <div class="headline">
+        Skin cells live<br><em>~28 days.</em><br>Retinal makes<br>every day count.
+      </div>
+
+      <div class="subhead">
+        Accelerate cell turnover. Sharpen texture.<br>
+        One concentrated step.
+      </div>
+
+      <div class="card-footer">
+        <div class="footer-product">Retinal Concentrate ·</div>
+        <div class="footer-brand">Skinome</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 02 — Before Your Skin Cells Clock Out</div>
+      <div class="info-concept">Concept: Cell turnover clock metaphor — science made visceral</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Cell biology as urgency. The 28-day skin cycle is real science — framing it as a clock creates a sense of time and opportunity. Every cycle without retinal is a missed window.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Skin cells live ~28 days. Retinal makes every day count.<br><br>
+          Accelerate turnover. Improve texture. Start the cycle right.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Warm, optimistic, scientific. Pale yellow (#fffdd9) feels energetic but natural. The clock is elegant and communicates urgency without aggression.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Start your 28-day cycle → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeretinal 10 — Lab Report: Azeretinal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Document header */
+    .doc-header {
+      background: #3d3935;
+      padding: 16px 28px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .doc-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .doc-classification {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,253,217,0.4);
+    }
+
+    .doc-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      color: #fffdd9;
+      letter-spacing: 0.05em;
+    }
+
+    .doc-id {
+      text-align: right;
+    }
+
+    .doc-id-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: rgba(255,253,217,0.3);
+      letter-spacing: 0.15em;
+    }
+
+    .doc-id-value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: rgba(255,253,217,0.7);
+    }
+
+    /* Horizontal rule with label */
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #746c64;
+      padding: 8px 28px 4px;
+      background: #f6f3f0;
+      border-bottom: 1px solid #d5d0c9;
+    }
+
+    /* Form rows */
+    .form-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-bottom: 1px solid #d5d0c9;
+    }
+
+    .form-row:last-child {
+      border-bottom: none;
+    }
+
+    .form-field {
+      padding: 11px 28px;
+      border-right: 1px solid #d5d0c9;
+    }
+
+    .field-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 3px;
+    }
+
+    .field-value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: #3d3935;
+    }
+
+    .field-value.highlight {
+      color: #3d3935;
+      font-weight: bold;
+    }
+
+    .field-value.zero {
+      color: #746c64;
+    }
+
+    .form-value-col {
+      padding: 11px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mechanism-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 3px;
+    }
+
+    .mechanism-value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: #3d3935;
+      line-height: 1.4;
+    }
+
+    .status-ok {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3d3935;
+    }
+
+    .status-dot.green {
+      background: #4a7c59;
+    }
+
+    /* Summary bar */
+    .summary-bar {
+      background: #3d3935;
+      padding: 14px 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .sum-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border-right: 1px solid rgba(246,243,240,0.1);
+      padding: 0 14px;
+    }
+
+    .sum-item:first-child {
+      padding-left: 0;
+    }
+
+    .sum-item:last-child {
+      border-right: none;
+    }
+
+    .sum-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,253,217,0.35);
+    }
+
+    .sum-value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: #fffdd9;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="azeretinal_09.html">← Prev</a>
+    <a href="azeretinal_01.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="doc-header">
+        <div class="doc-title-group">
+          <div class="doc-classification">Skinome · Compound Analysis Report</div>
+          <div class="doc-name">LAB REPORT: AZERETINAL</div>
+        </div>
+        <div class="doc-id">
+          <div class="doc-id-label">Doc Ref</div>
+          <div class="doc-id-value">SKN-AZR-001</div>
+        </div>
+      </div>
+
+      <div class="section-label">§ 01 · Formula Identification</div>
+
+      <div class="form-body">
+
+        <div class="form-row">
+          <div class="form-field">
+            <div class="field-label">Formula Name</div>
+            <div class="field-value highlight">Azeretinal Concentrate</div>
+          </div>
+          <div class="form-value-col">
+            <div class="mechanism-label">Classification</div>
+            <div class="mechanism-value">Dual-active treatment serum</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <div class="field-label">Active 1</div>
+            <div class="field-value">Azelaic Acid</div>
+          </div>
+          <div class="form-value-col">
+            <div class="mechanism-label">Mechanism</div>
+            <div class="mechanism-value">Tyrosinase inhibition → melanin suppression, anti-inflammatory</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <div class="field-label">Active 2</div>
+            <div class="field-value">Retinaldehyde (Retinal)</div>
+          </div>
+          <div class="form-value-col">
+            <div class="mechanism-label">Mechanism</div>
+            <div class="mechanism-value">Accelerated cell turnover → collagen stimulation, anti-aging</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <div class="field-label">Preservatives</div>
+            <div class="field-value zero">0 — none detected</div>
+          </div>
+          <div class="form-value-col">
+            <div class="mechanism-label">Storage Protocol</div>
+            <div class="mechanism-value">Refrigerated · 2–8°C · Active integrity maintained</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <div class="field-label">Microbiome Impact</div>
+            <div class="field-value">
+              <span class="status-ok">
+                <span class="status-dot green"></span>
+                None — microbiome-safe
+              </span>
+            </div>
+          </div>
+          <div class="form-value-col">
+            <div class="mechanism-label">Target Conditions</div>
+            <div class="mechanism-value">Hyperpigmentation · post-acne marks · early aging · rosacea</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <div class="field-label">Research Origin</div>
+            <div class="field-value">Dr. Johanna Gillbro</div>
+          </div>
+          <div class="form-value-col">
+            <div class="mechanism-label">Foundation</div>
+            <div class="mechanism-value">20 years skin microbiome research · Sweden</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="summary-bar">
+        <div class="sum-item">
+          <div class="sum-label">Actives</div>
+          <div class="sum-value">2</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-label">Preservatives</div>
+          <div class="sum-value">0</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-label">Storage</div>
+          <div class="sum-value">2–8°C</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-label">Microbiome</div>
+          <div class="sum-value">Safe</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Azeretinal 10 — Lab Report: Azeretinal</div>
+      <div class="info-concept">Concept: Clinical form / compound analysis — monospace typewriter aesthetic</div>
+      <div class="info-badge">Azeretinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>The product as a lab document. Every claim Skinome makes is verifiable — so why not present the formula in the format where verification lives? The monospace font and form-field grid signal rigorous scientific process, not marketing performance.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          FORMULA NAME: Azeretinal Concentrate<br>
+          ACTIVE 1: Azelaic Acid — melanin suppression, anti-inflammatory<br>
+          ACTIVE 2: Retinaldehyde — cell turnover, collagen stimulation<br>
+          PRESERVATIVES: 0<br>
+          STORAGE: 2–8°C<br>
+          MICROBIOME IMPACT: None<br><br>
+          skinome.com
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Cream background, monospace font (Share Tech Mono), dark charcoal header and footer bar. Mimics a compound analysis sheet. The four-column summary bar at the base delivers the key facts at a glance. Deeply credible for ingredient-literate audiences.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Read the full formula → skinome.com/azeretinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

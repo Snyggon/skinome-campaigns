@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Emulsion SPF 30+ 10 — 30 Years From Now, Your Skin Will Remember</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a { color: #746c64; text-decoration: none; padding: 6px 12px; border: 1px solid #d5d0c9; border-radius: 4px; transition: background 0.15s; }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout { display: flex; gap: 32px; align-items: flex-start; }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 52px 80px;
+    }
+
+    /* Decorative time arcs — CSS concentric arcs bottom-right */
+    .arc {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(213,208,201,0.5);
+      pointer-events: none;
+    }
+    .arc-1 { width: 180px; height: 180px; bottom: -60px; right: -60px; }
+    .arc-2 { width: 280px; height: 280px; bottom: -100px; right: -100px; }
+    .arc-3 { width: 380px; height: 380px; bottom: -140px; right: -140px; border-color: rgba(213,208,201,0.3); }
+    .arc-4 { width: 480px; height: 480px; bottom: -180px; right: -180px; border-color: rgba(213,208,201,0.15); }
+
+    /* Top left dot accent */
+    .dot-accent {
+      position: absolute;
+      top: 48px;
+      right: 52px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3d3935;
+      opacity: 0.4;
+    }
+
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #3d3935;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .headline .thirty {
+      color: #0d0d0d;
+      display: inline-block;
+    }
+
+    .headline-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      color: #746c64;
+      letter-spacing: 0.02em;
+      font-style: italic;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Timeline — horizontal */
+    .timeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .tl-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #3d3935;
+      background: white;
+      flex-shrink: 0;
+    }
+    .tl-dot.filled {
+      background: #3d3935;
+    }
+    .tl-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .tl-label strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #3d3935;
+    }
+
+    .tl-line {
+      flex: 1;
+      height: 1px;
+      background: #d5d0c9;
+      position: relative;
+      top: -14px;
+    }
+    .tl-line.active {
+      background: #3d3935;
+    }
+
+    /* The two outcomes */
+    .outcomes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .outcome {
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .outcome.good {
+      background: #3d3935;
+    }
+    .outcome.missed {
+      background: rgba(213,208,201,0.4);
+      border: 1px dashed #d5d0c9;
+    }
+
+    .outcome-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .outcome.good .outcome-label { color: rgba(255,253,217,0.55); }
+    .outcome.missed .outcome-label { color: #9a9290; }
+
+    .outcome-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .outcome.good .outcome-text { color: #fffdd9; }
+    .outcome.missed .outcome-text { color: #746c64; }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    .badge { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #3d3935; border: 1px solid rgba(61,57,53,0.3); padding: 5px 12px; border-radius: 2px; }
+    .product-tag { font-family: 'Barlow', sans-serif; font-size: 11px; color: #746c64; letter-spacing: 0.06em; }
+
+    /* ── INFO COL ── */
+    .info-col { flex: 1; background: #eeece9; padding: 8px 0; }
+    .info-title { font-size: 22px; font-weight: 700; color: #3d3935; margin-bottom: 6px; }
+    .info-concept { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; font-style: italic; margin-bottom: 20px; }
+    .info-badge { display: inline-block; background: #3d3935; color: #fffdd9; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 24px; }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #746c64; margin-bottom: 8px; }
+    .info-section p { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; }
+    .copy-block { background: white; border-left: 3px solid #3d3935; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; border-radius: 0 4px 4px 0; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="sun30_09.html">← Prev</a>
+    <a href="sun30_01.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="arc arc-1"></div>
+      <div class="arc arc-2"></div>
+      <div class="arc arc-3"></div>
+      <div class="arc arc-4"></div>
+      <div class="dot-accent"></div>
+
+      <div class="card-eyebrow">Long-Game Skincare · Daily Investment</div>
+
+      <div class="headline"><span class="thirty">30 years</span><br>from now,<br>your skin<br>will remember.</div>
+      <div class="headline-sub">Every day of SPF adds up.<br>So does every day without it.</div>
+
+      <div class="timeline">
+        <div class="tl-node">
+          <div class="tl-dot filled"></div>
+          <div class="tl-label"><strong>Today</strong>Start the habit</div>
+        </div>
+        <div class="tl-line active"></div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-label"><strong>10 years</strong>Visible difference</div>
+        </div>
+        <div class="tl-line"></div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-label"><strong>30 years</strong>Your skin's memory</div>
+        </div>
+      </div>
+
+      <div class="outcomes">
+        <div class="outcome good">
+          <div class="outcome-label">With SPF 30+ daily</div>
+          <div class="outcome-text">97% of UV-B intercepted — every single morning.</div>
+        </div>
+        <div class="outcome missed">
+          <div class="outcome-label">Without</div>
+          <div class="outcome-text">Every missed day compounds over decades.</div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Sun Emulsion SPF 30+</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">SPF 30+ 10 — 30 Years From Now, Your Skin Will Remember</div>
+      <div class="info-concept">Concept: Long-game framing — SPF as a compounding investment over time</div>
+      <div class="info-badge">Sun Emulsion SPF 30+</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>The most emotional ad in the set. Reframes daily SPF not as a chore but as a slow, compounding investment in your future self. The timeline and two-outcome grid make the stakes concrete without being alarmist. Warm, calm, and quietly urgent.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          30 years from now, your skin will remember.<br><br>
+          Every day of SPF adds up. So does every day without it.<br><br>
+          Sun Emulsion SPF 30+ — start the habit today. Preservative-free. Microbiome-safe.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Clean cream palette with concentric arcs suggesting time, depth, and patience. Calm and unhurried — the design mirrors the long-game message. The timeline gives forward momentum without urgency pressure.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Start the habit → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

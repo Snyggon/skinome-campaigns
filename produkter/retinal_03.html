@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 03 — The Industry Keeps This Quiet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    /* Newspaper header bar */
+    .paper-header {
+      background: #0d0d0d;
+      padding: 10px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .paper-name {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+    }
+    .paper-date {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: rgba(246,243,240,0.5);
+      letter-spacing: 0.06em;
+    }
+
+    /* Red accent rule */
+    .accent-rule {
+      height: 3px;
+      background: #c0392b;
+      width: 100%;
+    }
+
+    /* Content area */
+    .paper-body {
+      flex: 1;
+      padding: 24px 32px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .section-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c0392b;
+      margin-bottom: 10px;
+    }
+
+    .paper-headline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #0d0d0d;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    /* Horizontal rule */
+    .thin-rule {
+      border: none;
+      border-top: 1px solid #d5d0c9;
+      margin: 10px 0;
+    }
+    .double-rule {
+      border: none;
+      border-top: 3px double #0d0d0d;
+      margin: 10px 0;
+    }
+
+    /* Two-column article text */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .col-left { display: flex; flex-direction: column; gap: 10px; }
+    .col-right { display: flex; flex-direction: column; gap: 10px; }
+
+    .article-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12.5px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+
+    .pull-quote {
+      border-left: 3px solid #c0392b;
+      padding: 8px 12px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      font-style: italic;
+      color: #0d0d0d;
+      line-height: 1.35;
+      margin: 4px 0;
+    }
+
+    .byline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: #746c64;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    /* Footer */
+    .paper-foot {
+      border-top: 1px solid #d5d0c9;
+      padding: 10px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .foot-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0d0d0d;
+    }
+    .foot-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: #746c64;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #c0392b;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_02.html">← Prev</a>
+    <a href="retinal_04.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="paper-header">
+        <div class="paper-name">Skinome Research</div>
+        <div class="paper-date">Special Edition · Vitamin A</div>
+      </div>
+      <div class="accent-rule"></div>
+
+      <div class="paper-body">
+
+        <div class="section-tag">Industry Investigation</div>
+
+        <div class="paper-headline">Why do brands sell retinol when retinal is 11× more effective?</div>
+
+        <hr class="double-rule" />
+
+        <div class="byline">By Dr. Johanna Gillbro · Stockholm Dermatology</div>
+
+        <hr class="thin-rule" />
+
+        <div class="columns">
+          <div class="col-left">
+            <div class="article-text">
+              Retinol has dominated the anti-ageing market for three decades. Walk into any pharmacy and you'll find dozens of formulas promising "vitamin A results."
+            </div>
+            <div class="article-text">
+              What they don't tell you: retinol must convert to retinal, then to retinoic acid — the form skin actually uses. Two inefficient steps. Most of the molecule never arrives.
+            </div>
+            <div class="pull-quote">
+              "The serum you're paying for is working at a fraction of its potential."
+            </div>
+          </div>
+          <div class="col-right">
+            <div class="article-text">
+              Retinaldehyde (retinal) requires only one conversion step. Independent research places its efficacy at 11× that of retinol for comparable concentrations.
+            </div>
+            <div class="article-text">
+              Why do brands keep selling retinol? It's cheaper to produce, more shelf-stable, and easier to market. Retinal requires cold-chain handling. Most brands won't bother.
+            </div>
+            <div class="article-text" style="font-weight: 600;">
+              We bother.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="paper-foot">
+        <div class="foot-brand">Skinome</div>
+        <div class="foot-tag">Retinal Concentrate · Preservative-free · Stockholm</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 03 — The Industry Keeps This Quiet</div>
+      <div class="info-concept">Concept: Editorial exposé — newspaper layout as credibility signal</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Villain framing: the industry is keeping a better ingredient quiet because it's inconvenient for them. Skinome is the whistleblower. Dr. Gillbro's authority anchors the credibility.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Retinol needs two conversion steps to do anything.<br>
+          Retinal needs one.<br><br>
+          The industry knows this.<br>
+          They keep selling retinol anyway.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Editorial, confrontational, authoritative. Newspaper format creates trust through visual familiarity with serious journalism. Red accent = urgency and editorial gravity.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Read the science → skinome.com/retinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

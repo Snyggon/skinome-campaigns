@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun Emulsion SPF 50+ 08 — The Problem With the Sunscreen You Love — Skinome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eeece9;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .nav {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: #d5d0c9; }
+  .nav .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .nav .brand span { color: #f6f3f0; }
+  .nav-arrows { display: flex; gap: 20px; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3d3935 0%, #746c64 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; }
+
+  .post-creative {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* === SUN 08 — EMPATHY / THE PROBLEM === */
+  .s08-bg {
+    position: absolute; inset: 0;
+    background: #e8d5b7;
+  }
+
+  /* Warm sand texture — subtle vignette */
+  .s08-vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(180,140,80,0.18) 100%);
+  }
+
+  /* Light grain effect */
+  .s08-grain {
+    position: absolute; inset: 0;
+    opacity: 0.3;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.12'/%3E%3C/svg%3E");
+  }
+
+  .s08-content {
+    position: relative; z-index: 2;
+    padding: 46px 44px;
+    width: 100%;
+  }
+
+  .s08-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(61,57,53,0.5);
+    margin-bottom: 14px;
+  }
+
+  .s08-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: #3d3935;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin-bottom: 22px;
+  }
+
+  .s08-body {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #4a3f35;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .s08-body strong {
+    font-weight: 600;
+    color: #3d3935;
+  }
+
+  /* Inline ingredient callouts */
+  .s08-ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 14px 0;
+  }
+  .s08-ing-chip {
+    font-family: 'Barlow', sans-serif;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: rgba(61,57,53,0.75);
+    background: rgba(61,57,53,0.1);
+    border: 1px solid rgba(61,57,53,0.18);
+    padding: 3px 9px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .s08-fix {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(61,57,53,0.2);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .s08-fix-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.02em;
+  }
+  .s08-fix-sub {
+    flex: 1;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: rgba(61,57,53,0.6);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .s08-fix-spf {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3d3935;
+    border: 1.5px solid rgba(61,57,53,0.3);
+    padding: 6px 12px;
+    letter-spacing: 0.04em;
+  }
+
+  .s08-logo {
+    position: absolute;
+    bottom: 20px; right: 22px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(61,57,53,0.28);
+  }
+
+  /* IG Footer */
+  .ig-actions {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #fff;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  /* ── INFO COL ── */
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+  .info-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #dedad4; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px; }
+  .product-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: #0d0d0d;
+    color: #f6f3f0;
+    margin-bottom: 28px;
+  }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 24px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .info-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .info-bullets li { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.5; padding-left: 18px; position: relative; }
+  .info-bullets li::before { content: '—'; position: absolute; left: 0; color: #d5d0c9; font-weight: 700; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .info-nav a:hover { color: #0d0d0d; }
+
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← Alla produkter</a>
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Sun Emulsion SPF 50+</div>
+  <div class="nav-arrows">
+    <a href="sun50_07.html">← Prev</a>
+    <a href="sun50_09.html">Next →</a>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div>
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="s08-bg"></div>
+      <div class="s08-vignette"></div>
+      <div class="s08-grain"></div>
+      <div class="s08-logo">Skinome</div>
+
+      <div class="s08-content">
+        <div class="s08-eyebrow">The honest conversation</div>
+
+        <div class="s08-headline">
+          The Problem With<br>the Sunscreen<br>You Love
+        </div>
+
+        <div class="s08-body">
+          You found a sunscreen you actually like wearing. Great texture. Doesn't leave a cast. You use it. But if it contains any of these:
+        </div>
+
+        <div class="s08-ingredients">
+          <span class="s08-ing-chip">Phenoxyethanol</span>
+          <span class="s08-ing-chip">Methylparaben</span>
+          <span class="s08-ing-chip">Ethylparaben</span>
+          <span class="s08-ing-chip">Benzyl Alcohol</span>
+          <span class="s08-ing-chip">Chlorphenesin</span>
+          <span class="s08-ing-chip">Caprylyl Glycol</span>
+        </div>
+
+        <div class="s08-body">
+          — you're protecting your skin from UV while feeding it a <strong>daily dose of microbiome disruptors.</strong>
+        </div>
+
+        <div class="s08-fix">
+          <div class="s08-fix-text">We fixed that.</div>
+          <div class="s08-fix-sub">Skinome Sun Emulsion<br>Zero preservatives. SPF 50+.</div>
+          <div class="s08-fix-spf">SPF 50+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">9,140 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      We're not here to make you feel bad about your current SPF. We're here to tell you there's a better option. One that gives you SPF 50+ protection without a single preservative that could disrupt your skin microbiome. We fixed the formula. You just have to switch.
+      <div class="ig-hashtags">#skinome #spf50 #microbiome #skincaretransparency #preservativefree #skinhealth</div>
+    </div>
+    <div class="ig-comments">View all 834 comments</div>
+    <div class="ig-timestamp">1 day ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">08</div>
+    <div class="info-title">The Problem With the Sunscreen You Love</div>
+    <span class="product-badge">Sun Emulsion SPF 50+</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Concept</div>
+      <div class="info-text">
+        Empathy angle — warm sand tones (#e8d5b7), conversational long-copy. Meets the reader where they are: they have a sunscreen they like. This isn't about shaming them. It's about showing them the one flaw in their otherwise-good routine, and offering the fix. The ingredient chips are a visual device that makes the specific preservatives concrete and recognizable. Closing with "We fixed that" — confident and warm.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Opens with empathy, not attack — builds trust before making the case</li>
+        <li>Ingredient chip UI is instantly scannable and technically credible</li>
+        <li>Sand/warm palette feels approachable vs. the confrontational ads</li>
+        <li>"We fixed that" — two words, maximum confidence</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">We're not here to make you feel bad about your current SPF. We're here to tell you there's a better option. One that gives you SPF 50+ protection without a single preservative that could disrupt your skin microbiome. We fixed the formula. You just have to switch.</div>
+        <div class="cap-tags">#skinome #spf50 #microbiome #skincaretransparency #preservativefree #skinhealth</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="sun50_07.html">← Prev</a>
+      <a href="sun50_09.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Sun Emulsion SPF 50+ Series &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; 10 Ad Concepts 2026
+</footer>
+
+</body>
+</html>

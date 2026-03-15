@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeretinal 09 — The 6-Letter Word Your Skincare Routine Is Missing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #3d3935;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 36px 44px 32px;
+    }
+
+    /* Subtle vignette */
+    .ig-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 500px 400px at 50% 40%, rgba(61,57,53,0) 0%, rgba(13,13,13,0.3) 100%);
+      pointer-events: none;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(246,243,240,0.4);
+    }
+
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fffdd9;
+      border: 1px solid rgba(255,253,217,0.25);
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+
+    /* Letter showcase */
+    .letter-block {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .letters-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 8px;
+    }
+
+    .letter-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 68px;
+    }
+
+    .letter-char {
+      font-size: 62px;
+      font-weight: 700;
+      color: #f6f3f0;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .letter-num {
+      font-family: 'Barlow', sans-serif;
+      font-size: 9px;
+      color: rgba(246,243,240,0.2);
+      letter-spacing: 0.1em;
+      margin-top: 2px;
+    }
+
+    .word-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,253,217,0.55);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .not-retinol {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      color: rgba(246,243,240,0.4);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    /* Distinction list */
+    .distinction-block {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dis-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .dis-x {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: rgba(246,243,240,0.25);
+      text-decoration: line-through;
+      text-decoration-color: rgba(246,243,240,0.2);
+      flex-shrink: 0;
+      width: 70px;
+    }
+
+    .dis-arrow {
+      color: rgba(255,253,217,0.4);
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    .dis-correct {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #f6f3f0;
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .dis-correct em {
+      color: #fffdd9;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* Product reveal */
+    .product-reveal {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(246,243,240,0.1);
+      padding-top: 18px;
+    }
+
+    .reveal-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: rgba(246,243,240,0.65);
+      line-height: 1.5;
+    }
+
+    .reveal-text em {
+      color: #fffdd9;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .product-name-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: rgba(246,243,240,0.35);
+      margin-top: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="azeretinal_08.html">← Prev</a>
+    <a href="azeretinal_10.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="top-row">
+        <div class="eyebrow">The 6-letter word</div>
+        <div class="badge">Skinome</div>
+      </div>
+
+      <div class="letter-block">
+        <div class="word-label">R · E · T · I · N · A · L</div>
+        <div class="letters-row">
+          <div class="letter-cell"><div class="letter-char">R</div><div class="letter-num">1</div></div>
+          <div class="letter-cell"><div class="letter-char">E</div><div class="letter-num">2</div></div>
+          <div class="letter-cell"><div class="letter-char">T</div><div class="letter-num">3</div></div>
+          <div class="letter-cell"><div class="letter-char">I</div><div class="letter-num">4</div></div>
+          <div class="letter-cell"><div class="letter-char">N</div><div class="letter-num">5</div></div>
+          <div class="letter-cell"><div class="letter-char">A</div><div class="letter-num">6</div></div>
+          <div class="letter-cell"><div class="letter-char">L</div><div class="letter-num">7</div></div>
+        </div>
+        <div class="not-retinol">Not retinol. Not retinyl. Retinal.</div>
+      </div>
+
+      <div class="distinction-block">
+        <div class="dis-row">
+          <div class="dis-x">Retinyl ester</div>
+          <div class="dis-arrow">→</div>
+          <div class="dis-correct">4 conversion steps to reach the active form</div>
+        </div>
+        <div class="dis-row">
+          <div class="dis-x">Retinol</div>
+          <div class="dis-arrow">→</div>
+          <div class="dis-correct">2 steps away. Most serums stop here.</div>
+        </div>
+        <div class="dis-row">
+          <div class="dis-x" style="text-decoration:none; color:rgba(255,253,217,0.8);">Retinal</div>
+          <div class="dis-arrow" style="color:#fffdd9;">→</div>
+          <div class="dis-correct"><em>1 step.</em> The vitamin A that actually converts.</div>
+        </div>
+      </div>
+
+      <div class="product-reveal">
+        <div class="reveal-text">
+          Paired with <em>azelaic acid</em>. In one formula.<br>
+          Refrigerated. No preservatives.
+        </div>
+        <div class="product-name-tag">Azeretinal Concentrate · skinome.com</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Azeretinal 09 — The 6-Letter Word Your Skincare Routine Is Missing</div>
+      <div class="info-concept">Concept: Vocabulary lesson — retinal vs. retinol, curiosity-driven dark ad</div>
+      <div class="info-badge">Azeretinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Semantic precision as a hook. The headline primes curiosity ("6-letter word") and the giant letter display delivers the reveal. The conversion-chain comparison below immediately explains why the 7-letter word matters more than the 7-letter competitor.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Not retinol. Not retinyl. Retinal — the vitamin A that actually converts.<br><br>
+          Retinyl ester: 4 steps to the active form.<br>
+          Retinol: 2 steps. Most serums stop here.<br>
+          Retinal: 1 step. That's the whole difference.<br><br>
+          Paired with azelaic acid. In one formula. Refrigerated. No preservatives.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Dark charcoal, white letters displayed large. Letter-by-letter breakdown with numbering creates a graphic rhythm. The conversion hierarchy below rewards readers who slow down. Intrigue-driven stop-scroll.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>The upgrade → skinome.com/azeretinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

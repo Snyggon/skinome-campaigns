@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun Emulsion SPF 50+ 05 — Why Dermatologists Use SPF Every Single Day — Skinome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eeece9;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .nav {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: #d5d0c9; }
+  .nav .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .nav .brand span { color: #f6f3f0; }
+  .nav-arrows { display: flex; gap: 20px; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3d3935 0%, #746c64 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; }
+
+  .post-creative {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* === SUN 05 — AUTHORITY / DERMATOLOGIST === */
+  .s05-bg {
+    position: absolute; inset: 0;
+    background: #f8f6f2;
+  }
+
+  /* Clinical cross mark — top right */
+  .s05-cross {
+    position: absolute;
+    top: 28px; right: 28px;
+    width: 28px; height: 28px;
+  }
+  .s05-cross::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px; height: 100%;
+    background: rgba(61,57,53,0.18);
+  }
+  .s05-cross::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; height: 4px;
+    background: rgba(61,57,53,0.18);
+  }
+
+  /* Thin horizontal rule at top */
+  .s05-top-rule {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: #3d3935;
+  }
+
+  .s05-content {
+    position: relative; z-index: 2;
+    padding: 60px 52px;
+    width: 100%;
+  }
+
+  .s05-source {
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #746c64;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .s05-source::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: #d5d0c9;
+  }
+
+  .s05-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+
+  .s05-body-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #3d3935;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  .s05-body-text em {
+    font-style: normal;
+    font-weight: 500;
+    color: #0d0d0d;
+  }
+
+  .s05-bottom {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid #e0dbd3;
+    padding-top: 22px;
+  }
+
+  /* CSS molecule icon */
+  .s05-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #3d3935;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .s05-icon::before {
+    content: '';
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #f6f3f0;
+  }
+  /* small satellites */
+  .s05-icon-dot {
+    position: absolute;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #fffdd9;
+  }
+
+  .s05-product-info {}
+  .s05-product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d0d0d;
+  }
+  .s05-product-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #746c64;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  .s05-spf {
+    margin-left: auto;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #3d3935;
+    letter-spacing: -0.02em;
+  }
+
+  .s05-logo {
+    position: absolute;
+    bottom: 20px; left: 52px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(116,108,100,0.35);
+  }
+
+  /* IG Footer */
+  .ig-actions {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #fff;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  /* ── INFO COL ── */
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+  .info-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #dedad4; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px; }
+  .product-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: #0d0d0d;
+    color: #f6f3f0;
+    margin-bottom: 28px;
+  }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 24px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .info-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .info-bullets li { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.5; padding-left: 18px; position: relative; }
+  .info-bullets li::before { content: '—'; position: absolute; left: 0; color: #d5d0c9; font-weight: 700; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .info-nav a:hover { color: #0d0d0d; }
+
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← Alla produkter</a>
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Sun Emulsion SPF 50+</div>
+  <div class="nav-arrows">
+    <a href="sun50_04.html">← Prev</a>
+    <a href="sun50_06.html">Next →</a>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div>
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="s05-bg"></div>
+      <div class="s05-top-rule"></div>
+      <div class="s05-cross">
+        <div class="s05-icon-dot" style="top:2px;left:50%;transform:translateX(-50%);"></div>
+        <div class="s05-icon-dot" style="bottom:2px;left:50%;transform:translateX(-50%);"></div>
+        <div class="s05-icon-dot" style="left:2px;top:50%;transform:translateY(-50%);"></div>
+        <div class="s05-icon-dot" style="right:2px;top:50%;transform:translateY(-50%);"></div>
+      </div>
+
+      <div class="s05-content">
+        <div class="s05-source">Dermatology consensus</div>
+
+        <div class="s05-headline">
+          Why Dermatologists<br>Use SPF Every<br>Single Day
+        </div>
+
+        <div class="s05-body-text">
+          UV damage is cumulative. <em>10 minutes here.</em> 20 minutes there. 30 years of skipping SPF shows up on your face eventually. There is no such thing as a safe amount of unprotected UV exposure — only doses you haven't paid for yet.
+        </div>
+
+        <div class="s05-bottom">
+          <div class="s05-icon">
+            <div class="s05-icon-dot" style="top:6px;left:50%;transform:translateX(-50%);"></div>
+            <div class="s05-icon-dot" style="bottom:6px;left:50%;transform:translateX(-50%);"></div>
+          </div>
+          <div class="s05-product-info">
+            <div class="s05-product-name">Skinome Sun Emulsion</div>
+            <div class="s05-product-sub">Microbiome-safe · Preservative-free</div>
+          </div>
+          <div class="s05-spf">SPF 50+</div>
+        </div>
+      </div>
+
+      <div class="s05-logo">Skinome</div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">7,821 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      UV damage is cumulative. It doesn't announce itself — it accumulates quietly over decades. Every dermatologist knows this, which is why they don't skip SPF on cloudy days, in winter, or when they're "only going outside briefly." Neither should you. SPF 50+. Microbiome-safe. Preservative-free. No excuses.
+      <div class="ig-hashtags">#skinome #spf50 #dermatology #uvdamage #skinhealth #microbiome</div>
+    </div>
+    <div class="ig-comments">View all 641 comments</div>
+    <div class="ig-timestamp">2 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">05</div>
+    <div class="info-title">Why Dermatologists Use SPF Every Single Day</div>
+    <span class="product-badge">Sun Emulsion SPF 50+</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Concept</div>
+      <div class="info-text">
+        Authority angle — clinical white aesthetic with serious, educational copy. The design strips away color to put full weight on the message. Thin black top bar signals professionalism. The cumulative damage argument is the most persuasive case for daily SPF — it replaces abstract fear with concrete, time-accumulated consequence. Clean and no-nonsense, like the brand.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Authority framing — dermatologists as social proof without a specific face</li>
+        <li>Cumulative damage logic — more convincing than "SPF is good for you"</li>
+        <li>Clinical aesthetic signals credibility and seriousness</li>
+        <li>Clean product attribution at bottom — confidence, not desperation</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">UV damage is cumulative. It doesn't announce itself — it accumulates quietly over decades. Every dermatologist knows this, which is why they don't skip SPF on cloudy days, in winter, or when they're "only going outside briefly." Neither should you. SPF 50+. Microbiome-safe.</div>
+        <div class="cap-tags">#skinome #spf50 #dermatology #uvdamage #skinhealth #microbiome</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="sun50_04.html">← Prev</a>
+      <a href="sun50_06.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Sun Emulsion SPF 50+ Series &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; 10 Ad Concepts 2026
+</footer>
+
+</body>
+</html>

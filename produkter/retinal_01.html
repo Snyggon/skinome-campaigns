@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 01 — The Conversion Chart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #3d3935;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 44px;
+    }
+
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fffdd9;
+      margin-bottom: 28px;
+      opacity: 0.7;
+    }
+
+    .chain {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .chain-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .chain-row:last-child { border-bottom: none; }
+
+    .chain-label {
+      flex: 1;
+    }
+    .chain-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #f6f3f0;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .chain-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    .chain-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #746c64;
+      flex-shrink: 0;
+    }
+    .chain-row.active .chain-dot {
+      background: #fffdd9;
+      box-shadow: 0 0 12px #fffdd960;
+    }
+    .chain-row.active .chain-name {
+      color: #fffdd9;
+    }
+    .chain-row.active .chain-sub {
+      color: #fffdd9;
+      opacity: 0.7;
+    }
+
+    .arrow-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 0 6px;
+    }
+    .chain-arrow {
+      font-size: 16px;
+      color: #746c64;
+      line-height: 1;
+      margin: 2px 0;
+    }
+
+    .retinoic {
+      margin-top: 8px;
+      padding: 12px 16px;
+      background: rgba(255,253,217,0.06);
+      border: 1px solid rgba(255,253,217,0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .retinoic .chain-name { color: #fffdd9; font-size: 15px; }
+    .retinoic .chain-sub { color: rgba(255,253,217,0.6); }
+
+    .target-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fffdd9;
+      margin-left: auto;
+      opacity: 0.9;
+      white-space: nowrap;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 28px;
+      left: 44px;
+      right: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+      border: 1px solid rgba(246,243,240,0.3);
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_10.html">← Prev</a>
+    <a href="retinal_02.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-eyebrow">Vitamin A · The Full Picture</div>
+
+      <div class="chain">
+        <div class="chain-row">
+          <div class="chain-dot"></div>
+          <div class="chain-label">
+            <div class="chain-name">Retinyl Esters</div>
+            <div class="chain-sub">What most "vitamin A" moisturisers use</div>
+          </div>
+        </div>
+
+        <div style="padding-left: 16px; color: #746c64; font-size: 20px; line-height: 1; padding-top: 2px; padding-bottom: 2px;">↓</div>
+
+        <div class="chain-row">
+          <div class="chain-dot"></div>
+          <div class="chain-label">
+            <div class="chain-name">Retinol</div>
+            <div class="chain-sub">What serums promise. Still two steps away.</div>
+          </div>
+        </div>
+
+        <div style="padding-left: 16px; color: #746c64; font-size: 20px; line-height: 1; padding-top: 2px; padding-bottom: 2px;">↓</div>
+
+        <div class="chain-row active">
+          <div class="chain-dot"></div>
+          <div class="chain-label">
+            <div class="chain-name">Retinal</div>
+            <div class="chain-sub">One step from what actually works</div>
+          </div>
+          <div class="target-label">← We use this</div>
+        </div>
+
+        <div style="padding-left: 16px; color: #fffdd980; font-size: 20px; line-height: 1; padding-top: 2px; padding-bottom: 2px;">↓</div>
+
+        <div class="retinoic">
+          <div class="chain-label">
+            <div class="chain-name" style="font-size: 13px;">Retinoic Acid</div>
+            <div class="chain-sub">The active form your skin actually uses</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Retinal Concentrate</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 01 — The Conversion Chart</div>
+      <div class="info-concept">Concept: Vitamin A hierarchy as a visual proof point</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Education-as-disruption. Most brands stop at retinol — Skinome explains why that's not good enough. The conversion chain is the ad.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Retinol is two steps away from what your skin actually uses.<br><br>
+          Retinal is one.<br><br>
+          That's not a small difference. That's the whole argument.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Dark, scientific, authoritative. No lifestyle imagery — the information IS the design.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Shop Retinal Concentrate → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probiotic 05 — What Kills Your Skin's Bacteria — Skinome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #eeece9; min-height: 100vh; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+
+  .nav { background: #0d0d0d; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 100; }
+  .nav a { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .nav a:hover { color: #d5d0c9; }
+  .nav .brand { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; }
+  .nav .brand span { color: #f6f3f0; }
+  .nav-arrows { display: flex; gap: 20px; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; padding: 56px 40px 80px; display: flex; gap: 0; align-items: flex-start; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #ffffff; border: 1px solid #e0dbd3; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.10); }
+  .ig-post-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #fff; }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #3d3935 0%, #746c64 100%); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #f6f3f0; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+  .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; }
+
+  .post-creative { width: 100%; aspect-ratio: 1 / 1; position: relative; overflow: hidden; }
+
+  /* === PROBIOTIC 05 — BACTERIA KILLERS === */
+  .p05-wrap {
+    position: absolute; inset: 0;
+    background: #3d3935;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 40px;
+  }
+
+  .p05-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(246,243,240,0.4);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .p05-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #f6f3f0;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    max-width: 300px;
+  }
+
+  .p05-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+  }
+
+  .p05-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(246,243,240,0.08);
+  }
+  .p05-item:last-child { border-bottom: none; }
+
+  .p05-x {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #c0392b;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .p05-item-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #d5d0c9;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+  .p05-item-text strong {
+    color: #f6f3f0;
+    font-weight: 500;
+  }
+
+  .p05-divider {
+    height: 1px;
+    background: rgba(246,243,240,0.2);
+    margin: 20px 0;
+  }
+
+  .p05-solution {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .p05-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #f6f3f0;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #3d3935;
+  }
+  .p05-solution-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #f6f3f0;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .p05-solution-text strong {
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  .p05-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  .p05-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(246,243,240,0.3);
+    text-transform: uppercase;
+  }
+  .p05-product {
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(246,243,240,0.3);
+  }
+
+  .ig-actions { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; background: #fff; }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  .info-col { flex: 1; padding-left: 60px; padding-top: 8px; }
+  .info-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #dedad4; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 12px; }
+  .product-badge { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; background: #0d0d0d; color: #f6f3f0; margin-bottom: 28px; }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 24px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .info-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .info-bullets li { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.5; padding-left: 18px; position: relative; }
+  .info-bullets li::before { content: '—'; position: absolute; left: 0; color: #d5d0c9; font-weight: 700; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .info-nav a:hover { color: #0d0d0d; }
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← Alla produkter</a>
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Probiotic Concentrate</div>
+  <div class="nav-arrows">
+    <a href="probiotic_04.html">← Prev</a>
+    <a href="probiotic_06.html">Next →</a>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div>
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="p05-wrap">
+        <div class="p05-eyebrow">What kills your skin's bacteria</div>
+        <div class="p05-headline">Most skincare is working against your skin.</div>
+
+        <div class="p05-list">
+          <div class="p05-item">
+            <div class="p05-x">✗</div>
+            <div class="p05-item-text"><strong>Antibacterial soaps</strong> — strip protective flora</div>
+          </div>
+          <div class="p05-item">
+            <div class="p05-x">✗</div>
+            <div class="p05-item-text"><strong>Harsh cleansers</strong> — disrupt skin barrier</div>
+          </div>
+          <div class="p05-item">
+            <div class="p05-x">✗</div>
+            <div class="p05-item-text"><strong>Preservatives</strong> — kill bacteria to extend shelf life</div>
+          </div>
+          <div class="p05-item">
+            <div class="p05-x">✗</div>
+            <div class="p05-item-text"><strong>Alcohol toners</strong> — wipe out surface microbiome</div>
+          </div>
+        </div>
+
+        <div class="p05-divider"></div>
+
+        <div class="p05-solution">
+          <div class="p05-check">✓</div>
+          <div class="p05-solution-text">We built <strong>the opposite.</strong> A serum that feeds your microbiome — with 10 billion live bacteria per dose. Preservative-free. Refrigerated. Alive.</div>
+        </div>
+
+        <div class="p05-footer">
+          <div class="p05-product">Probiotic Concentrate</div>
+          <div class="p05-logo">SKINOME</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">6,741 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      Antibacterial soaps. Harsh cleansers. Preservatives. Alcohol toners. Most of your skincare routine is quietly destroying the bacteria that protects your skin. We built the opposite: a serum with 10 billion live probiotics — no preservatives, no shortcuts.
+      <div class="ig-hashtags">#skinome #skinmicrobiome #preservativefree #cleanbeauty #probioticskin #microbiome</div>
+    </div>
+    <div class="ig-comments">View all 581 comments</div>
+    <div class="ig-timestamp">2 days ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">05</div>
+    <div class="info-title">What Kills Your Skin's Bacteria (And Why That's Bad)</div>
+    <span class="product-badge">Probiotic Concentrate</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Concept</div>
+      <div class="info-text">
+        Warning/educational angle on dark charcoal. The red-circle "✗" list creates tension and implicates common products people own. The payoff flips from "here's the problem" to "here's Skinome's answer." Classic villain-then-hero structure. The dark background signals seriousness — this isn't another feel-good beauty post.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>List format is highly shareable — scroll-bait that rewards reading</li>
+        <li>Implicates ordinary products the audience already uses</li>
+        <li>Villain-then-hero payoff delivers Skinome as the solution</li>
+        <li>No brand name in the "✗" list — avoids legal risk, maintains truth</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">Antibacterial soaps. Harsh cleansers. Preservatives. Alcohol toners. Most of your skincare routine is quietly destroying the bacteria that protects your skin. We built the opposite: a serum with 10 billion live probiotics — no preservatives, no shortcuts.</div>
+        <div class="cap-tags">#skinome #skinmicrobiome #preservativefree #cleanbeauty #probioticskin #microbiome</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="probiotic_04.html">← Prev</a>
+      <a href="probiotic_06.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Probiotic Concentrate Series &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; 10 Ad Concepts 2026
+</footer>
+
+</body>
+</html>

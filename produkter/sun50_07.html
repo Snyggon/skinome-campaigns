@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun Emulsion SPF 50+ 07 — Most SPF Formulas Have 20+ Ingredients. We Read Every One. — Skinome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eeece9;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .nav {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: #d5d0c9; }
+  .nav .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .nav .brand span { color: #f6f3f0; }
+  .nav-arrows { display: flex; gap: 20px; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3d3935 0%, #746c64 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; }
+
+  .post-creative {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* === SUN 07 — INGREDIENT TRANSPARENCY === */
+  .s07-bg {
+    position: absolute; inset: 0;
+    background: #f6f3f0;
+  }
+
+  .s07-content {
+    position: relative; z-index: 2;
+    padding: 36px 38px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .s07-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 320px;
+  }
+
+  /* Ingredient list — dense typesetting */
+  .s07-ingredient-block {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .s07-ingredients {
+    font-family: 'Barlow', sans-serif;
+    font-size: 9.5px;
+    color: rgba(61,57,53,0.45);
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+  }
+
+  /* Highlighted zero-preservatives badge — overlaid on ingredient list */
+  .s07-highlight-box {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, #f6f3f0 60%, transparent 100%);
+    padding-top: 40px;
+    padding-bottom: 10px;
+  }
+
+  .s07-zero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #3d3935;
+    padding: 10px 18px;
+  }
+  .s07-zero-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fffdd9;
+    letter-spacing: -0.02em;
+  }
+  .s07-zero-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,253,217,0.65);
+    line-height: 1.4;
+  }
+
+  .s07-bottom {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .s07-cta {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: rgba(61,57,53,0.5);
+    font-style: italic;
+  }
+  .s07-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(61,57,53,0.35);
+  }
+
+  /* IG Footer */
+  .ig-actions {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #fff;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  /* ── INFO COL ── */
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+  .info-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #dedad4; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px; }
+  .product-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: #0d0d0d;
+    color: #f6f3f0;
+    margin-bottom: 28px;
+  }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 24px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .info-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .info-bullets li { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.5; padding-left: 18px; position: relative; }
+  .info-bullets li::before { content: '—'; position: absolute; left: 0; color: #d5d0c9; font-weight: 700; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .info-nav a:hover { color: #0d0d0d; }
+
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← Alla produkter</a>
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Sun Emulsion SPF 50+</div>
+  <div class="nav-arrows">
+    <a href="sun50_06.html">← Prev</a>
+    <a href="sun50_08.html">Next →</a>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div>
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="s07-bg"></div>
+
+      <div class="s07-content">
+        <div class="s07-headline">Most SPF Formulas Have 20+ Ingredients. We Read Every One.</div>
+
+        <div class="s07-ingredient-block">
+          <div class="s07-ingredients">
+            Aqua, Ethylhexyl Methoxycinnamate, Homosalate, Butyl Methoxydibenzoylmethane, Octocrylene, Phenoxyethanol, Methylparaben, Ethylparaben, Propylparaben, Butylparaben, Glycerin, Dimethicone, Cyclopentasiloxane, Cyclohexasiloxane, Carbomer, Triethanolamine, Disodium EDTA, Tocopheryl Acetate, Panthenol, Parfum / Fragrance, BHT, Sodium Hydroxide, Cetearyl Alcohol, Polysorbate 60, Cetyl Phosphate, Titanium Dioxide (CI 77891), Benzyl Alcohol, Chlorphenesin, Sorbic Acid, Ethylhexylglycerin, Caprylyl Glycol, Hexylene Glycol, Potassium Sorbate, Sodium Benzoate, Citric Acid, Xanthan Gum, Polyacrylamide, C13-14 Isoparaffin, Laureth-7, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Isohexadecane, Polysorbate 80, Lactic Acid, Trisodium EDTA, Aluminum Starch Octenylsuccinate, Stearic Acid, Allantoin, Bisabolol, Glyceryl Stearate, PEG-100 Stearate, Myristyl Myristate, Ceteareth-20, Hydroxyacetophenone...
+          </div>
+
+          <div class="s07-highlight-box">
+            <div class="s07-zero-badge">
+              <div class="s07-zero-text">ZERO PRESERVATIVES</div>
+              <div class="s07-zero-sub">Found in<br>our formula</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="s07-bottom">
+          <div class="s07-cta">We checked. So you don't have to.</div>
+          <div class="s07-brand">Skinome · SPF 50+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">8,344 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      We read every ingredient in every major SPF formula on the market. Phenoxyethanol. Methylparaben. Ethylparaben. Benzyl Alcohol. Chlorphenesin. The list goes on. All preservatives. All documented to affect skin microbiome in some way. Our formula has zero of them. We did the reading so you don't have to.
+      <div class="ig-hashtags">#skinome #spf50 #ingredienttransparency #preservativefree #microbiome #cleanskincare</div>
+    </div>
+    <div class="ig-comments">View all 712 comments</div>
+    <div class="ig-timestamp">12 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">07</div>
+    <div class="info-title">Most SPF Formulas Have 20+ Ingredients. We Read Every One.</div>
+    <span class="product-badge">Sun Emulsion SPF 50+</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Concept</div>
+      <div class="info-text">
+        Ingredient transparency as creative. The ad IS an ingredient list — dense, scrolling, familiar to any skincare reader. The list fades out at the bottom to reveal a single dark badge: ZERO PRESERVATIVES. The contrast between overwhelming complexity (their formula) and clean simplicity (ours) is the entire message. Appeals strongly to label-readers and ingredient-conscious consumers.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Show, don't tell — the ingredient list IS the proof</li>
+        <li>Gradient fade to reveal is a visual payoff — reward for reading</li>
+        <li>Targets the most engaged, high-intent skincare consumers</li>
+        <li>"We checked so you don't have to" — empathetic, trust-building</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">We read every ingredient in every major SPF formula on the market. Phenoxyethanol. Methylparaben. Ethylparaben. Benzyl Alcohol. Chlorphenesin. The list goes on. All preservatives. All documented to affect skin microbiome. Our formula has zero of them. We did the reading so you don't have to.</div>
+        <div class="cap-tags">#skinome #spf50 #ingredienttransparency #preservativefree #microbiome #cleanskincare</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="sun50_06.html">← Prev</a>
+      <a href="sun50_08.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Sun Emulsion SPF 50+ Series &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; 10 Ad Concepts 2026
+</footer>
+
+</body>
+</html>

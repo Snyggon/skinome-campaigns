@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 09 — What Your Skin Actually Does at Night</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(145deg, #2d1a0e 0%, #4a2410 35%, #6b3520 65%, #3d1f0a 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 36px 44px;
+    }
+
+    /* Stars */
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,253,217,0.7);
+    }
+
+    /* Glow orb */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,200,100,0.12) 0%, transparent 70%);
+    }
+
+    /* Header */
+    .card-header {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 24px;
+    }
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,200,120,0.6);
+      margin-bottom: 6px;
+    }
+    .card-headline {
+      font-size: 19px;
+      font-weight: 700;
+      color: #f6f3f0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* Timeline */
+    .timeline {
+      flex: 1;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .tl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      position: relative;
+    }
+
+    /* Connector line between dots */
+    .tl-line-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 20px;
+    }
+
+    .tl-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,200,120,0.4);
+      border: 1px solid rgba(255,200,120,0.6);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .tl-dot.active {
+      background: #ffc878;
+      border-color: #ffc878;
+      box-shadow: 0 0 8px rgba(255,200,120,0.5);
+      width: 14px;
+      height: 14px;
+      margin-top: 2px;
+    }
+
+    .tl-connector {
+      width: 1px;
+      flex: 1;
+      min-height: 12px;
+      background: linear-gradient(to bottom, rgba(255,200,120,0.3), rgba(255,200,120,0.1));
+      margin: 4px 0;
+    }
+
+    .tl-content {
+      flex: 1;
+      padding-bottom: 4px;
+    }
+
+    .tl-time {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(255,200,120,0.7);
+      margin-bottom: 3px;
+    }
+    .tl-time.active {
+      color: #ffc878;
+    }
+
+    .tl-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13.5px;
+      color: #d5d0c9;
+      line-height: 1.4;
+    }
+    .tl-text.active {
+      color: #f6f3f0;
+      font-weight: 600;
+    }
+    .tl-badge {
+      display: inline-block;
+      background: rgba(255,200,120,0.15);
+      border: 1px solid rgba(255,200,120,0.3);
+      color: #ffc878;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    .card-footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(255,200,120,0.15);
+      padding-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+      opacity: 0.5;
+    }
+    .footer-product {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: rgba(255,200,120,0.5);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #6b3520;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_08.html">← Prev</a>
+    <a href="retinal_10.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <!-- Stars scattered -->
+      <div class="star" style="width:2px;height:2px;top:30px;left:80px;"></div>
+      <div class="star" style="width:1px;height:1px;top:55px;left:200px;"></div>
+      <div class="star" style="width:2px;height:2px;top:25px;left:350px;opacity:0.5;"></div>
+      <div class="star" style="width:1.5px;height:1.5px;top:70px;left:440px;"></div>
+      <div class="star" style="width:1px;height:1px;top:40px;right:60px;"></div>
+      <div class="star" style="width:2px;height:2px;top:18px;left:260px;opacity:0.6;"></div>
+      <div class="star" style="width:1px;height:1px;top:90px;left:140px;opacity:0.4;"></div>
+
+      <!-- Glow orbs -->
+      <div class="glow-orb" style="width:300px;height:300px;top:-80px;right:-80px;"></div>
+      <div class="glow-orb" style="width:200px;height:200px;bottom:-60px;left:-60px;"></div>
+
+      <!-- Header -->
+      <div class="card-header">
+        <div class="card-eyebrow">Nighttime Biology</div>
+        <div class="card-headline">What your skin actually<br>does while you sleep.</div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-line-col">
+            <div class="tl-dot"></div>
+            <div class="tl-connector"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-time">11 pm</div>
+            <div class="tl-text">Dead cells migrate upward. Skin begins preparing to shed.</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-line-col">
+            <div class="tl-dot"></div>
+            <div class="tl-connector"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-time">1 am</div>
+            <div class="tl-text">New cells form in the basal layer. The foundation of tomorrow's skin.</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-line-col">
+            <div class="tl-dot active"></div>
+            <div class="tl-connector"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-time active">4 am &nbsp;←</div>
+            <div class="tl-text active">Retinal activates cell renewal. Signals accelerate. One step from your skin's most powerful mechanism.</div>
+            <div class="tl-badge">Retinal Concentrate works here</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-line-col">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-time">7 am</div>
+            <div class="tl-text">You wake up. The surface is already beginning to change.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        <div class="footer-brand">Skinome</div>
+        <div class="footer-product">Retinal Concentrate</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 09 — What Your Skin Actually Does at Night</div>
+      <div class="info-concept">Concept: Nighttime cell biology as a timeline — retinal's role dramatised</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Make the invisible visible. Most people don't know their skin is doing serious repair work while they sleep. The timeline makes retinal feel like the missing piece of a biological process already underway.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Your skin works through the night whether you help it or not.<br><br>
+          Retinal Concentrate ensures that when 4am hits — the most important hours of repair — it has what it needs to accelerate renewal.<br><br>
+          Apply before bed. Wake up to the difference.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Warm amber-brown gradient, dark and atmospheric. Feels nocturnal, intimate, and scientific simultaneously. The glowing "4am" moment creates a visual anchor for the retinal claim.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Apply tonight → skinome.com/retinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

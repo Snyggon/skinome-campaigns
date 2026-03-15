@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Emulsion SPF 30+ 07 — Light Enough to Wear. Strong Enough to Work.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a { color: #746c64; text-decoration: none; padding: 6px 12px; border: 1px solid #d5d0c9; border-radius: 4px; transition: background 0.15s; }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout { display: flex; gap: 32px; align-items: flex-start; }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #e8ede8;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 52px;
+    }
+
+    /* Subtle organic shape top-right */
+    .blob {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50% 40% 60% 30%;
+      background: rgba(255,253,217,0.35);
+      pointer-events: none;
+    }
+
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #5a7a5a;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #1a2e1a;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Four pillars grid */
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillar {
+      background: rgba(255,255,255,0.55);
+      border-radius: 8px;
+      padding: 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .pillar-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #3d6b3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+    /* CSS icons via border tricks */
+    .icon-check::after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 6px;
+      border-left: 2px solid #fffdd9;
+      border-bottom: 2px solid #fffdd9;
+      transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+    .pillar-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a2e1a;
+      line-height: 1.25;
+    }
+    .pillar-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #5a7a5a;
+      line-height: 1.4;
+    }
+
+    .tagline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #3d5c3d;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+      padding-top: 4px;
+      border-top: 1px solid rgba(90,122,90,0.2);
+      padding-top: 16px;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    .badge { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1a2e1a; border: 1px solid rgba(26,46,26,0.3); padding: 5px 12px; border-radius: 2px; }
+    .product-tag { font-family: 'Barlow', sans-serif; font-size: 11px; color: #5a7a5a; letter-spacing: 0.06em; }
+
+    /* ── INFO COL ── */
+    .info-col { flex: 1; background: #eeece9; padding: 8px 0; }
+    .info-title { font-size: 22px; font-weight: 700; color: #3d3935; margin-bottom: 6px; }
+    .info-concept { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; font-style: italic; margin-bottom: 20px; }
+    .info-badge { display: inline-block; background: #3d3935; color: #fffdd9; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 24px; }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #746c64; margin-bottom: 8px; }
+    .info-section p { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; }
+    .copy-block { background: white; border-left: 3px solid #3d3935; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; border-radius: 0 4px 4px 0; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="sun30_06.html">← Prev</a>
+    <a href="sun30_08.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="blob"></div>
+
+      <div class="card-eyebrow">Product Attributes · Daily SPF</div>
+
+      <div class="headline">Light enough to wear.<br>Strong enough to work.</div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon"><div class="icon-check"></div></div>
+          <div class="pillar-label">No white cast</div>
+          <div class="pillar-sub">Invisible finish, every skin tone</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><div class="icon-check"></div></div>
+          <div class="pillar-label">No heavy texture</div>
+          <div class="pillar-sub">Light emulsion, layers clean</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><div class="icon-check"></div></div>
+          <div class="pillar-label">No microbiome disruption</div>
+          <div class="pillar-sub">Zero preservatives, refrigerated</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><div class="icon-check"></div></div>
+          <div class="pillar-label">97% UV-B blocked</div>
+          <div class="pillar-sub">SPF 30+, clinically documented</div>
+        </div>
+      </div>
+
+      <div class="tagline">
+        Daily sun protection shouldn't feel like sun protection.
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Sun Emulsion SPF 30+</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">SPF 30+ 07 — Light Enough to Wear. Strong Enough to Work.</div>
+      <div class="info-concept">Concept: Benefit ladder — four pillars, one closing line</div>
+      <div class="info-badge">Sun Emulsion SPF 30+</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>For audiences who've been burned (literally or figuratively) by heavy SPF textures or white-cast issues. The four-pillar grid addresses objections directly. The italic closer reframes what daily SPF should feel like.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          No white cast. No heavy texture. No microbiome disruption.<br><br>
+          SPF 30+. 97% UV-B blocked. Preservative-free.<br><br>
+          Daily sun protection shouldn't feel like sun protection.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Fresh sage green — different from the usual Skinome charcoal/cream palette. Organic, clean, airy. The blob shape adds softness without being literal.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Feel the difference → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

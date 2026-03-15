@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rich 06 — The Richest Ingredient Is the One That's Missing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #3d3935;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 52px;
+    }
+
+    /* Subtle grid texture */
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Corner ornament */
+    .corner-tl, .corner-br {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+    }
+    .corner-tl {
+      top: 24px;
+      left: 24px;
+      border-top: 1px solid rgba(255,253,217,0.25);
+      border-left: 1px solid rgba(255,253,217,0.25);
+    }
+    .corner-br {
+      bottom: 24px;
+      right: 24px;
+      border-bottom: 1px solid rgba(255,253,217,0.25);
+      border-right: 1px solid rgba(255,253,217,0.25);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,253,217,0.45);
+      margin-bottom: 24px;
+    }
+
+    .main-headline {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fffdd9;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .sub-headline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(246,243,240,0.55);
+      margin-bottom: 36px;
+      line-height: 1.4;
+    }
+
+    .ingredients-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,253,217,0.4);
+      margin-bottom: 14px;
+    }
+
+    .ingredient-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ingredient-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .ing-line {
+      width: 20px;
+      height: 1px;
+      background: rgba(255,253,217,0.3);
+      margin-top: 10px;
+      flex-shrink: 0;
+    }
+
+    .ing-content {}
+
+    .ing-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f6f3f0;
+      letter-spacing: 0.04em;
+    }
+
+    .ing-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: rgba(246,243,240,0.45);
+      margin-top: 2px;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fffdd9;
+      border: 1px solid rgba(255,253,217,0.25);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: rgba(255,253,217,0.4);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="rich_05.html">← Prev</a>
+    <a href="rich_07.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="bg-grid"></div>
+      <div class="corner-tl"></div>
+      <div class="corner-br"></div>
+
+      <div class="content">
+
+        <div class="eyebrow">Anti-hype · Barrier Science</div>
+
+        <div class="main-headline">The richest ingredient<br>is the one that's missing.</div>
+        <div class="sub-headline">In most creams, "rich" is a marketing word.<br>Here, it's a lipid ratio.</div>
+
+        <div class="ingredients-label">What makes ours actually rich</div>
+
+        <ul class="ingredient-list">
+          <li class="ingredient-item">
+            <div class="ing-line"></div>
+            <div class="ing-content">
+              <div class="ing-name">Ceramide-equivalent lipids</div>
+              <div class="ing-desc">Matches your skin's natural ratio</div>
+            </div>
+          </li>
+          <li class="ingredient-item">
+            <div class="ing-line"></div>
+            <div class="ing-content">
+              <div class="ing-name">Long-chain fatty acids</div>
+              <div class="ing-desc">Deep lipid matrix reinforcement</div>
+            </div>
+          </li>
+          <li class="ingredient-item">
+            <div class="ing-line"></div>
+            <div class="ing-content">
+              <div class="ing-name">Zero preservatives</div>
+              <div class="ing-desc">The absence that makes it microbiome-safe</div>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Rich Emulsion</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Rich 06 — The Richest Ingredient</div>
+      <div class="info-concept">Concept: Anti-hype luxury — subverting the premium skincare trope</div>
+      <div class="info-badge">Rich Emulsion</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Minimalist luxury that earns it. Dark charcoal with cream/gold tones reads premium — but the copy immediately subverts luxury skincare language. "Rich" is redefined from marketing adjective to scientific formula. Appeals to ingredient-literate consumers.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          The richest ingredient is the one that's missing.<br><br>
+          No preservatives. No fragrance. No microbiome disruptors.<br><br>
+          In their place: a lipid ratio engineered to match your skin's own barrier chemistry.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Dark luxury with an anti-luxury message. The grid texture and corner ornaments reference high-end design language — then the copy pulls the rug. Elegant subversion.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>See the full formula → skinome.com/rich-emulsion</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

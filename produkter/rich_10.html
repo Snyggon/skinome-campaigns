@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rich 10 — The Emulsion That Thinks It's a Treatment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #fffdd9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 52px 72px;
+    }
+
+    /* Decorative horizontal rule motif */
+    .top-rule {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #3d3935;
+    }
+
+    .card-top {}
+
+    .eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 20px;
+    }
+
+    .main-headline {
+      font-size: 36px;
+      font-weight: 700;
+      color: #3d3935;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 0;
+    }
+
+    .headline-em {
+      font-style: italic;
+      font-weight: 300;
+      color: #746c64;
+    }
+
+    .card-mid {}
+
+    .rule {
+      width: 100%;
+      height: 1px;
+      background: rgba(61,57,53,0.15);
+      margin-bottom: 22px;
+    }
+
+    .long-copy {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      color: #3d3935;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .long-copy strong {
+      font-weight: 700;
+    }
+
+    .long-copy em {
+      font-style: italic;
+      color: #746c64;
+    }
+
+    .proof-row {
+      display: flex;
+      gap: 24px;
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .proof-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .proof-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      line-height: 1.3;
+    }
+
+    .proof-divider {
+      width: 1px;
+      background: rgba(61,57,53,0.15);
+      align-self: stretch;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3d3935;
+      border: 1px solid #3d3935;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="rich_09.html">← Prev</a>
+    <a href="rich_01.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="top-rule"></div>
+
+      <div class="card-top">
+        <div class="eyebrow">Premium Barrier Care · Skinome</div>
+        <div class="main-headline">The emulsion<br>that thinks<br><span class="headline-em">it's a treatment.</span></div>
+      </div>
+
+      <div class="card-mid">
+        <div class="rule"></div>
+
+        <div class="long-copy">
+          Most moisturizers stop at the surface.<br>
+          Rich Emulsion enters the <strong>lipid matrix</strong> — the same layer
+          that determines whether your skin <em>holds water or loses it.</em><br><br>
+          Preservative-free. Refrigerated. Formulated by Dr. Johanna Gillbro
+          after 20 years of skin microbiome research.
+        </div>
+
+        <div class="proof-row">
+          <div class="proof-item">
+            <div class="proof-num">0</div>
+            <div class="proof-label">Preservatives<br>or fragrance</div>
+          </div>
+          <div class="proof-divider"></div>
+          <div class="proof-item">
+            <div class="proof-num">20yr</div>
+            <div class="proof-label">Microbiome<br>research</div>
+          </div>
+          <div class="proof-divider"></div>
+          <div class="proof-item">
+            <div class="proof-num">28d</div>
+            <div class="proof-label">Barrier repair<br>protocol</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Rich Emulsion</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Rich 10 — Thinks It's a Treatment</div>
+      <div class="info-concept">Concept: Premium long-copy — the substantive case for buying</div>
+      <div class="info-badge">Rich Emulsion</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Long-copy trust-builder. For the customer who needs the full argument before buying. The numbers at the bottom (0 preservatives / 20yr research / 28d protocol) compress the proof into scannable data points. Pale yellow background reads premium without being flashy.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Most moisturizers stop at the surface. Rich Emulsion enters the lipid matrix — the same layer that determines whether your skin holds water or loses it.<br><br>
+          No preservatives. No fragrance. No microbiome disruptors. Refrigerated because it doesn't need shelf-life chemistry.<br><br>
+          Formulated by Dr. Johanna Gillbro after 20 years of microbiome research. This is what a moisturizer looks like when a scientist makes it instead of a marketer.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Pale yellow, editorial, confident. The thick black top rule signals authority. The three-stat proof row at the bottom gives the ingredient-literate consumer the numbers they want. Long-copy ads work for high-intent audiences.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Read the science → skinome.com/rich-emulsion</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

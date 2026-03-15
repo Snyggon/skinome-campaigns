@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Emulsion SPF 30+ 02 — 97% Every Day Beats 98% Never</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #3d3935;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 48px;
+    }
+
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 32px;
+    }
+
+    .comparison {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 32px;
+    }
+
+    .comparison-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .big-stat {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 72px;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .big-stat.good { color: #fffdd9; }
+    .big-stat.bad {
+      color: #746c64;
+      position: relative;
+      text-decoration: none;
+    }
+    .big-stat.bad::after {
+      content: '';
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      top: 50%;
+      height: 4px;
+      background: #746c64;
+      transform: rotate(-8deg);
+    }
+
+    .stat-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .stat-label.good { color: #fffdd9; }
+    .stat-label.bad { color: #746c64; }
+
+    .stat-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .stat-sub.good { color: rgba(255,253,217,0.6); }
+    .stat-sub.bad { color: rgba(116,108,100,0.6); }
+
+    .vs-line {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 4px 0;
+    }
+    .vs-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: #746c64;
+      text-transform: uppercase;
+    }
+    .vs-rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(116,108,100,0.3);
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(246,243,240,0.2);
+      margin-bottom: 20px;
+    }
+
+    .conclusion {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      color: #f6f3f0;
+      line-height: 1.6;
+      max-width: 380px;
+    }
+    .conclusion strong {
+      color: #fffdd9;
+      font-weight: 600;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 28px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+      border: 1px solid rgba(246,243,240,0.3);
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title { font-size: 22px; font-weight: 700; color: #3d3935; margin-bottom: 6px; }
+    .info-concept { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; font-style: italic; margin-bottom: 20px; }
+    .info-badge { display: inline-block; background: #3d3935; color: #fffdd9; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 24px; }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #746c64; margin-bottom: 8px; }
+    .info-section p { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; }
+    .copy-block { background: white; border-left: 3px solid #3d3935; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; border-radius: 0 4px 4px 0; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="sun30_01.html">← Prev</a>
+    <a href="sun30_03.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-eyebrow">Sun Protection · The Real Math</div>
+
+      <div class="comparison">
+        <div class="comparison-row">
+          <div>
+            <div class="big-stat good">97%</div>
+            <div class="stat-sub good">every single day</div>
+          </div>
+          <div class="stat-label good">SPF 30</div>
+        </div>
+
+        <div class="vs-line">
+          <div class="vs-rule"></div>
+          <div class="vs-text">vs</div>
+          <div class="vs-rule"></div>
+        </div>
+
+        <div class="comparison-row">
+          <div>
+            <div class="big-stat bad">98%</div>
+            <div class="stat-sub bad">when you remember</div>
+          </div>
+          <div class="stat-label bad">SPF 50</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="conclusion">
+        <strong>SPF compliance is the real protection.</strong><br>
+        Light texture. No white cast. You'll actually put it on.
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Sun Emulsion SPF 30+</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">SPF 30+ 02 — 97% Every Day Beats 98% Never</div>
+      <div class="info-concept">Concept: Math/behavior — the SPF 30 vs 50 compliance argument</div>
+      <div class="info-badge">Sun Emulsion SPF 30+</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Reframes the SPF 30 vs 50 debate entirely. The question isn't which SPF number is higher — it's which one you'll actually use every day. Bold visual contrast makes the math undeniable.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          97% every day.<br>
+          Or 98% when you remember.<br><br>
+          SPF compliance is the real protection. Sun Emulsion SPF 30+ — light enough to actually put on.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Dark charcoal, maximum contrast. The crossed-out 98% is the visual hook. No softness — this is a statement ad.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Start the daily habit → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

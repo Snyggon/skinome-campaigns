@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probiotic 07 — The Refrigerator Shelf — Skinome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #eeece9; min-height: 100vh; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+
+  .nav { background: #0d0d0d; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 100; }
+  .nav a { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .nav a:hover { color: #d5d0c9; }
+  .nav .brand { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; }
+  .nav .brand span { color: #f6f3f0; }
+  .nav-arrows { display: flex; gap: 20px; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; padding: 56px 40px 80px; display: flex; gap: 0; align-items: flex-start; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #ffffff; border: 1px solid #e0dbd3; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.10); }
+  .ig-post-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #fff; }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #3d3935 0%, #746c64 100%); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #f6f3f0; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+  .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; }
+
+  .post-creative { width: 100%; aspect-ratio: 1 / 1; position: relative; overflow: hidden; }
+
+  /* === PROBIOTIC 07 — THE FRIDGE SHELF === */
+  .p07-bg {
+    position: absolute; inset: 0;
+    background: #faf8f4;
+  }
+
+  .p07-wrap {
+    position: absolute; inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 40px 24px;
+  }
+
+  /* Fridge illustration — CSS only */
+  .p07-fridge {
+    width: 140px;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+  .p07-fridge-body {
+    width: 100%;
+    border: 2px solid #d5d0c9;
+    border-radius: 8px;
+    background: #f0eee9;
+    padding: 10px 10px 6px;
+    position: relative;
+  }
+  .p07-fridge-handle {
+    position: absolute;
+    right: -8px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 28px;
+    background: #d5d0c9;
+    border-radius: 3px;
+  }
+  .p07-shelf {
+    width: 100%;
+    height: 2px;
+    background: #d5d0c9;
+    margin: 8px 0;
+  }
+  .p07-shelf-content {
+    display: flex;
+    gap: 6px;
+    align-items: flex-end;
+    padding: 0 2px;
+    min-height: 32px;
+  }
+  /* Product bottle shape */
+  .p07-bottle {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .p07-bottle-top {
+    width: 8px; height: 6px;
+    background: #3d3935;
+    border-radius: 2px 2px 0 0;
+  }
+  .p07-bottle-body {
+    background: #3d3935;
+    border-radius: 2px;
+  }
+  .p07-fridge-bottom {
+    height: 8px;
+    background: #e8e2d8;
+    border-radius: 0 0 6px 6px;
+    border-top: 1px solid #d5d0c9;
+  }
+
+  .p07-copy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .p07-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #746c64;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .p07-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0d0d0d;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .p07-body {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #3d3935;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .p07-body strong { font-weight: 600; color: #0d0d0d; }
+
+  .p07-pull {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #746c64;
+    border-left: 3px solid #d5d0c9;
+    padding-left: 14px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .p07-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid #e0dbd3;
+    margin-top: auto;
+  }
+  .p07-product {
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #b0a89e;
+  }
+  .p07-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #746c64;
+    text-transform: uppercase;
+  }
+
+  .ig-actions { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; background: #fff; }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  .info-col { flex: 1; padding-left: 60px; padding-top: 8px; }
+  .info-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #dedad4; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 12px; }
+  .product-badge { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; background: #0d0d0d; color: #f6f3f0; margin-bottom: 28px; }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 24px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .info-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .info-bullets li { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.5; padding-left: 18px; position: relative; }
+  .info-bullets li::before { content: '—'; position: absolute; left: 0; color: #d5d0c9; font-weight: 700; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .info-nav a:hover { color: #0d0d0d; }
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← Alla produkter</a>
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Probiotic Concentrate</div>
+  <div class="nav-arrows">
+    <a href="probiotic_06.html">← Prev</a>
+    <a href="probiotic_08.html">Next →</a>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div>
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="p07-bg"></div>
+      <div class="p07-wrap">
+
+        <!-- CSS Fridge illustration -->
+        <div class="p07-fridge">
+          <div class="p07-fridge-body">
+            <!-- Top shelf -->
+            <div class="p07-shelf-content">
+              <div class="p07-bottle">
+                <div class="p07-bottle-top"></div>
+                <div class="p07-bottle-body" style="width:14px;height:26px;"></div>
+              </div>
+              <div class="p07-bottle">
+                <div class="p07-bottle-top" style="background:#746c64;"></div>
+                <div class="p07-bottle-body" style="width:12px;height:20px;background:#746c64;opacity:0.6;"></div>
+              </div>
+              <div style="flex:1;"></div>
+              <div style="font-family:'Barlow',sans-serif;font-size:7px;color:#b0a89e;letter-spacing:0.1em;text-transform:uppercase;align-self:flex-end;padding-bottom:2px;">Skinome</div>
+            </div>
+            <div class="p07-shelf"></div>
+            <!-- Lower shelf (empty) -->
+            <div class="p07-shelf-content" style="min-height:20px;">
+              <div style="width:10px;height:16px;background:#e0dbd3;border-radius:2px;"></div>
+              <div style="width:8px;height:12px;background:#e0dbd3;border-radius:2px;opacity:0.6;"></div>
+            </div>
+            <div class="p07-fridge-handle"></div>
+          </div>
+          <div class="p07-fridge-bottom"></div>
+        </div>
+
+        <div class="p07-copy">
+          <div class="p07-eyebrow">Founder story</div>
+          <div class="p07-headline">The refrigerator shelf that changed everything.</div>
+          <div class="p07-body">
+            When Dr. Johanna Gillbro put live bacteria in a skincare formula — she also put it in the fridge. <strong>Because dead probiotics don't work.</strong> And most skincare formulators hadn't figured that out yet.
+          </div>
+          <div class="p07-pull">
+            "The fridge isn't a limitation.<br>It's proof that it's alive."
+          </div>
+        </div>
+
+        <div class="p07-footer">
+          <div class="p07-product">Probiotic Concentrate · Skinome × BioGaia</div>
+          <div class="p07-logo">SKINOME</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">4,882 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      Dr. Johanna Gillbro spent 20 years studying skin. When she decided to build a probiotic serum, she made a choice most brands won't: keep the bacteria alive. That means refrigeration. That means no preservatives. That means it actually works.
+      <div class="ig-hashtags">#skinome #johannagillbro #probioticskin #founder #fridgeskincare #livebacteria</div>
+    </div>
+    <div class="ig-comments">View all 348 comments</div>
+    <div class="ig-timestamp">4 days ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">07</div>
+    <div class="info-title">The Refrigerator Shelf That Changed Everything</div>
+    <span class="product-badge">Probiotic Concentrate</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Concept</div>
+      <div class="info-text">
+        Narrative/founder angle on warm cream. The CSS fridge illustration is the hook — unexpected and ownable. The story turns the refrigeration (often seen as inconvenient) into proof of authenticity and quality. Pull quote format echoes editorial journalism, lending gravitas to Johanna's voice.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Fridge reframed from inconvenience to quality signal</li>
+        <li>Founder story creates emotional connection and trust</li>
+        <li>Pull quote format mimics editorial — feels authoritative</li>
+        <li>CSS fridge illustration is distinctly ownable creative</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">Dr. Johanna Gillbro spent 20 years studying skin. When she decided to build a probiotic serum, she made a choice most brands won't: keep the bacteria alive. That means refrigeration. That means no preservatives. That means it actually works.</div>
+        <div class="cap-tags">#skinome #johannagillbro #probioticskin #founder #fridgeskincare #livebacteria</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="probiotic_06.html">← Prev</a>
+      <a href="probiotic_08.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Probiotic Concentrate Series &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; 10 Ad Concepts 2026
+</footer>
+
+</body>
+</html>

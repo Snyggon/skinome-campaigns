@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun Emulsion SPF 50+ 04 — The Swedish Summer SPF Brief — Skinome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eeece9;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .nav {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: #d5d0c9; }
+  .nav .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .nav .brand span { color: #f6f3f0; }
+  .nav-arrows { display: flex; gap: 20px; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3d3935 0%, #746c64 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; }
+
+  .post-creative {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* === SUN 04 — SWEDISH SUMMER SPF BRIEF (Document Parody) === */
+  .s04-bg {
+    position: absolute; inset: 0;
+    background: #f0ede6;
+  }
+
+  /* Paper texture lines */
+  .s04-lines {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 27px,
+      rgba(61,57,53,0.06) 27px,
+      rgba(61,57,53,0.06) 28px
+    );
+    background-position: 0 58px;
+  }
+
+  .s04-document {
+    position: relative; z-index: 2;
+    width: 420px;
+    background: #faf8f4;
+    border: 1px solid #d5d0c9;
+    padding: 28px 32px;
+    box-shadow: 2px 3px 0 rgba(61,57,53,0.08);
+  }
+
+  .s04-doc-header {
+    border-bottom: 3px solid #3d3935;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+  .s04-agency {
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #746c64;
+    margin-bottom: 4px;
+  }
+  .s04-doc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .s04-doc-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    color: #746c64;
+    margin-top: 4px;
+    letter-spacing: 0.08em;
+  }
+
+  .s04-alert-band {
+    background: #3d3935;
+    color: #fffdd9;
+    font-family: 'Barlow', sans-serif;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .s04-alert-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #fffdd9;
+    flex-shrink: 0;
+  }
+
+  .s04-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .s04-row {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(61,57,53,0.1);
+    padding: 7px 0;
+    gap: 12px;
+  }
+  .s04-row:last-child { border-bottom: none; }
+  .s04-row-key {
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #746c64;
+    min-width: 120px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .s04-row-val {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    color: #3d3935;
+    line-height: 1.4;
+  }
+  .s04-row-val strong {
+    color: #0d0d0d;
+    font-weight: 700;
+  }
+
+  .s04-stamp-area {
+    margin-top: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .s04-ref {
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    color: rgba(116,108,100,0.5);
+    letter-spacing: 0.08em;
+  }
+
+  /* CSS stamp */
+  .s04-stamp {
+    width: 86px; height: 86px;
+    border: 3px solid #3d3935;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-12deg);
+    opacity: 0.85;
+    padding: 8px;
+  }
+  .s04-stamp-top {
+    font-family: 'Barlow', sans-serif;
+    font-size: 6.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #3d3935;
+    line-height: 1.4;
+  }
+  .s04-stamp-mid {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #3d3935;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    margin: 1px 0;
+  }
+  .s04-stamp-bot {
+    font-family: 'Barlow', sans-serif;
+    font-size: 6px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3d3935;
+  }
+
+  /* IG Footer */
+  .ig-actions {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #fff;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  /* ── INFO COL ── */
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+  .info-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #dedad4; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px; }
+  .product-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: #0d0d0d;
+    color: #f6f3f0;
+    margin-bottom: 28px;
+  }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 24px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .info-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .info-bullets li { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.5; padding-left: 18px; position: relative; }
+  .info-bullets li::before { content: '—'; position: absolute; left: 0; color: #d5d0c9; font-weight: 700; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .info-nav a:hover { color: #0d0d0d; }
+
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← Alla produkter</a>
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Sun Emulsion SPF 50+</div>
+  <div class="nav-arrows">
+    <a href="sun50_03.html">← Prev</a>
+    <a href="sun50_05.html">Next →</a>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div>
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="s04-bg"></div>
+      <div class="s04-lines"></div>
+
+      <div class="s04-document">
+        <div class="s04-doc-header">
+          <div class="s04-agency">Swedish Weather Service / UV Division</div>
+          <div class="s04-doc-title">Summer UV Safety Brief</div>
+          <div class="s04-doc-sub">Season: June – August &nbsp;·&nbsp; Region: Sweden</div>
+        </div>
+
+        <div class="s04-alert-band">
+          <div class="s04-alert-dot"></div>
+          UV Alert — Elevated Risk Period
+        </div>
+
+        <div class="s04-rows">
+          <div class="s04-row">
+            <div class="s04-row-key">UV Index Peak</div>
+            <div class="s04-row-val"><strong>5–7</strong> (Moderate–High) · June–July</div>
+          </div>
+          <div class="s04-row">
+            <div class="s04-row-key">Risk Window</div>
+            <div class="s04-row-val"><strong>10:00 – 16:00</strong> · Exposure accumulates fast at northern latitudes</div>
+          </div>
+          <div class="s04-row">
+            <div class="s04-row-key">Daylight Hours</div>
+            <div class="s04-row-val">Up to <strong>18h</strong> in late June — UV exposure window is long</div>
+          </div>
+          <div class="s04-row">
+            <div class="s04-row-key">Recommended SPF</div>
+            <div class="s04-row-val"><strong>SPF 50+</strong> daily, re-apply every 2 hours outdoors</div>
+          </div>
+          <div class="s04-row">
+            <div class="s04-row-key">Formula Standard</div>
+            <div class="s04-row-val"><strong>Microbiome-safe</strong> · Zero preservatives · Skinome certified</div>
+          </div>
+        </div>
+
+        <div class="s04-stamp-area">
+          <div class="s04-ref">REF: SWE-UV-2026-50 · Skinome Sun Emulsion</div>
+          <div class="s04-stamp">
+            <div class="s04-stamp-top">Skinome</div>
+            <div class="s04-stamp-mid">SUN<br>EMULSION</div>
+            <div class="s04-stamp-bot">SPF 50+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">4,033 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      Swedish summer UV brief, issued. Up to 18 hours of daylight in June. UV index peaking 5–7. Your skin doesn't care that you're used to the dark months — UV damage accumulates whether you notice it or not. SPF 50+, daily, microbiome-safe. Consider this your official briefing.
+      <div class="ig-hashtags">#skinome #spf50 #swedishshummer #uvprotection #microbiome #solskydd</div>
+    </div>
+    <div class="ig-comments">View all 307 comments</div>
+    <div class="ig-timestamp">4 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">04</div>
+    <div class="info-title">The Swedish Summer SPF Brief</div>
+    <span class="product-badge">Sun Emulsion SPF 50+</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Concept</div>
+      <div class="info-text">
+        Official document parody. Looks like a government safety memo — Swedish Weather Service letterhead, alert band, stamped certification. The format signals authority and factual credibility while the content is playful and brand-aligned. The rotating stamp in the corner is the signature flourish that rewards a second look. Warm paper tones keep it warm rather than cold.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Bureaucratic format creates authoritative, credible aesthetic</li>
+        <li>Real UV data for Stockholm summer makes it informative</li>
+        <li>Humor in the framing — people recognize the parody and enjoy it</li>
+        <li>Stamp as brand signature — instantly shareable, ownable</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">Swedish summer UV brief, issued. Up to 18 hours of daylight in June. UV index peaking 5–7. Your skin doesn't care that you're used to the dark months — UV damage accumulates whether you notice it or not. SPF 50+, daily, microbiome-safe. Consider this your official briefing.</div>
+        <div class="cap-tags">#skinome #spf50 #swedishshummer #uvprotection #microbiome #solskydd</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="sun50_03.html">← Prev</a>
+      <a href="sun50_05.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Sun Emulsion SPF 50+ Series &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; 10 Ad Concepts 2026
+</footer>
+
+</body>
+</html>

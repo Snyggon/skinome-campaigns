@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rich 08 — Your Moisturizer Is Working Against You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #1a0f0e;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 52px;
+    }
+
+    /* Red tension gradient */
+    .bg-tension {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 30%, rgba(100,20,20,0.5) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(80,15,15,0.3) 0%, transparent 50%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .warning-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .warning-bar {
+      width: 3px;
+      height: 16px;
+      background: #c0392b;
+      border-radius: 1px;
+    }
+
+    .warning-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c0392b;
+    }
+
+    .main-headline {
+      font-size: 32px;
+      font-weight: 700;
+      color: #f6f3f0;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .main-headline span {
+      color: #c0392b;
+    }
+
+    .fact-block {
+      border-left: 2px solid rgba(192,57,43,0.5);
+      padding-left: 20px;
+      margin-bottom: 32px;
+    }
+
+    .fact-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      color: rgba(246,243,240,0.85);
+      line-height: 1.55;
+    }
+
+    .fact-text strong {
+      color: #f6f3f0;
+      font-weight: 700;
+    }
+
+    .solution-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .solution-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(246,243,240,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .solution-icon::before {
+      content: '✓';
+      font-size: 14px;
+      color: #f6f3f0;
+    }
+
+    .solution-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: rgba(246,243,240,0.75);
+      line-height: 1.4;
+    }
+
+    .solution-text strong {
+      color: #f6f3f0;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+      border: 1px solid rgba(246,243,240,0.2);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: rgba(246,243,240,0.4);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="rich_07.html">← Prev</a>
+    <a href="rich_09.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="bg-tension"></div>
+
+      <div class="content">
+
+        <div class="warning-tag">
+          <div class="warning-bar"></div>
+          <div class="warning-text">The problem with your current routine</div>
+        </div>
+
+        <div class="main-headline">Your moisturizer<br>is working<br><span>against you.</span></div>
+
+        <div class="fact-block">
+          <div class="fact-text">
+            Most moisturizers contain <strong>preservatives</strong> that alter your skin microbiome<br>
+            with <strong>every single application.</strong><br>
+            Daily. For years.
+          </div>
+        </div>
+
+        <div class="solution-row">
+          <div class="solution-icon"></div>
+          <div class="solution-text">
+            <strong>Rich Emulsion contains zero preservatives.</strong><br>
+            Refrigerated. Microbiome-safe by design.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Rich Emulsion</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Rich 08 — Working Against You</div>
+      <div class="info-concept">Concept: Provocative accusation — your moisturizer is the problem</div>
+      <div class="info-badge">Rich Emulsion</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Maximum scroll-stop. The all-caps accusation is impossible to ignore. The key is the pivot from provocation to science — "alter your microbiome" is factual, not hyperbolic. Converts consumers who are already skeptical of conventional skincare.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Your moisturizer is working against you.<br><br>
+          Most contain preservatives that alter your skin microbiome with every use. You apply it every morning. Every night. For years.<br><br>
+          Rich Emulsion contains zero. That's not a compromise — it's why it works.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Near-black with red tension gradient. Feels like a warning label. The shift to the solution row at the bottom provides relief — the contrast between threat and answer is the emotional arc of the ad.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Switch to zero preservatives → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

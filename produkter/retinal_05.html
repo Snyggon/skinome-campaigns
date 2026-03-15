@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 05 — Keep Cold. Get Results.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #e3f0f5;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Subtle texture stripes */
+    .bg-stripes {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.15) 40px,
+        rgba(255,255,255,0.15) 41px
+      );
+    }
+
+    /* Frost circles */
+    .frost-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .inner-layout {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 44px;
+      padding: 0 40px;
+    }
+
+    /* ── CSS Thermometer ── */
+    .thermo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .thermo-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #2a6a85;
+      opacity: 0.7;
+    }
+    .thermo-tube {
+      width: 28px;
+      height: 220px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 14px;
+      border: 2px solid rgba(42,106,133,0.35);
+      position: relative;
+      overflow: visible;
+    }
+    /* Tick marks on side */
+    .thermo-ticks {
+      position: absolute;
+      right: -22px;
+      top: 20px;
+      bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .thermo-tick {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .tick-line {
+      width: 8px;
+      height: 1px;
+      background: rgba(42,106,133,0.4);
+    }
+    .tick-val {
+      font-family: 'Barlow', sans-serif;
+      font-size: 9px;
+      color: #2a6a85;
+      opacity: 0.6;
+    }
+    /* Mercury fill */
+    .thermo-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30%;
+      background: linear-gradient(to top, #5bb8d8, #a8dced);
+      border-radius: 0 0 12px 12px;
+    }
+    /* Bulb */
+    .thermo-bulb {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5bb8d8, #2a6a85);
+      border: 2px solid rgba(42,106,133,0.35);
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bulb-temp {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+
+    /* Snowflakes */
+    .snowflake {
+      position: absolute;
+      color: rgba(255,255,255,0.5);
+      font-size: 18px;
+      user-select: none;
+    }
+
+    /* Text side */
+    .text-side {
+      flex: 1;
+    }
+    .cold-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #2a6a85;
+      margin-bottom: 14px;
+      opacity: 0.8;
+    }
+    .cold-headline {
+      font-size: 34px;
+      font-weight: 700;
+      color: #1a3d4d;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .cold-headline span {
+      color: #2a6a85;
+    }
+    .cold-body {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13.5px;
+      color: #2a6a85;
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+    .cold-stat {
+      display: inline-block;
+      background: #1a3d4d;
+      color: #e3f0f5;
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .card-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a3d4d;
+      opacity: 0.5;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #2a6a85;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_04.html">← Prev</a>
+    <a href="retinal_06.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="bg-stripes"></div>
+
+      <!-- Frost circles -->
+      <div class="frost-circle" style="width:380px;height:380px;top:-100px;right:-100px;"></div>
+      <div class="frost-circle" style="width:240px;height:240px;bottom:-60px;left:-60px;"></div>
+
+      <!-- Snowflakes scattered -->
+      <div class="snowflake" style="top:40px;left:40px;font-size:22px;opacity:0.3;">❄</div>
+      <div class="snowflake" style="top:80px;right:36px;font-size:14px;opacity:0.25;">❄</div>
+      <div class="snowflake" style="bottom:60px;right:48px;font-size:18px;opacity:0.3;">❄</div>
+      <div class="snowflake" style="bottom:100px;left:28px;font-size:12px;opacity:0.2;">❄</div>
+      <div class="snowflake" style="top:200px;left:20px;font-size:10px;opacity:0.2;">❄</div>
+
+      <div class="inner-layout">
+
+        <!-- Thermometer -->
+        <div class="thermo-wrap">
+          <div class="thermo-label">Storage</div>
+          <div class="thermo-tube">
+            <div class="thermo-fill"></div>
+            <div class="thermo-ticks">
+              <div class="thermo-tick"><div class="tick-line"></div><div class="tick-val">37°</div></div>
+              <div class="thermo-tick"><div class="tick-line"></div><div class="tick-val">25°</div></div>
+              <div class="thermo-tick"><div class="tick-line"></div><div class="tick-val">15°</div></div>
+              <div class="thermo-tick"><div class="tick-line"></div><div class="tick-val">8°</div></div>
+            </div>
+          </div>
+          <div class="thermo-bulb">
+            <div class="bulb-temp">&lt;8°C</div>
+          </div>
+          <div class="thermo-label" style="margin-top:4px;">Fridge</div>
+        </div>
+
+        <!-- Text -->
+        <div class="text-side">
+          <div class="cold-eyebrow">Preservative-free</div>
+          <div class="cold-headline">Keep<br>Cold.<br><span>Get Results.</span></div>
+          <div class="cold-body">
+            Your serum sits on a shelf for months before you use it.<br><br>
+            Ours lives in your fridge — because potency matters more than convenience for us.
+          </div>
+          <div class="cold-stat">No preservatives · Ever</div>
+          <div class="card-brand">Skinome</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 05 — Keep Cold. Get Results.</div>
+      <div class="info-concept">Concept: Refrigeration as the ultimate proof of purity</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Turn the "inconvenience" of refrigeration into the ultimate credibility signal. If we didn't need to keep it cold, we'd have added preservatives. We didn't. That's the point.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Your serum expires slowly on a shelf.<br>
+          Ours lives in your fridge —<br>
+          because potency matters.<br><br>
+          No preservatives. No compromises.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Arctic blue, cool and clean. The thermometer and snowflakes visually reinforce "cold = good." Feels Scandinavian, honest, and uncompromising.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Keep it cold. See the difference → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rich 07 — Swedish Winter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #e4eef5;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 44px 48px;
+    }
+
+    /* Snowflake field - CSS only */
+    .snow-field {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .flake {
+      position: absolute;
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      animation: drift linear infinite;
+      user-select: none;
+    }
+
+    @keyframes drift {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+    }
+
+    .f1  { left: 8%;   animation-duration: 6s;   animation-delay: 0s;    font-size: 10px; }
+    .f2  { left: 18%;  animation-duration: 8s;   animation-delay: 1.2s;  font-size: 7px; }
+    .f3  { left: 30%;  animation-duration: 5.5s; animation-delay: 0.4s;  font-size: 13px; }
+    .f4  { left: 42%;  animation-duration: 7s;   animation-delay: 2.1s;  font-size: 8px; }
+    .f5  { left: 55%;  animation-duration: 6.5s; animation-delay: 0.8s;  font-size: 11px; }
+    .f6  { left: 68%;  animation-duration: 9s;   animation-delay: 3.0s;  font-size: 7px; }
+    .f7  { left: 78%;  animation-duration: 5s;   animation-delay: 1.6s;  font-size: 14px; }
+    .f8  { left: 88%;  animation-duration: 7.5s; animation-delay: 0.2s;  font-size: 9px; }
+    .f9  { left: 22%;  animation-duration: 10s;  animation-delay: 4.0s;  font-size: 6px; }
+    .f10 { left: 62%;  animation-duration: 6s;   animation-delay: 2.5s;  font-size: 12px; }
+
+    .card-top {
+      position: relative;
+      z-index: 1;
+    }
+
+    .temp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 4px;
+      padding: 6px 14px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(4px);
+    }
+
+    .temp-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2d4a60;
+      letter-spacing: -0.02em;
+    }
+
+    .temp-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #4a7090;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .city-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #4a7090;
+      margin-bottom: 16px;
+    }
+
+    .main-headline {
+      font-size: 30px;
+      font-weight: 700;
+      color: #2d4a60;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .card-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-copy {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      color: #2d4a60;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .formula-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #2d4a60;
+      border-radius: 4px;
+      padding: 8px 16px;
+    }
+
+    .formula-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e4eef5;
+      flex-shrink: 0;
+    }
+
+    .formula-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #e4eef5;
+      letter-spacing: 0.08em;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #2d4a60;
+      border: 1px solid rgba(45,74,96,0.4);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #4a7090;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="rich_06.html">← Prev</a>
+    <a href="rich_08.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="snow-field">
+        <div class="flake f1">*</div>
+        <div class="flake f2">·</div>
+        <div class="flake f3">❄</div>
+        <div class="flake f4">*</div>
+        <div class="flake f5">·</div>
+        <div class="flake f6">❄</div>
+        <div class="flake f7">*</div>
+        <div class="flake f8">·</div>
+        <div class="flake f9">❄</div>
+        <div class="flake f10">*</div>
+      </div>
+
+      <div class="card-top">
+        <div class="temp-badge">
+          <span class="temp-num">−12°C</span>
+          <span class="temp-label">Stockholm · January</span>
+        </div>
+
+        <div class="city-label">Swedish Winter Formulation</div>
+
+        <div class="main-headline">Your skin barrier<br>is your only<br>protection.</div>
+      </div>
+
+      <div class="card-bottom">
+        <div class="card-copy">
+          We formulated Rich Emulsion for this.<br>
+          Cold, dry air strips your barrier faster than any other season.
+          Most creams aren't built for it.
+        </div>
+        <div class="formula-note">
+          <div class="formula-dot"></div>
+          <span class="formula-text">Preservative-free · Microbiome-safe · Refrigerated</span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Rich Emulsion</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Rich 07 — Swedish Winter</div>
+      <div class="info-concept">Concept: Nordic seasonal urgency — formulated for the harshest climate</div>
+      <div class="info-badge">Rich Emulsion</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Geographic authenticity. Swedish brand, Swedish winters. The -12°C temperature badge is instantly relatable to the Nordic audience — and any cold-climate market. Cold weather is a built-in reason to buy a rich moisturizer.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Stockholm, -12°C. Your skin barrier is the only thing standing between you and the cold.<br><br>
+          We formulated Rich Emulsion for Scandinavian winters. Dense, preservative-free, microbiome-safe.<br><br>
+          Most creams weren't built for this.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Ice blue, drifting snowflakes, Nordic-cold palette. Specific and grounded. Appeals to both Swedish domestic audience and Norway (already 165% growth market).</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Built for Nordic winters → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeretinal 01 — Two Problems. One Formula.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Split panels */
+    .split-container {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+
+    .panel-left {
+      flex: 1;
+      background: #3d3935;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 24px;
+    }
+
+    .panel-right {
+      flex: 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 24px;
+    }
+
+    /* CSS pigmentation blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.55;
+    }
+    .blob-1 { width: 100px; height: 80px; background: #a07858; top: 30px; left: 20px; }
+    .blob-2 { width: 60px; height: 55px; background: #8b6245; top: 90px; left: 120px; }
+    .blob-3 { width: 80px; height: 60px; background: #c4956a; top: 55px; left: 70px; }
+    .blob-4 { width: 50px; height: 40px; background: #9a7050; top: 140px; left: 30px; }
+    .blob-5 { width: 70px; height: 65px; background: #7a5535; top: 110px; left: 90px; }
+
+    /* CSS dot pattern for texture */
+    .dot-grid {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle, #d5d0c9 1px, transparent 1px);
+      background-size: 14px 14px;
+      opacity: 0.6;
+    }
+    .texture-lines {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 60%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 6px,
+        rgba(116,108,100,0.12) 6px,
+        rgba(116,108,100,0.12) 7px
+      );
+    }
+
+    .panel-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 2;
+    }
+    .panel-left .panel-label { color: rgba(255,253,217,0.6); }
+    .panel-right .panel-label { color: #746c64; }
+
+    .panel-active {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      position: relative;
+      z-index: 2;
+    }
+    .panel-left .panel-active { color: #fffdd9; }
+    .panel-right .panel-active { color: #3d3935; }
+
+    .panel-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+      margin-top: 4px;
+      position: relative;
+      z-index: 2;
+    }
+    .panel-left .panel-sub { color: rgba(246,243,240,0.5); }
+    .panel-right .panel-sub { color: #746c64; }
+
+    /* Center overlay */
+    .center-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      text-align: center;
+    }
+    .center-2in1 {
+      background: #f6f3f0;
+      border: 3px solid #3d3935;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    .center-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: #3d3935;
+      line-height: 1;
+    }
+    .center-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #746c64;
+    }
+
+    /* Header bar */
+    .card-header {
+      padding: 22px 28px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f6f3f0;
+      position: relative;
+      z-index: 5;
+    }
+    .card-headline {
+      font-size: 19px;
+      font-weight: 700;
+      color: #3d3935;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .skinome-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #746c64;
+      opacity: 0.7;
+    }
+
+    /* Footer */
+    .card-footer {
+      padding: 14px 28px;
+      background: #3d3935;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fffdd9;
+      border: 1px solid rgba(255,253,217,0.3);
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: rgba(246,243,240,0.5);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="azeretinal_10.html">← Prev</a>
+    <a href="azeretinal_02.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-header">
+        <div class="card-headline">Two Problems.<br>One Formula.</div>
+        <div class="skinome-tag">Skinome</div>
+      </div>
+
+      <div class="split-container">
+
+        <div class="panel-left">
+          <div class="blob blob-1"></div>
+          <div class="blob blob-2"></div>
+          <div class="blob blob-3"></div>
+          <div class="blob blob-4"></div>
+          <div class="blob blob-5"></div>
+          <div class="panel-label">Problem one</div>
+          <div class="panel-active">Uneven<br>Pigmentation</div>
+          <div class="panel-sub">Azelaic acid<br>corrects the signal</div>
+        </div>
+
+        <div class="panel-right">
+          <div class="dot-grid"></div>
+          <div class="texture-lines"></div>
+          <div class="panel-label">Problem two</div>
+          <div class="panel-active">Fine Lines<br>&amp; Aging</div>
+          <div class="panel-sub">Retinal<br>rebuilds the cell</div>
+        </div>
+
+        <div class="center-badge">
+          <div class="center-2in1">
+            <div class="center-num">2</div>
+            <div class="center-text">in 1</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Azeretinal Concentrate</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Azeretinal 01 — Two Problems. One Formula.</div>
+      <div class="info-concept">Concept: Split graphic — dual-panel clinical layout</div>
+      <div class="info-badge">Azeretinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Clinical efficiency. Two distinct skin problems rendered visually side-by-side, united by one product. No lifestyle fluff — the structure of the ad is the argument.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Azelaic acid targets pigmentation. Retinal targets aging.<br><br>
+          One concentrate does both.<br><br>
+          Preservative-free. Refrigerated. Microbiome-safe.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Split-screen, architectural, deliberate. Dark left panel (pigmentation blobs) vs. light right panel (texture dots). The circular "2 IN 1" badge locks the concept.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Shop Azeretinal Concentrate → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

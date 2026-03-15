@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Emulsion SPF 30+ 08 — For People Who Think They Don't Need SPF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a { color: #746c64; text-decoration: none; padding: 6px 12px; border: 1px solid #d5d0c9; border-radius: 4px; transition: background 0.15s; }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout { display: flex; gap: 32px; align-items: flex-start; }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #0d0d0d;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 44px 48px 80px;
+    }
+
+    /* Diagonal accent line */
+    .ig-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 80px;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(255,253,217,0.12) 30%, rgba(255,253,217,0.08) 70%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #4a4a4a;
+      margin-bottom: 20px;
+    }
+
+    .headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #f6f3f0;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 20px;
+    }
+    .headline .highlight {
+      color: #fffdd9;
+    }
+
+    .reasons {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .reason {
+      display: flex;
+      gap: 0;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .reason:last-child { border-bottom: none; }
+
+    .reason-trigger {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      min-width: 200px;
+      flex-shrink: 0;
+      padding-right: 20px;
+      line-height: 1.4;
+    }
+
+    .reason-arrow {
+      font-size: 13px;
+      color: #3d3935;
+      padding-right: 16px;
+      padding-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .reason-fact {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #f6f3f0;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+    .reason-fact .data {
+      color: #fffdd9;
+    }
+
+    .cta-strip {
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #f6f3f0; border: 1px solid rgba(246,243,240,0.2); padding: 5px 12px; border-radius: 2px; }
+    .product-tag { font-family: 'Barlow', sans-serif; font-size: 11px; color: #4a4a4a; letter-spacing: 0.06em; }
+
+    /* ── INFO COL ── */
+    .info-col { flex: 1; background: #eeece9; padding: 8px 0; }
+    .info-title { font-size: 22px; font-weight: 700; color: #3d3935; margin-bottom: 6px; }
+    .info-concept { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; font-style: italic; margin-bottom: 20px; }
+    .info-badge { display: inline-block; background: #3d3935; color: #fffdd9; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 24px; }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #746c64; margin-bottom: 8px; }
+    .info-section p { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; }
+    .copy-block { background: white; border-left: 3px solid #3d3935; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; border-radius: 0 4px 4px 0; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="sun30_07.html">← Prev</a>
+    <a href="sun30_09.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-eyebrow">For People Who Think They Don't Need It</div>
+
+      <div class="headline">
+        For people who think<br>they don't need<br><span class="highlight">SPF.</span>
+      </div>
+
+      <div class="reasons">
+        <div class="reason">
+          <div class="reason-trigger">"I work indoors all day..."</div>
+          <div class="reason-arrow">→</div>
+          <div class="reason-fact">UV passes through <span class="data">standard glass windows.</span></div>
+        </div>
+        <div class="reason">
+          <div class="reason-trigger">"I only walk 10 minutes to the office..."</div>
+          <div class="reason-arrow">→</div>
+          <div class="reason-fact"><span class="data">Cumulative exposure.</span> Every minute adds up over years.</div>
+        </div>
+        <div class="reason">
+          <div class="reason-trigger">"It's cloudy today..."</div>
+          <div class="reason-arrow">→</div>
+          <div class="reason-fact"><span class="data">80% of UV</span> passes through cloud cover.</div>
+        </div>
+        <div class="reason">
+          <div class="reason-trigger">"I don't go outside much..."</div>
+          <div class="reason-arrow">→</div>
+          <div class="reason-fact">Screen blue light adds to <span class="data">daily UV load.</span></div>
+        </div>
+      </div>
+
+      <div class="cta-strip">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Sun Emulsion SPF 30+</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">SPF 30+ 08 — For People Who Think They Don't Need SPF</div>
+      <div class="info-concept">Concept: Audience challenge — dismantle every excuse with a fact</div>
+      <div class="info-badge">Sun Emulsion SPF 30+</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Direct confrontation of the most common SPF objections, delivered in a clinical two-column format. The italic excuses on the left vs. the bold facts on the right creates a satisfying, readable tension. Near-black background makes it feel like a definitive statement.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          "I work indoors." → UV passes through windows.<br>
+          "I walk 10 minutes to the office." → Cumulative damage, every day.<br>
+          "It's cloudy." → 80% of UV passes through clouds.<br>
+          "I don't go outside much." → Screen blue light adds up.<br><br>
+          Sun Emulsion SPF 30+. For people who are finally out of excuses.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Near-black, confrontational but not aggressive. The two-column layout is almost legal-brief in its precision. The slight vertical divider line adds structure without weight.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Out of excuses → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

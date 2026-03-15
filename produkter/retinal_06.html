@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 06 — The 1-Step Conversion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* LEFT PANEL — dark */
+    .panel-left {
+      width: 50%;
+      height: 100%;
+      background: #3d3935;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 28px;
+      position: relative;
+    }
+
+    .panel-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .panel-left .panel-label { color: rgba(246,243,240,0.4); }
+    .panel-right .panel-label { color: rgba(61,57,53,0.4); }
+
+    .chain-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+    }
+    .chain-item:last-child { border-bottom: none; }
+
+    .chain-x {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(200,60,60,0.25);
+      border: 1px solid rgba(200,60,60,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 11px;
+      color: #e07070;
+      font-weight: 700;
+    }
+    .chain-text {
+      flex: 1;
+    }
+    .chain-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f6f3f0;
+      opacity: 0.7;
+      text-decoration: line-through;
+      text-decoration-color: rgba(200,60,60,0.5);
+    }
+    .chain-note {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: rgba(246,243,240,0.3);
+      margin-top: 2px;
+    }
+
+    .chain-arrow-left {
+      text-align: center;
+      color: rgba(246,243,240,0.2);
+      font-size: 16px;
+      padding: 4px 0;
+    }
+
+    .chain-destination {
+      margin-top: 8px;
+      padding: 10px 12px;
+      background: rgba(246,243,240,0.06);
+      border: 1px solid rgba(246,243,240,0.15);
+      border-radius: 3px;
+    }
+    .chain-destination .chain-name {
+      opacity: 0.5;
+      font-size: 12px;
+    }
+
+    /* LEFT panel label at top */
+    .panel-left-title {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(246,243,240,0.3);
+    }
+
+    /* RIGHT PANEL — cream */
+    .panel-right {
+      width: 50%;
+      height: 100%;
+      background: #f6f3f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 28px;
+      position: relative;
+    }
+
+    .panel-right-title {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(61,57,53,0.35);
+    }
+
+    .right-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(61,57,53,0.08);
+    }
+    .right-item:last-child { border-bottom: none; }
+
+    .check-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #3d3935;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+      color: #fffdd9;
+    }
+    .right-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #3d3935;
+      letter-spacing: 0.02em;
+    }
+    .right-note {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: #746c64;
+      margin-top: 3px;
+    }
+
+    .big-arrow {
+      text-align: center;
+      font-size: 28px;
+      color: #3d3935;
+      padding: 6px 0;
+    }
+
+    .result-box {
+      margin-top: 12px;
+      padding: 14px;
+      background: #3d3935;
+      border-radius: 3px;
+    }
+    .result-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,253,217,0.6);
+      margin-bottom: 4px;
+    }
+    .result-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fffdd9;
+      letter-spacing: 0.04em;
+    }
+
+    /* Divider line */
+    .center-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #0d0d0d;
+      z-index: 10;
+    }
+
+    /* Footer strip */
+    .card-footer-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 36px;
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .footer-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+    }
+    .footer-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #746c64;
+    }
+    .footer-product {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: #746c64;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_05.html">← Prev</a>
+    <a href="retinal_07.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <!-- LEFT panel: the wrong way -->
+      <div class="panel-left">
+        <div class="panel-left-title">Other brands</div>
+
+        <div style="margin-top: 40px;">
+          <div class="chain-item">
+            <div class="chain-x">✕</div>
+            <div class="chain-text">
+              <div class="chain-name">Retinyl Esters</div>
+              <div class="chain-note">Step 1 of 3</div>
+            </div>
+          </div>
+          <div class="chain-arrow-left">↓</div>
+          <div class="chain-item">
+            <div class="chain-x">✕</div>
+            <div class="chain-text">
+              <div class="chain-name">Retinol</div>
+              <div class="chain-note">Step 2 of 3 — what they sell you</div>
+            </div>
+          </div>
+          <div class="chain-arrow-left">↓</div>
+          <div class="chain-item">
+            <div class="chain-x">✕</div>
+            <div class="chain-text">
+              <div class="chain-name">Retinal</div>
+              <div class="chain-note">Step 3 of 3 — skipped entirely</div>
+            </div>
+          </div>
+          <div class="chain-arrow-left">↓</div>
+          <div class="chain-destination">
+            <div class="chain-name">Retinoic Acid</div>
+            <div class="chain-note" style="opacity:0.5;">What skin actually uses</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT panel: the Skinome way -->
+      <div class="panel-right">
+        <div class="panel-right-title">Skinome</div>
+
+        <div style="margin-top: 40px;">
+          <div class="right-item">
+            <div class="check-circle">✓</div>
+            <div>
+              <div class="right-name">Retinal</div>
+              <div class="right-note">Where we start</div>
+            </div>
+          </div>
+          <div class="big-arrow">↓</div>
+          <div class="result-box">
+            <div class="result-label">Active form</div>
+            <div class="result-name">Retinoic Acid</div>
+          </div>
+
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(61,57,53,0.1);">
+            <div style="font-family:'Barlow',sans-serif; font-size:11px; color:#746c64; margin-bottom:6px; letter-spacing:0.04em;">
+              1 conversion step vs. 3.
+            </div>
+            <div style="font-size:13px; font-weight:700; color:#3d3935; line-height:1.3;">
+              More of what works.<br>Less lost in translation.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center divider -->
+      <div class="center-line"></div>
+
+      <!-- Footer -->
+      <div class="card-footer-strip">
+        <div class="footer-brand">Skinome</div>
+        <div class="footer-dot"></div>
+        <div class="footer-product">Retinal Concentrate</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 06 — The 1-Step Conversion</div>
+      <div class="info-concept">Concept: Split-panel comparison — wrong way vs. Skinome way</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Visual before/after without showing faces. The comparison is ingredient logic, not skin photos. Dark left = the inefficient industry approach. Light right = Skinome's smarter path.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Other serums start at retinol.<br>
+          That's step 2 of 3.<br><br>
+          We start at retinal.<br>
+          That's step 3 of 3.<br><br>
+          One conversion away from what works.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Sharp, graphic, comparative. Dark/light split creates instant visual tension. No lifestyle. Pure logic.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Cut to the conversion → skinome.com/retinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeretinal 08 — Before the Foundation Goes On</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Morning light gradient top band */
+    .morning-light {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: linear-gradient(180deg,
+        rgba(255,245,235,0.9) 0%,
+        rgba(246,243,240,0.4) 60%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Horizontal light rays */
+    .ray {
+      position: absolute;
+      left: -20px;
+      right: -20px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,220,180,0.5) 30%, rgba(255,220,180,0.5) 70%, transparent 100%);
+    }
+    .ray-1 { top: 48px; }
+    .ray-2 { top: 72px; opacity: 0.6; }
+    .ray-3 { top: 95px; opacity: 0.35; }
+
+    /* Big reframe text at top */
+    .reframe-block {
+      padding: 36px 40px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .reframe-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 16px;
+    }
+
+    .reframe-headline {
+      font-size: 24px;
+      font-weight: 700;
+      color: #3d3935;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+
+    .reframe-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+
+    .reframe-sub strong {
+      font-weight: 700;
+    }
+
+    /* Timeline visual */
+    .timeline {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px 40px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .time-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(61,57,53,0.08);
+    }
+    .time-row:last-child { border-bottom: none; }
+
+    .time-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #746c64;
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .time-action {
+      font-size: 13px;
+      font-weight: 600;
+      color: #3d3935;
+      flex: 1;
+    }
+
+    .time-badge {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .time-badge.skincare {
+      background: #3d3935;
+      color: #fffdd9;
+    }
+
+    .time-badge.makeup {
+      background: rgba(116,108,100,0.12);
+      color: #746c64;
+      border: 1px solid rgba(116,108,100,0.2);
+      text-decoration: line-through;
+      text-decoration-color: rgba(116,108,100,0.4);
+    }
+
+    /* Bottom statement */
+    .bottom-statement {
+      background: #3d3935;
+      padding: 18px 40px;
+    }
+
+    .bottom-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: rgba(246,243,240,0.85);
+      line-height: 1.5;
+    }
+
+    .bottom-text em {
+      color: #fffdd9;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .card-top-bar {
+      position: absolute;
+      top: 18px;
+      left: 40px;
+      right: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 5;
+    }
+
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3d3935;
+      border: 1px solid rgba(61,57,53,0.22);
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="azeretinal_07.html">← Prev</a>
+    <a href="azeretinal_09.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="morning-light"></div>
+      <div class="ray ray-1"></div>
+      <div class="ray ray-2"></div>
+      <div class="ray ray-3"></div>
+
+      <div class="card-top-bar">
+        <div class="badge">Skinome</div>
+      </div>
+
+      <div class="reframe-block">
+        <div class="reframe-eyebrow">Skinome · Azeretinal Concentrate</div>
+        <div class="reframe-headline">
+          Uneven skin tone<br>
+          isn't a makeup problem.<br>
+          It's a skin problem.
+        </div>
+        <div class="reframe-sub">
+          Azeretinal Concentrate works at the source —<br>
+          so you need <strong>less to cover up.</strong>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-inner">
+          <div class="time-row">
+            <div class="time-label">Night</div>
+            <div class="time-action">Azeretinal Concentrate</div>
+            <div class="time-badge skincare">Works</div>
+          </div>
+          <div class="time-row">
+            <div class="time-label">Morning</div>
+            <div class="time-action">Even, clearer skin underneath</div>
+            <div class="time-badge skincare">Result</div>
+          </div>
+          <div class="time-row">
+            <div class="time-label">Foundation</div>
+            <div class="time-action">Optional. Not a necessity.</div>
+            <div class="time-badge makeup">Concealer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-statement">
+        <div class="bottom-text">
+          Preservative-free. Refrigerated. <em>No compromise.</em>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Azeretinal 08 — Before the Foundation Goes On</div>
+      <div class="info-concept">Concept: Routine reframe — anti-foundation empowerment angle</div>
+      <div class="info-badge">Azeretinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Empowerment through truth. Most skincare marketing shows flawless skin as the result of perfect coverage. This reframes the goal — treat the cause, reduce the cover-up. It resonates strongly with "skip-makeup" audiences and confident, informed buyers.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Uneven skin tone isn't a makeup problem. It's a skin problem.<br><br>
+          Azeretinal Concentrate works at the source — so you need less to cover up.<br><br>
+          Preservative-free. Refrigerated. No compromise.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Warm cream with subtle morning light gradient. Timeline visual showing the night-to-morning routine flow. Foundation as optional — struck through — is the provocative payoff that stops the scroll.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Work at the source → skinome.com/azeretinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

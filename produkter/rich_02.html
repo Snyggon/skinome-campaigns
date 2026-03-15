@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rich 02 — Not Rich in Fragrance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #0d0d0d;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 44px 48px;
+    }
+
+    .card-headline {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #f6f3f0;
+      margin-bottom: 32px;
+      line-height: 1.3;
+    }
+    .card-headline span {
+      color: #fffdd9;
+    }
+
+    .divider-line {
+      width: 40px;
+      height: 1px;
+      background: #746c64;
+      margin-bottom: 28px;
+    }
+
+    .strike-list {
+      list-style: none;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .strike-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .strike-x {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .strike-x::before {
+      content: '×';
+      font-size: 12px;
+      color: #746c64;
+      line-height: 1;
+    }
+
+    .strike-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #746c64;
+      text-decoration: line-through;
+      text-decoration-color: #746c64;
+      letter-spacing: 0.02em;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .check-mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(255,253,217,0.1);
+      border: 1px solid rgba(255,253,217,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .check-mark::before {
+      content: '✓';
+      font-size: 10px;
+      color: #fffdd9;
+      line-height: 1;
+    }
+
+    .check-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #f6f3f0;
+      letter-spacing: 0.02em;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+      border: 1px solid rgba(246,243,240,0.25);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="rich_01.html">← Prev</a>
+    <a href="rich_03.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-headline">Not rich in fragrance.<br><span>Rich in everything else.</span></div>
+
+      <div class="divider-line"></div>
+
+      <ul class="strike-list">
+        <li class="strike-item">
+          <div class="strike-x"></div>
+          <span class="strike-text">Fragrance</span>
+        </li>
+        <li class="strike-item">
+          <div class="strike-x"></div>
+          <span class="strike-text">Preservatives</span>
+        </li>
+        <li class="strike-item">
+          <div class="strike-x"></div>
+          <span class="strike-text">Fillers</span>
+        </li>
+        <li class="strike-item">
+          <div class="strike-x"></div>
+          <span class="strike-text">Marketing ingredients</span>
+        </li>
+      </ul>
+
+      <ul class="check-list">
+        <li class="check-item">
+          <div class="check-mark"></div>
+          <span class="check-text">Ceramide-equivalent lipids</span>
+        </li>
+        <li class="check-item">
+          <div class="check-mark"></div>
+          <span class="check-text">Barrier-restoring actives</span>
+        </li>
+        <li class="check-item">
+          <div class="check-mark"></div>
+          <span class="check-text">Zero microbiome disruptors</span>
+        </li>
+      </ul>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Rich Emulsion</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Rich 02 — Not Rich in Fragrance</div>
+      <div class="info-concept">Concept: Confrontational strikethrough — what's absent vs. what's present</div>
+      <div class="info-badge">Rich Emulsion</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Bold contrast format. Dark background creates premium tension. The strikethrough list calls out industry-standard fillers before flipping to what actually matters. Scroll-stopping on dark feed.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Not rich in fragrance. Rich in everything else.<br><br>
+          Most "rich" creams are rich in one thing:<br>
+          ingredients that look good on the label.<br><br>
+          We cut everything your skin doesn't need.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Dark, confrontational, high contrast. The strikethrough format is familiar from pricing pages — applied here as ingredient audit. Subversive but legible.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Read the full ingredient list → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

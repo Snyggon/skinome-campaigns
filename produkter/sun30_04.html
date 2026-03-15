@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Emulsion SPF 30+ 04 — UV in January. Yes, Really.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a { color: #746c64; text-decoration: none; padding: 6px 12px; border: 1px solid #d5d0c9; border-radius: 4px; transition: background 0.15s; }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout { display: flex; gap: 32px; align-items: flex-start; }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #1e2b3a;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 48px 80px;
+    }
+
+    /* subtle gradient overlay */
+    .ig-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, #2a4060 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #7a9ab8;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 7px 14px;
+      margin-bottom: 20px;
+      width: fit-content;
+      position: relative;
+      z-index: 1;
+    }
+    .location-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #7a9ab8;
+    }
+    .location-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #b0c8e0;
+      letter-spacing: 0.06em;
+    }
+
+    .headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #f0f4f8;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .headline .january {
+      color: #fffdd9;
+    }
+
+    .uv-callout {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #7a9ab8;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .uv-callout strong {
+      color: #b0c8e0;
+    }
+
+    /* UV Bar Chart */
+    .chart {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 24px;
+    }
+    .chart-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #4a6480;
+      margin-bottom: 10px;
+    }
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      height: 72px;
+    }
+    .bar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .bar {
+      width: 26px;
+      border-radius: 2px 2px 0 0;
+      background: rgba(122,154,184,0.3);
+      transition: background 0.2s;
+    }
+    .bar.active {
+      background: #fffdd9;
+    }
+    .bar.mid { background: rgba(122,154,184,0.5); }
+    .bar.high { background: rgba(122,154,184,0.75); }
+    .bar-month {
+      font-family: 'Barlow', sans-serif;
+      font-size: 8px;
+      color: #4a6480;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .bar-month.active { color: #fffdd9; }
+    .bar-month.current { color: #7a9ab8; }
+
+    .insight {
+      background: rgba(255,253,217,0.06);
+      border: 1px solid rgba(255,253,217,0.15);
+      border-radius: 4px;
+      padding: 12px 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .insight-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #f0f4f8;
+      line-height: 1.55;
+    }
+    .insight-text strong {
+      color: #fffdd9;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    .badge { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #f0f4f8; border: 1px solid rgba(240,244,248,0.25); padding: 5px 12px; border-radius: 2px; }
+    .product-tag { font-family: 'Barlow', sans-serif; font-size: 11px; color: #4a6480; letter-spacing: 0.06em; }
+
+    /* ── INFO COL ── */
+    .info-col { flex: 1; background: #eeece9; padding: 8px 0; }
+    .info-title { font-size: 22px; font-weight: 700; color: #3d3935; margin-bottom: 6px; }
+    .info-concept { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; font-style: italic; margin-bottom: 20px; }
+    .info-badge { display: inline-block; background: #3d3935; color: #fffdd9; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 24px; }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #746c64; margin-bottom: 8px; }
+    .info-section p { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; }
+    .copy-block { background: white; border-left: 3px solid #3d3935; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; border-radius: 0 4px 4px 0; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="sun30_03.html">← Prev</a>
+    <a href="sun30_05.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-eyebrow">UV Exposure · Year-Round Data</div>
+
+      <div class="location-badge">
+        <div class="location-dot"></div>
+        <div class="location-text">Stockholm, January · UV Index: 1</div>
+      </div>
+
+      <div class="headline">UV in <span class="january">January</span>.<br>Yes, really.</div>
+      <div class="uv-callout">UV index 1 is still <strong>enough for cumulative damage.</strong></div>
+
+      <div class="chart">
+        <div class="chart-label">Approximate UV Index by Month — Stockholm</div>
+        <div class="bars">
+          <div class="bar-wrap">
+            <div class="bar active" style="height: 9px;"></div>
+            <div class="bar-month active">Jan</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar" style="height: 14px;"></div>
+            <div class="bar-month">Feb</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar mid" style="height: 26px;"></div>
+            <div class="bar-month">Mar</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar mid" style="height: 38px;"></div>
+            <div class="bar-month">Apr</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar high" style="height: 54px;"></div>
+            <div class="bar-month">May</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar high" style="height: 66px;"></div>
+            <div class="bar-month">Jun</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar high" style="height: 72px;"></div>
+            <div class="bar-month current">Jul</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar high" style="height: 60px;"></div>
+            <div class="bar-month">Aug</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar mid" style="height: 40px;"></div>
+            <div class="bar-month">Sep</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar mid" style="height: 22px;"></div>
+            <div class="bar-month">Oct</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar" style="height: 12px;"></div>
+            <div class="bar-month">Nov</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar" style="height: 8px;"></div>
+            <div class="bar-month">Dec</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-text">
+          <strong>SPF 30+. Every day. All year.</strong><br>
+          Even when it doesn't feel like summer.
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Sun Emulsion SPF 30+</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">SPF 30+ 04 — UV in January. Yes, Really.</div>
+      <div class="info-concept">Concept: Myth-busting — SPF is not a summer-only habit in Scandinavia</div>
+      <div class="info-badge">Sun Emulsion SPF 30+</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Targets the specific Scandinavian misconception that SPF is irrelevant in winter. Uses a UV chart data visualization to make the point scientific and undeniable. Cool blue-gray palette mirrors the winter theme.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Stockholm. January. UV index: 1.<br><br>
+          That's still enough for cumulative skin damage — every single day adds up.<br><br>
+          SPF 30+. Every day. All year. Sun Emulsion SPF 30+.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Cool dark blue-gray, clinical and specific. The location badge grounds it in the Swedish context. Data-driven, no lifestyle framing.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Make it year-round → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

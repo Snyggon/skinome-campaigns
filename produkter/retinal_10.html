@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 10 — The Serum That Earns Its Price Tag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top header */
+    .card-top {
+      padding: 22px 32px 16px;
+      border-bottom: 2px solid #0d0d0d;
+    }
+    .card-top-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 4px;
+    }
+    .card-top-headline {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0d0d0d;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    /* Two-column comparison */
+    .comparison {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid #e0ded9;
+    }
+
+    .col-theirs {
+      padding: 20px 24px;
+      border-right: 1px solid #e0ded9;
+      background: #fafafa;
+    }
+    .col-ours {
+      padding: 20px 24px;
+      background: #ffffff;
+    }
+
+    .col-head {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0ded9;
+    }
+    .col-theirs .col-head { color: #b0a89e; }
+    .col-ours .col-head { color: #3d3935; }
+
+    .line-item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0ede8;
+    }
+    .line-item:last-child { border-bottom: none; }
+
+    .line-marker {
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .col-theirs .line-marker { color: #c0a898; }
+    .col-ours .line-marker { color: #3d3935; }
+
+    .line-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12.5px;
+      line-height: 1.35;
+    }
+    .col-theirs .line-text { color: #a8a09a; text-decoration: line-through; text-decoration-color: #d5d0c9; }
+    .col-ours .line-text { color: #3d3935; font-weight: 600; }
+
+    .line-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: #746c64;
+      margin-top: 1px;
+      font-style: italic;
+    }
+
+    /* Bottom bar */
+    .card-bottom {
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0d0d0d;
+    }
+    .bottom-claim {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #f6f3f0;
+      font-style: italic;
+    }
+    .bottom-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fffdd9;
+    }
+
+    /* Accent strip between columns header row */
+    .col-ours .col-head::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #3d3935;
+      margin-bottom: 8px;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #0d0d0d;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_09.html">← Prev</a>
+    <a href="retinal_01.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-top">
+        <div class="card-top-label">Where does your money go?</div>
+        <div class="card-top-headline">The serum that earns<br>its price tag.</div>
+      </div>
+
+      <div class="comparison">
+
+        <!-- THEIR column -->
+        <div class="col-theirs">
+          <div class="col-head">Other brands charge for</div>
+
+          <div class="line-item">
+            <div class="line-marker">—</div>
+            <div>
+              <div class="line-text">Premium packaging</div>
+              <div class="line-sub">Frosted glass, magnetic lids</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">—</div>
+            <div>
+              <div class="line-text">Fragrance</div>
+              <div class="line-sub">Added to mask formula weakness</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">—</div>
+            <div>
+              <div class="line-text">Celebrity marketing</div>
+              <div class="line-sub">Faces, not science</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">—</div>
+            <div>
+              <div class="line-text">Filler ingredients</div>
+              <div class="line-sub">Retinol that needs 2 conversion steps</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">—</div>
+            <div>
+              <div class="line-text">Shelf-stable preservatives</div>
+              <div class="line-sub">So they can skip the cold chain</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUR column -->
+        <div class="col-ours">
+          <div class="col-head">Skinome charges for</div>
+
+          <div class="line-item">
+            <div class="line-marker">✓</div>
+            <div>
+              <div class="line-text">Retinaldehyde 0.05%</div>
+              <div class="line-sub">The most potent non-prescription vitamin A</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">✓</div>
+            <div>
+              <div class="line-text">Dalarna spring water</div>
+              <div class="line-sub">Swedish mineral water, ultra-pure base</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">✓</div>
+            <div>
+              <div class="line-text">BioGaia partnership</div>
+              <div class="line-sub">Microbiome-validated probiotic science</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">✓</div>
+            <div>
+              <div class="line-text">Cold-chain logistics</div>
+              <div class="line-sub">Refrigerated from lab to your door</div>
+            </div>
+          </div>
+          <div class="line-item">
+            <div class="line-marker">✓</div>
+            <div>
+              <div class="line-text">Zero preservatives</div>
+              <div class="line-sub">Because we don't need them</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-bottom">
+        <div class="bottom-claim">No frills. Just the formula.</div>
+        <div class="bottom-brand">Skinome</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 10 — The Serum That Earns Its Price Tag</div>
+      <div class="info-concept">Concept: Price transparency — show where the money actually goes</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Value justification through radical transparency. Instead of defending the price, reveal the cost breakdown and let the contrast do the work. Premium customers love this — it validates their intelligence.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Other brands charge you for packaging, fragrance, and celebrity faces.<br><br>
+          We charge for retinaldehyde, Dalarna water, a BioGaia collaboration, and a cold chain that ensures the formula actually reaches you potent.<br><br>
+          No frills. Just the formula.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Clean white, tabular layout, journalistic restraint. Struck-through competitor items vs. bold Skinome items. Feels like a consumer report — honest, unfussy, irrefutable.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>See every ingredient → skinome.com/retinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

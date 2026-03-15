@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeretinal 04 — Ingredient Duel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-top {
+      background: #3d3935;
+      padding: 20px 28px 16px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .card-top-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f6f3f0;
+    }
+
+    .card-top-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      color: rgba(246,243,240,0.4);
+      letter-spacing: 0.1em;
+    }
+
+    .duel-grid {
+      display: grid;
+      grid-template-columns: 1fr 2px 1fr;
+      flex: 1;
+    }
+
+    .duel-col {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 22px;
+    }
+
+    .duel-col-right {
+      background: rgba(61,57,53,0.04);
+    }
+
+    .divider-vert {
+      background: #d5d0c9;
+    }
+
+    .ing-name {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #3d3935;
+      margin-bottom: 4px;
+    }
+
+    .ing-full {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .ing-rule {
+      width: 100%;
+      height: 1px;
+      background: #d5d0c9;
+      margin-bottom: 16px;
+    }
+
+    .ing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .ing-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .ing-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #3d3935;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .ing-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12.5px;
+      color: #3d3935;
+      line-height: 1.45;
+    }
+
+    .card-bottom {
+      background: #3d3935;
+      padding: 0;
+    }
+
+    .bottom-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .comp-col {
+      padding: 14px 18px;
+      border-top: 1px solid rgba(246,243,240,0.08);
+    }
+
+    .comp-col:first-child {
+      border-right: 1px solid rgba(246,243,240,0.08);
+    }
+
+    .comp-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(246,243,240,0.4);
+      margin-bottom: 4px;
+    }
+
+    .comp-value-bad {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(246,243,240,0.5);
+      text-decoration: line-through;
+      text-decoration-color: rgba(246,243,240,0.3);
+    }
+
+    .comp-value-good {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fffdd9;
+    }
+
+    .card-footer {
+      background: #3d3935;
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(246,243,240,0.08);
+    }
+
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fffdd9;
+      border: 1px solid rgba(255,253,217,0.25);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: rgba(246,243,240,0.35);
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="azeretinal_03.html">← Prev</a>
+    <a href="azeretinal_05.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-top">
+        <div class="card-top-title">Ingredient Duel</div>
+        <div class="card-top-tag">Azeretinal Concentrate · Skinome</div>
+      </div>
+
+      <div class="duel-grid">
+
+        <div class="duel-col">
+          <div class="ing-name">Azelaic Acid</div>
+          <div class="ing-full">Dicarboxylic acid</div>
+          <div class="ing-rule"></div>
+          <div class="ing-list">
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">Inhibits tyrosinase — the enzyme driving melanin overproduction</div>
+            </div>
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">Anti-inflammatory — calms reactive, rosacea-prone skin</div>
+            </div>
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">Targets post-acne marks and sun-triggered pigmentation</div>
+            </div>
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">Gentle enough for sensitive skin types</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider-vert"></div>
+
+        <div class="duel-col duel-col-right">
+          <div class="ing-name">Retinal</div>
+          <div class="ing-full">Retinaldehyde (Vit. A)</div>
+          <div class="ing-rule"></div>
+          <div class="ing-list">
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">Accelerates cell turnover — surfaces new, even-toned cells faster</div>
+            </div>
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">Stimulates collagen — reduces fine lines and wrinkles</div>
+            </div>
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">One step from retinoic acid — more effective than retinol</div>
+            </div>
+            <div class="ing-item">
+              <div class="ing-dot"></div>
+              <div class="ing-text">Anti-aging at the structural level</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-bottom">
+        <div class="bottom-comparison">
+          <div class="comp-col">
+            <div class="comp-label">Most routines</div>
+            <div class="comp-value-bad">2 products · 2 steps · 2× cost</div>
+          </div>
+          <div class="comp-col">
+            <div class="comp-label">Azeretinal Concentrate</div>
+            <div class="comp-value-good">One formula. Both actives.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Preservative-free · Refrigerated</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Azeretinal 04 — Ingredient Duel</div>
+      <div class="info-concept">Concept: Comparison grid — systematic, clinical, transparent</div>
+      <div class="info-badge">Azeretinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Total transparency as a trust signal. Show exactly what each ingredient does — no marketing language. The grid layout says "we have nothing to hide." The bottom comparison reframes cost and complexity.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          In most routines: separate products, separate steps, separate cost.<br><br>
+          In Azeretinal Concentrate: one formula. Both actives. No preservatives. Refrigerated.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Structured grid, cream background, dark charcoal accents. Clinical and systematic. Designed for ingredient-curious buyers who read every INCI list.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Shop Azeretinal Concentrate → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

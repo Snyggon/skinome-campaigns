@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun Emulsion SPF 50+ 10 — Refrigerated Sun Protection — Skinome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eeece9;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .nav {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: #d5d0c9; }
+  .nav .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .nav .brand span { color: #f6f3f0; }
+  .nav-arrows { display: flex; gap: 20px; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3d3935 0%, #746c64 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; }
+
+  .post-creative {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* === SUN 10 — REFRIGERATED SUN PROTECTION === */
+  .s10-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #daeaf5 0%, #b8d9ef 40%, #8dc3e6 100%);
+  }
+
+  /* Frost/cold shimmer overlay */
+  .s10-shimmer {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 300px 200px at 20% 20%, rgba(255,255,255,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 200px 300px at 80% 80%, rgba(255,255,255,0.15) 0%, transparent 70%);
+  }
+
+  /* CSS Fridge illustration */
+  .s10-fridge-wrap {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .s10-fridge {
+    width: 100px;
+    height: 152px;
+    border-radius: 8px 8px 4px 4px;
+    background: rgba(255,255,255,0.85);
+    border: 2px solid rgba(180,210,235,0.8);
+    position: relative;
+    box-shadow: -4px 6px 20px rgba(100,160,210,0.25), inset 0 0 0 1px rgba(255,255,255,0.6);
+  }
+
+  /* Fridge door divider line */
+  .s10-fridge-divider {
+    position: absolute;
+    left: 8px; right: 8px;
+    top: 42%;
+    height: 2px;
+    background: rgba(140,190,225,0.5);
+  }
+
+  /* Fridge handle */
+  .s10-fridge-handle-top {
+    position: absolute;
+    right: -10px;
+    top: 16px;
+    width: 10px; height: 22px;
+    border-radius: 0 4px 4px 0;
+    background: rgba(180,210,235,0.8);
+    border: 1px solid rgba(140,180,215,0.6);
+    border-left: none;
+  }
+  .s10-fridge-handle-bot {
+    position: absolute;
+    right: -10px;
+    top: 72px;
+    width: 10px; height: 22px;
+    border-radius: 0 4px 4px 0;
+    background: rgba(180,210,235,0.8);
+    border: 1px solid rgba(140,180,215,0.6);
+    border-left: none;
+  }
+
+  /* Skinome bottle inside fridge (simplified) */
+  .s10-bottle {
+    position: absolute;
+    bottom: 12px;
+    left: 50%; transform: translateX(-50%);
+    width: 28px; height: 52px;
+    background: linear-gradient(180deg, #3d3935 0%, #746c64 100%);
+    border-radius: 3px 3px 2px 2px;
+  }
+  .s10-bottle-cap {
+    position: absolute;
+    top: -6px;
+    left: 50%; transform: translateX(-50%);
+    width: 14px; height: 8px;
+    background: #0d0d0d;
+    border-radius: 2px 2px 0 0;
+  }
+  .s10-bottle-label {
+    position: absolute;
+    top: 14px;
+    left: 50%; transform: translateX(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 5px;
+    font-weight: 700;
+    color: rgba(255,253,217,0.8);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  /* Snowflakes — CSS */
+  .s10-flake {
+    position: absolute;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* Cold mist line at bottom of fridge */
+  .s10-mist {
+    position: absolute;
+    bottom: -8px;
+    left: -5px; right: -5px;
+    height: 18px;
+    background: radial-gradient(ellipse at center, rgba(200,230,248,0.6) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  /* Content left side */
+  .s10-content {
+    position: relative; z-index: 2;
+    padding: 46px 48px;
+    width: 100%;
+    padding-right: 180px;
+  }
+
+  .s10-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(30,70,110,0.55);
+    margin-bottom: 14px;
+  }
+
+  .s10-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #0d2d4a;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+
+  .s10-body {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(10,45,80,0.75);
+    line-height: 1.75;
+    margin-bottom: 26px;
+  }
+  .s10-body strong {
+    font-weight: 600;
+    color: #0d2d4a;
+  }
+
+  .s10-fact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .s10-fact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .s10-fact-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(10,45,80,0.35);
+    flex-shrink: 0;
+  }
+  .s10-fact-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: rgba(10,45,80,0.7);
+  }
+
+  .s10-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10,45,80,0.12);
+    border: 1px solid rgba(10,45,80,0.2);
+    padding: 7px 14px;
+    border-radius: 2px;
+  }
+  .s10-tag-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0d2d4a;
+    letter-spacing: 0.04em;
+  }
+  .s10-tag-spf {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(10,45,80,0.5);
+  }
+
+  .s10-logo {
+    position: absolute;
+    bottom: 20px; left: 48px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(10,45,80,0.25);
+  }
+
+  /* IG Footer */
+  .ig-actions {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #fff;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  /* ── INFO COL ── */
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+  .info-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #dedad4; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px; }
+  .product-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: #0d0d0d;
+    color: #f6f3f0;
+    margin-bottom: 28px;
+  }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 24px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .info-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .info-bullets li { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.5; padding-left: 18px; position: relative; }
+  .info-bullets li::before { content: '—'; position: absolute; left: 0; color: #d5d0c9; font-weight: 700; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #746c64; transition: color 0.15s; }
+  .info-nav a:hover { color: #0d0d0d; }
+  .info-nav a.disabled { color: #d5d0c9; pointer-events: none; }
+
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← Alla produkter</a>
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Sun Emulsion SPF 50+</div>
+  <div class="nav-arrows">
+    <a href="sun50_09.html">← Prev</a>
+    <a href="#" class="disabled" style="color:#2a2520;pointer-events:none;">Next →</a>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div>
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="s10-bg"></div>
+      <div class="s10-shimmer"></div>
+
+      <!-- Scattered snowflakes -->
+      <div class="s10-flake" style="top:14%;left:10%;font-size:22px;">❄</div>
+      <div class="s10-flake" style="top:22%;left:58%;font-size:13px;opacity:0.4;">❄</div>
+      <div class="s10-flake" style="top:68%;left:6%;font-size:11px;opacity:0.35;">❄</div>
+      <div class="s10-flake" style="top:78%;left:72%;font-size:18px;opacity:0.3;">❄</div>
+      <div class="s10-flake" style="top:44%;left:82%;font-size:9px;opacity:0.45;">❄</div>
+      <div class="s10-flake" style="top:88%;left:40%;font-size:14px;opacity:0.25;">❄</div>
+
+      <!-- CSS Fridge -->
+      <div class="s10-fridge-wrap">
+        <div class="s10-fridge">
+          <div class="s10-fridge-divider"></div>
+          <div class="s10-fridge-handle-top"></div>
+          <div class="s10-fridge-handle-bot"></div>
+          <div class="s10-bottle">
+            <div class="s10-bottle-cap"></div>
+            <div class="s10-bottle-label">SPF50+</div>
+          </div>
+          <div class="s10-mist"></div>
+        </div>
+      </div>
+
+      <div class="s10-content">
+        <div class="s10-eyebrow">Cold chain · Skinome</div>
+
+        <div class="s10-headline">
+          Refrigerated<br>Sun<br>Protection
+        </div>
+
+        <div class="s10-body">
+          Yes. Your sunscreen should also live in the fridge. <strong>Preservative-free</strong> means potent. Potent means it works.
+        </div>
+
+        <div class="s10-fact-list">
+          <div class="s10-fact">
+            <div class="s10-fact-dot"></div>
+            <div class="s10-fact-text">No preservatives — cold keeps it stable</div>
+          </div>
+          <div class="s10-fact">
+            <div class="s10-fact-dot"></div>
+            <div class="s10-fact-text">Full SPF 50+ potency until last drop</div>
+          </div>
+          <div class="s10-fact">
+            <div class="s10-fact-dot"></div>
+            <div class="s10-fact-text">Microbiome-safe formula — no shortcuts</div>
+          </div>
+        </div>
+
+        <div class="s10-tag">
+          <div class="s10-tag-text">Skinome Sun Emulsion</div>
+          <div class="s10-tag-spf">SPF 50+</div>
+        </div>
+      </div>
+
+      <div class="s10-logo">Skinome</div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">7,203 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      Yes, your sunscreen should live in the fridge. Preservative-free means we rely on cold rather than chemicals to keep the formula stable and potent. That means no microbiome-disrupting preservatives — and full SPF 50+ efficacy from first application to last. It's a different way to think about sun protection. But it's the right one.
+      <div class="ig-hashtags">#skinome #spf50 #refrigerated #preservativefree #microbiome #coldchain</div>
+    </div>
+    <div class="ig-comments">View all 558 comments</div>
+    <div class="ig-timestamp">2 days ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">10</div>
+    <div class="info-title">Refrigerated Sun Protection</div>
+    <span class="product-badge">Sun Emulsion SPF 50+</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Concept</div>
+      <div class="info-text">
+        Cold chain angle — arctic blue-to-ice gradient, CSS fridge illustration with Skinome bottle inside, scattered snowflakes. The refrigeration angle is Skinome's most distinctive and counter-intuitive differentiator — it needs to become a point of pride rather than an inconvenience. This ad makes it aspirational. Cold = potent = working. The fridge is the proof of the formula's integrity.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Cold chain as brand signature — turns unusual into ownable advantage</li>
+        <li>Arctic blue palette is completely different from every other SPF ad</li>
+        <li>CSS fridge illustration is original, ownable, instantly shareable</li>
+        <li>Logic chain: no preservatives → refrigerated → potent → works</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">Yes, your sunscreen should live in the fridge. Preservative-free means we rely on cold rather than chemicals to keep the formula stable and potent. No microbiome-disrupting preservatives — and full SPF 50+ efficacy from first application to last. It's a different way to think about sun protection. But it's the right one.</div>
+        <div class="cap-tags">#skinome #spf50 #refrigerated #preservativefree #microbiome #coldchain</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="sun50_09.html">← Prev</a>
+      <a href="#" class="disabled">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Sun Emulsion SPF 50+ Series &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; 10 Ad Concepts 2026
+</footer>
+
+</body>
+</html>

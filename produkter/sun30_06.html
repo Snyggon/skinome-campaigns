@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Emulsion SPF 30+ 06 — Your Foundation Has No SPF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a { color: #746c64; text-decoration: none; padding: 6px 12px; border: 1px solid #d5d0c9; border-radius: 4px; transition: background 0.15s; }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout { display: flex; gap: 32px; align-items: flex-start; }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #fffdd9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 48px 80px;
+    }
+
+    /* Decorative pattern — faint circles */
+    .ig-card::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 40px solid rgba(61,57,53,0.05);
+      pointer-events: none;
+    }
+    .ig-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 28px solid rgba(61,57,53,0.04);
+      pointer-events: none;
+    }
+
+    .card-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 16px;
+    }
+
+    .headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #0d0d0d;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .headline .underline {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: #3d3935;
+    }
+
+    /* The foundation myth visualization */
+    .myth-box {
+      background: rgba(61,57,53,0.07);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+      border-left: 3px solid #3d3935;
+    }
+    .myth-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3d3935;
+      margin-bottom: 8px;
+    }
+    .myth-stat {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #3d3935;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .myth-stat span {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .myth-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      line-height: 1.5;
+    }
+
+    .solution {
+      background: #3d3935;
+      border-radius: 6px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .solution-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #fffdd9;
+      line-height: 1.5;
+    }
+    .solution-text strong {
+      font-weight: 700;
+      display: block;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .solution-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fffdd9;
+      letter-spacing: -0.01em;
+      text-align: right;
+      flex-shrink: 0;
+      padding-left: 16px;
+    }
+    .solution-badge .sub {
+      font-size: 10px;
+      font-weight: 400;
+      font-family: 'Barlow', sans-serif;
+      color: rgba(255,253,217,0.6);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #3d3935; border: 1px solid rgba(61,57,53,0.3); padding: 5px 12px; border-radius: 2px; }
+    .product-tag { font-family: 'Barlow', sans-serif; font-size: 11px; color: #746c64; letter-spacing: 0.06em; }
+
+    /* ── INFO COL ── */
+    .info-col { flex: 1; background: #eeece9; padding: 8px 0; }
+    .info-title { font-size: 22px; font-weight: 700; color: #3d3935; margin-bottom: 6px; }
+    .info-concept { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; font-style: italic; margin-bottom: 20px; }
+    .info-badge { display: inline-block; background: #3d3935; color: #fffdd9; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 24px; }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #746c64; margin-bottom: 8px; }
+    .info-section p { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; }
+    .copy-block { background: white; border-left: 3px solid #3d3935; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.6; border-radius: 0 4px 4px 0; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="sun30_05.html">← Prev</a>
+    <a href="sun30_07.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="card-eyebrow">Common Myth · Debunked</div>
+
+      <div class="headline">"My foundation<br>has <span class="underline">SPF 15</span>.<br>I'm protected."</div>
+
+      <div class="myth-box">
+        <div class="myth-title">To actually reach SPF 30 from foundation alone:</div>
+        <div class="myth-stat">14<span>× the amount</span></div>
+        <div class="myth-text">You'd need to apply 14 times your normal foundation amount.<br>No one does this. Your skin has been unprotected — and you didn't know.</div>
+      </div>
+
+      <div class="solution">
+        <div class="solution-text">
+          <strong>Sun Emulsion SPF 30+</strong>
+          Wear it under everything. Preservative-free.
+        </div>
+        <div class="solution-badge">
+          <span class="sub">Actual</span>
+          SPF 30+
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Sun Emulsion SPF 30+</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">SPF 30+ 06 — Your Foundation Has No SPF</div>
+      <div class="info-concept">Concept: Education — debunking the "my foundation has SPF" myth</div>
+      <div class="info-badge">Sun Emulsion SPF 30+</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Targets a widespread and persistent misconception. The "14x" statistic is startling enough to stop the scroll. Pale yellow background feels warm and approachable rather than confrontational — the truth delivered gently.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Foundation with SPF: you'd need to apply 14 times the normal amount to actually hit SPF 30.<br><br>
+          Your skin has been unprotected — and you didn't know.<br><br>
+          Sun Emulsion SPF 30+. Wear it under everything.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Pale yellow — the Skinome signature color — feels inviting. The stat does the heavy lifting. Solution panel anchors the ad with a clear product answer.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Real protection starts here → skinome.com</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retinal 04 — Lab Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Lab report header */
+    .lab-header {
+      background: #0d0d0d;
+      padding: 16px 28px 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .lab-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+    }
+    .lab-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+    .lab-id {
+      text-align: right;
+    }
+    .lab-id-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+    }
+    .lab-id-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: #fffdd9;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* Status bar */
+    .status-bar {
+      background: #fffdd9;
+      padding: 6px 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3d3935;
+    }
+    .status-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: #3d3935;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Form body */
+    .lab-body {
+      flex: 1;
+      padding: 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .form-section-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: #746c64;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #d5d0c9;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0eee9;
+    }
+    .field-row:last-child { border-bottom: none; }
+
+    .field-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: #746c64;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .field-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0d0d0d;
+      letter-spacing: 0.03em;
+    }
+    .field-value.highlight {
+      color: #3d3935;
+      background: #fffdd9;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+    .field-value.zero {
+      color: #746c64;
+    }
+
+    /* Signature section */
+    .sig-section {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 2px solid #0d0d0d;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .sig-line {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sig-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: #746c64;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .sig-name {
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      font-style: italic;
+      color: #0d0d0d;
+    }
+    .sig-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: #746c64;
+    }
+    .stamp {
+      width: 72px;
+      height: 72px;
+      border: 2px solid #0d0d0d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1px;
+      opacity: 0.15;
+    }
+    .stamp-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0d0d0d;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section { margin-bottom: 20px; }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #0d0d0d;
+      padding: 12px 16px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: #3d3935;
+      line-height: 1.7;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="retinal_03.html">← Prev</a>
+    <a href="retinal_05.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="lab-header">
+        <div>
+          <div class="lab-name">SKINOME RESEARCH LAB<br>STOCKHOLM, SWEDEN</div>
+          <div class="lab-sub">Microbiome-Safe Formulation Division</div>
+        </div>
+        <div class="lab-id">
+          <div class="lab-id-label">Analysis No.</div>
+          <div class="lab-id-value">SKN-RET-05</div>
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-dot"></div>
+        <div class="status-text">Compound Analysis Report — Approved for Release</div>
+      </div>
+
+      <div class="lab-body">
+
+        <div class="form-section-title">Active Compound Data</div>
+
+        <div class="field-row">
+          <div class="field-label">Compound</div>
+          <div class="field-value">Retinaldehyde (Retinal)</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Concentration</div>
+          <div class="field-value">0.05%</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Efficacy vs. Retinol</div>
+          <div class="field-value highlight">+1100%</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Steps to Active Form</div>
+          <div class="field-value">1 &nbsp;<span style="font-size:10px;font-weight:400;color:#746c64;">(retinol requires 2)</span></div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Preservatives</div>
+          <div class="field-value zero">0.00% &nbsp;·&nbsp; None</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Storage</div>
+          <div class="field-value">Refrigerated &lt;8°C</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Microbiome Safety</div>
+          <div class="field-value">Confirmed ✓</div>
+        </div>
+
+        <div class="sig-section">
+          <div class="sig-line">
+            <div class="sig-label">Reviewed by</div>
+            <div class="sig-name">Dr. Johanna Gillbro</div>
+            <div class="sig-title">PhD Dermatology · Founder, Skinome</div>
+          </div>
+          <div class="stamp">
+            <div class="stamp-text">SKINOME<br>CERTIFIED<br>LAB GRADE</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Retinal 04 — Lab Report</div>
+      <div class="info-concept">Concept: Scientific form mimicry — clinical data as the creative</div>
+      <div class="info-badge">Retinal Concentrate</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Let the numbers speak. No lifestyle copy, no emotional appeal — just clinical data formatted as a lab document. The contrast between "+1100%" and "Preservatives: 0" does the selling.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Key Data Points on Card</h4>
+        <div class="copy-block">
+          COMPOUND........... Retinaldehyde<br>
+          EFFICACY VS RETINOL +1100%<br>
+          STEPS TO ACTIVE.... 1<br>
+          PRESERVATIVES...... 0<br>
+          REVIEWED BY........ Dr. J. Gillbro
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Stark clinical white, monospace font, form-field layout. Authority without pretension. Looks like a document you'd trust.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>View full ingredient list → skinome.com/retinal</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

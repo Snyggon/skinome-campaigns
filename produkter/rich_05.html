@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rich 05 — Dry Skin Isn't a Skin Type</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #eeece9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+    }
+    .nav a {
+      color: #746c64;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #d5d0c9;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav a:hover { background: #d5d0c9; }
+    .nav .spacer { flex: 1; }
+
+    .layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── IG CARD ── */
+    .ig-card {
+      width: 560px;
+      height: 560px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: #f6f3f0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 56px 52px;
+    }
+
+    /* Background decorative element */
+    .bg-circle {
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #fffdd9;
+      opacity: 0.5;
+    }
+
+    .eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .main-headline {
+      font-size: 38px;
+      font-weight: 700;
+      color: #3d3935;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      position: relative;
+    }
+
+    .headline-strike {
+      position: relative;
+      display: inline-block;
+    }
+
+    .headline-strike::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 3px;
+      background: #746c64;
+      transform: translateY(-50%);
+    }
+
+    .headline-correction {
+      font-size: 22px;
+      font-weight: 600;
+      color: #746c64;
+      margin-bottom: 32px;
+      line-height: 1.2;
+      font-style: italic;
+      font-family: 'Barlow', sans-serif;
+      position: relative;
+    }
+
+    .reframe-block {
+      border-left: 3px solid #3d3935;
+      padding-left: 20px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .reframe-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      color: #3d3935;
+      line-height: 1.55;
+    }
+
+    .reframe-text strong {
+      font-weight: 700;
+    }
+
+    .solution-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .solution-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3d3935;
+      flex-shrink: 0;
+    }
+
+    .solution-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #3d3935;
+      letter-spacing: 0.02em;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3d3935;
+      border: 1px solid #3d3935;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .product-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #746c64;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INFO COL ── */
+    .info-col {
+      flex: 1;
+      background: #eeece9;
+      padding: 8px 0;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3d3935;
+      margin-bottom: 6px;
+    }
+    .info-concept {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #746c64;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: #3d3935;
+      color: #fffdd9;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .info-section h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #746c64;
+      margin-bottom: 8px;
+    }
+    .info-section p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+    }
+    .copy-block {
+      background: white;
+      border-left: 3px solid #3d3935;
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #3d3935;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../index.html">← Alla produkter</a>
+    <span class="spacer"></span>
+    <a href="rich_04.html">← Prev</a>
+    <a href="rich_06.html">Next →</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- IG CARD -->
+    <div class="ig-card">
+
+      <div class="bg-circle"></div>
+
+      <div class="eyebrow">Rethink what you know</div>
+
+      <div class="main-headline">
+        <span class="headline-strike">Skin type.</span>
+      </div>
+      <div class="headline-correction">It's a symptom.</div>
+
+      <div class="reframe-block">
+        <div class="reframe-text">
+          Dry skin doesn't mean you were<br>
+          <strong>born with dry skin.</strong><br><br>
+          It means your barrier is compromised.<br>
+          Rich Emulsion doesn't just moisturize —<br>
+          it <strong>restores what's broken.</strong>
+        </div>
+      </div>
+
+      <div class="solution-tag">
+        <div class="solution-dot"></div>
+        <div class="solution-text">Barrier restoration for dry + sensitive skin</div>
+      </div>
+
+      <div class="card-footer">
+        <div class="badge">Skinome</div>
+        <div class="product-tag">Rich Emulsion</div>
+      </div>
+
+    </div>
+
+    <!-- INFO COL -->
+    <div class="info-col">
+      <div class="info-title">Rich 05 — Dry Skin Isn't a Skin Type</div>
+      <div class="info-concept">Concept: Category reframe — dryness as symptom, not identity</div>
+      <div class="info-badge">Rich Emulsion</div>
+
+      <div class="info-section">
+        <h4>Angle</h4>
+        <p>Empowerment through reframing. Challenging the "skin type" narrative that beauty brands have ingrained. If dryness is a symptom, it can be fixed — and Skinome has the fix. Converts frustrated chronic-dry-skin sufferers.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Primary Copy</h4>
+        <div class="copy-block">
+          Dry skin isn't a skin type. It's a symptom.<br><br>
+          A symptom of a compromised barrier — one that's letting water out and irritants in.<br><br>
+          Rich Emulsion doesn't moisturize on top. It restores underneath.
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4>Mood</h4>
+        <p>Clean cream background, editorial strikethrough typography. Empowering without being preachy. The pale yellow circle adds warmth and draws the eye to the headline.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>CTA Suggestion</h4>
+        <p>Fix the barrier → skinome.com/rich-emulsion</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
