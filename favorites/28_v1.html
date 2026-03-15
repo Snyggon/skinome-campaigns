@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign 28 v1 — Vertical Timeline — Skinome</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f6f3f0; min-height: 100vh; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+
+  /* HEADER */
+  .site-header { background: #0d0d0d; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .site-header .brand { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; }
+  .site-header .brand span { color: #f6f3f0; }
+  .pill-nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .pill-nav a { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; padding: 5px 11px; border-radius: 20px; border: 1px solid #2a2520; color: #746c64; transition: all 0.15s; }
+  .pill-nav a:hover { background: #1e1e1e; color: #d5d0c9; }
+  .pill-nav a.active { background: #fffdd9; color: #746c64; border-color: #fffdd9; }
+  .pill-nav a.index { border-color: #3a3531; color: #746c64; }
+
+  /* MAIN */
+  .main-wrap { max-width: 1120px; margin: 0 auto; padding: 56px 40px 80px; display: flex; gap: 0; align-items: flex-start; }
+
+  /* IG CARD */
+  .ig-card { width: 560px; flex-shrink: 0; background: #ffffff; border: 1px solid #e0dbd3; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+  .ig-post-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #fff; }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #3d3935 0%, #746c64 100%); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #f6f3f0; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+  .ig-user-info .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-user-info .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; cursor: pointer; }
+  .post-creative { width: 100%; aspect-ratio: 1; background: #f6f3f0; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; }
+  .ig-actions { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; background: #fff; }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fff; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #b0a89e; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fff; }
+
+  /* INFO COL */
+  .info-col { flex: 1; padding-left: 60px; padding-top: 8px; }
+  .info-campaign-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #e8e2d8; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-campaign-name { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+  .tone-badge { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 28px; background: #fffdd9; color: #746c64; }
+  .info-divider { height: 1px; background: #d5d0c9; margin-bottom: 28px; }
+  .info-section { margin-bottom: 28px; }
+  .info-label { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-text { font-family: 'Barlow', sans-serif; font-size: 15px; color: #3d3935; line-height: 1.8; font-weight: 300; }
+  .caption-preview { background: #fff; border: 1px solid #e0dbd3; border-radius: 8px; padding: 18px 20px; }
+  .caption-preview .cap-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; margin-bottom: 10px; }
+  .caption-preview .cap-tags { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.6; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; padding-top: 24px; border-top: 1px solid #d5d0c9; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 5px 12px; border-radius: 20px; border: 1px solid #d5d0c9; color: #746c64; transition: all 0.15s; }
+  .info-nav a:hover { background: #3d3935; color: #f6f3f0; border-color: #3d3935; }
+  .info-nav a.active { background: #fffdd9; color: #746c64; border-color: #fffdd9; }
+  .info-nav a.index-link { border-color: #d5d0c9; }
+
+  /* FOOTER */
+  .site-footer { background: #0d0d0d; padding: 24px 40px; text-align: center; font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* === CREATIVE v1: VERTICAL TIMELINE === */
+  .v1-bg { position: absolute; inset: 0; background: #f6f3f0; }
+  .v1-content { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; padding: 28px 32px 24px; }
+  .v1-top-label { font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #746c64; margin-bottom: 20px; }
+  .v1-timeline { flex: 1; display: flex; flex-direction: column; justify-content: space-between; position: relative; padding-left: 36px; }
+  .v1-line { position: absolute; left: 7px; top: 4px; bottom: 4px; width: 1px; border-left: 1.5px dotted #c8c1b8; }
+  .v1-entry { display: flex; align-items: flex-start; gap: 0; position: relative; }
+  .v1-dot-wrap { position: absolute; left: -36px; top: 3px; }
+  .v1-dot { width: 15px; height: 15px; border-radius: 50%; background: #f6f3f0; border: 1.5px solid #c8c1b8; }
+  .v1-dot.milestone { width: 18px; height: 18px; background: #3d3935; border-color: #3d3935; top: 1px; left: -37.5px; }
+  .v1-year { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: #3d3935; line-height: 1; min-width: 38px; }
+  .v1-event { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 300; color: #746c64; line-height: 1.3; }
+  .v1-entry.milestone .v1-year { font-size: 13px; color: #0d0d0d; font-weight: 700; }
+  .v1-entry.milestone .v1-event { font-size: 13px; color: #0d0d0d; font-weight: 500; }
+  .v1-conclusion { margin-top: 16px; padding-top: 16px; border-top: 1px solid #d5d0c9; font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; color: #0d0d0d; letter-spacing: 0.04em; text-align: center; }
+  .v1-logo { font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #d5d0c9; text-align: right; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Campaign 28</div>
+  <nav class="pill-nav">
+    <a href="index.html" class="index">Index</a>
+    <a href="28_v1.html" class="active">v1</a>
+    <a href="28_v2.html">v2</a>
+    <a href="28_v3.html">v3</a>
+    <a href="28_v4.html">v4</a>
+    <a href="28_v5.html">v5</a>
+    <a href="28_v6.html">v6</a>
+    <a href="28_v7.html">v7</a>
+    <a href="28_v8.html">v8</a>
+    <a href="28_v9.html">v9</a>
+    <a href="28_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div class="ig-user-info">
+          <div class="ig-handle">skinome.official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="v1-bg"></div>
+      <div class="v1-content">
+        <div class="v1-top-label">Dr. Johanna Gillbro &nbsp;·&nbsp; Research Record 1999–2019</div>
+        <div class="v1-timeline">
+          <div class="v1-line"></div>
+          <div class="v1-entry">
+            <div class="v1-dot-wrap"><div class="v1-dot"></div></div>
+            <div class="v1-year">1999</div>
+            <div class="v1-event">Began dermatology &amp; microbiome research</div>
+          </div>
+          <div class="v1-entry">
+            <div class="v1-dot-wrap"><div class="v1-dot"></div></div>
+            <div class="v1-year">2004</div>
+            <div class="v1-event">Vitiligo &amp; pigmentation research</div>
+          </div>
+          <div class="v1-entry">
+            <div class="v1-dot-wrap"><div class="v1-dot"></div></div>
+            <div class="v1-year">2009</div>
+            <div class="v1-event">Deepened focus on preservative disruption</div>
+          </div>
+          <div class="v1-entry">
+            <div class="v1-dot-wrap"><div class="v1-dot"></div></div>
+            <div class="v1-year">2014</div>
+            <div class="v1-event">Concluded conventional skincare worked against the skin</div>
+          </div>
+          <div class="v1-entry">
+            <div class="v1-dot-wrap"><div class="v1-dot"></div></div>
+            <div class="v1-year">2017</div>
+            <div class="v1-event">Began formulating the alternative</div>
+          </div>
+          <div class="v1-entry milestone">
+            <div class="v1-dot-wrap"><div class="v1-dot milestone"></div></div>
+            <div class="v1-year">2019</div>
+            <div class="v1-event">SKINOME — world's first refrigerated skincare</div>
+          </div>
+        </div>
+        <div class="v1-conclusion">20 years of research. One answer.</div>
+        <div class="v1-logo">SKINOME</div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">4,203 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome.official</span>&nbsp;
+      Dr. Johanna Gillbro spent 20 years researching skin science before founding Skinome. The conclusion: conventional skincare was working against the microbiome it claimed to protect.
+      <div class="ig-hashtags">#skinome #skinscience #microbiome #skinresearch #cleanbeauty #refrigeratedskincare</div>
+    </div>
+    <div class="ig-comments">View all 218 comments</div>
+    <div class="ig-timestamp">3 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">28</div>
+    <div class="info-campaign-name">20 Years of Research.<br>One Answer.</div>
+    <span class="tone-badge">Medium</span>
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Layout</div>
+      <div class="info-text">v1 — Vertical Timeline (refined original)</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Strategy</div>
+      <div class="info-text">
+        The dotted vertical timeline is a research tool metaphor — instantly recognizable as scientific documentation. Each entry earns its place: no filler, only turning points. The 2019 milestone dot in dark anchors the eye and rewards the read. The cream palette keeps it on-brand and unhurried, signaling confidence rather than urgency. This is earned authority, not brand storytelling.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption</div>
+      <div class="caption-preview">
+        <div class="cap-text">Dr. Johanna Gillbro spent 20 years researching skin science before founding Skinome. The conclusion: conventional skincare was working against the microbiome it claimed to protect.</div>
+        <div class="cap-tags">#skinome #skinscience #microbiome #skinresearch #cleanbeauty #refrigeratedskincare</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="index.html" class="index-link">← Index</a>
+      <a href="28_v1.html" class="active">v1</a>
+      <a href="28_v2.html">v2</a>
+      <a href="28_v3.html">v3</a>
+      <a href="28_v4.html">v4</a>
+      <a href="28_v5.html">v5</a>
+      <a href="28_v6.html">v6</a>
+      <a href="28_v7.html">v7</a>
+      <a href="28_v8.html">v8</a>
+      <a href="28_v9.html">v9</a>
+      <a href="28_v10.html">v10</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Campaign 28 &nbsp;—&nbsp; 20 Years of Research. One Answer. &nbsp;—&nbsp; skinome.official &nbsp;—&nbsp; 2026
+</footer>
+
+</body>
+</html>

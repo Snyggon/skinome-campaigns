@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome — Campaign 17 v2 — Giant Number Clash</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #1a1a1a; min-height: 100vh; }
+
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d0d0d;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 56px;
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .site-header .brand { color: #fff; font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; }
+  .header-nav a {
+    font-size: 11px; font-weight: 500; color: #555; text-decoration: none;
+    padding: 4px 10px; border-radius: 20px; border: 1px solid #2a2a2a;
+    transition: all .2s;
+  }
+  .header-nav a:hover { color: #fff; border-color: #555; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; }
+
+  .main-wrap {
+    display: flex; gap: 48px; align-items: flex-start;
+    max-width: 1100px; margin: 0 auto; padding: 48px 32px;
+  }
+
+  /* IG CARD */
+  .ig-card {
+    width: 560px; flex-shrink: 0;
+    background: #111; border-radius: 4px;
+    border: 1px solid #2a2a2a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+  }
+  .ig-post-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px; border-bottom: 1px solid #222;
+  }
+  .ig-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #746c64 0%, #f6f3f0 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #0d0d0d; font-size: 12px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+    flex-shrink: 0;
+  }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #fff; }
+  .ig-location { font-size: 11px; color: #666; margin-top: 1px; }
+  .ig-more { margin-left: auto; font-size: 18px; color: #fff; cursor: pointer; }
+
+  /* POST CREATIVE */
+  .post-creative {
+    width: 100%; aspect-ratio: 1;
+    background: #0d0d0d;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  .number-split {
+    display: flex; flex: 1;
+    position: relative;
+  }
+  .split-side {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 48px 32px;
+    position: relative;
+  }
+  .split-left { border-right: 1px solid #2a2a2a; }
+  .split-label {
+    font-family: 'Barlow', sans-serif; font-weight: 100;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .split-left .split-label { color: #444; }
+  .split-right .split-label { color: #746c64; }
+
+  .big-num {
+    font-family: 'Barlow', sans-serif;
+    font-size: 110px; line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .split-left .big-num { color: #2a2a2a; font-weight: 300; }
+  .split-right .big-num { color: #fff; font-weight: 700; }
+
+  .unit-text {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .split-left .unit-text { color: #333; }
+  .split-right .unit-text { color: #f6f3f0; }
+
+  .split-sub {
+    font-size: 11px; margin-top: 20px; text-align: center; line-height: 1.5;
+    font-weight: 300;
+  }
+  .split-left .split-sub { color: #333; }
+  .split-right .split-sub { color: #555; }
+
+  .split-verdict {
+    padding: 20px 40px; border-top: 1px solid #1a1a1a;
+    text-align: center;
+  }
+  .split-verdict p {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 13px; color: #888; letter-spacing: 0.06em;
+    line-height: 1.6;
+  }
+  .split-verdict span { color: #f6f3f0; }
+
+  /* IG lower */
+  .ig-actions { display: flex; align-items: center; gap: 14px; padding: 10px 14px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .ig-bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 14px 6px; font-weight: 600; font-size: 14px; color: #fff; }
+  .ig-caption { padding: 0 14px 6px; font-size: 14px; color: #e0e0e0; line-height: 1.5; }
+  .ig-caption .ig-username { font-weight: 600; color: #fff; }
+  .ig-comments { padding: 0 14px 4px; font-size: 13px; color: #666; cursor: pointer; }
+  .ig-timestamp { padding: 0 14px 14px; font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* INFO COL */
+  .info-col { flex: 1; padding-top: 4px; }
+  .campaign-num {
+    font-family: 'Barlow', sans-serif; font-weight: 100;
+    font-size: 96px; line-height: 1; color: #2a2a2a; margin-bottom: 0;
+  }
+  .variant-name {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: 22px; color: #fff; margin-bottom: 12px; margin-top: -8px;
+  }
+  .tone-badge {
+    display: inline-block; background: #fffdd9;
+    font-size: 11px; font-weight: 600; color: #746c64;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 24px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .strategy-label {
+    font-size: 10px; font-weight: 600; color: #444;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .strategy-notes {
+    font-size: 14px; color: #888; line-height: 1.7; margin-bottom: 28px;
+  }
+  .caption-label {
+    font-size: 10px; font-weight: 600; color: #444;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .caption-preview {
+    font-size: 13px; color: #ccc; line-height: 1.7;
+    background: #161616; border-left: 3px solid #333;
+    padding: 14px 16px; border-radius: 0 4px 4px 0; margin-bottom: 32px;
+  }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .info-nav a {
+    font-size: 11px; font-weight: 500; color: #555; text-decoration: none;
+    padding: 4px 10px; border-radius: 20px; border: 1px solid #2a2a2a;
+    transition: all .2s;
+  }
+  .info-nav a:hover { color: #fff; border-color: #555; }
+  .info-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; }
+  .info-nav a.index-link { border-style: dashed; }
+
+  .site-footer {
+    background: #0d0d0d; color: #333; font-size: 12px;
+    text-align: center; padding: 24px 32px; margin-top: 64px;
+    font-family: 'Barlow', sans-serif; font-weight: 300; letter-spacing: 0.08em;
+    border-top: 1px solid #1a1a1a;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="brand">Skinome</span>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html" class="active">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html">v4</a>
+    <a href="17_v5.html">v5</a>
+    <a href="17_v6.html">v6</a>
+    <a href="17_v7.html">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html">v9</a>
+    <a href="17_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div>
+        <div class="ig-handle">skinome.official</div>
+        <div class="ig-location">Stockholm, Sweden</div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="number-split">
+        <div class="split-side split-left">
+          <div class="split-label">Conventional moisturizer</div>
+          <div class="big-num">36</div>
+          <div class="unit-text">months</div>
+          <div class="split-sub">Designed for<br>your shelf</div>
+        </div>
+        <div class="split-side split-right">
+          <div class="split-label">Skinome</div>
+          <div class="big-num">90</div>
+          <div class="unit-text">days</div>
+          <div class="split-sub">Designed for<br>your skin</div>
+        </div>
+      </div>
+      <div class="split-verdict">
+        <p>One was designed for your <span>shelf.</span><br>One was designed for your <span>skin.</span></p>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="ig-bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">3,102 likes</div>
+    <div class="ig-caption">
+      <span class="ig-username">skinome.official</span> 36 months needs preservatives. 90 days needs a fridge. The difference is what they're built for.
+    </div>
+    <div class="ig-comments">View all 118 comments</div>
+    <div class="ig-timestamp">5 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="campaign-num">17</div>
+    <div class="variant-name">Giant Number Clash</div>
+    <span class="tone-badge">Tone: Medium</span>
+
+    <div class="strategy-label">Strategy Notes</div>
+    <div class="strategy-notes">
+      Pure visual impact — the size and weight contrast of 36 vs 90 does the rhetorical work before a single word is read. The dark-on-dark treatment of "36" signals irrelevance while the bright white "90" commands authority. Split composition mimics a debate or comparison format familiar from tech product launches. Designed for stop-the-scroll in feed without needing text literacy first.
+    </div>
+
+    <div class="caption-label">Caption</div>
+    <div class="caption-preview">
+      36 months needs preservatives. 90 days needs a fridge. The difference is what they're built for.
+    </div>
+
+    <div class="strategy-label">Nav</div>
+    <nav class="info-nav">
+      <a href="17_v1.html">v1 — Two Bars</a>
+      <a href="17_v2.html" class="active">v2 — Giant Number Clash</a>
+      <a href="17_v3.html">v3 — The Question</a>
+      <a href="17_v4.html">v4 — Battery Meter</a>
+      <a href="17_v5.html">v5 — Manifesto Dark</a>
+      <a href="17_v6.html">v6 — Loading Bar</a>
+      <a href="17_v7.html">v7 — Product Labels</a>
+      <a href="17_v8.html">v8 — Scatter Plot</a>
+      <a href="17_v9.html">v9 — The Reframe</a>
+      <a href="17_v10.html">v10 — Just One Sentence</a>
+      <a href="index.html" class="index-link">← Index</a>
+    </nav>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Skinome · Campaign 17 · Shelf Life vs Skin Life · v2 of 10
+</footer>
+
+</body>
+</html>

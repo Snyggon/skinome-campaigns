@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome — Favorites Deep Dive</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #eeece9; min-height: 100vh; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+
+  .site-header { background: #0d0d0d; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .site-header .brand { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; }
+  .site-header .brand span { color: #f6f3f0; }
+  .header-tag { font-family: 'Barlow', sans-serif; font-size: 11px; color: #3d3935; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .hero { max-width: 1100px; margin: 0 auto; padding: 72px 40px 56px; border-bottom: 1px solid #ddd9d4; }
+  .hero-eyebrow { font-family: 'Barlow', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #746c64; font-weight: 500; margin-bottom: 16px; }
+  .hero-title { font-family: 'Space Grotesk', sans-serif; font-size: 60px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.04em; line-height: 1.02; margin-bottom: 20px; }
+  .hero-title span { color: #c8c2ba; font-weight: 300; }
+  .hero-body { font-family: 'Barlow', sans-serif; font-size: 16px; color: #746c64; font-weight: 300; line-height: 1.7; max-width: 560px; }
+
+  .grid-wrap { max-width: 1100px; margin: 0 auto; padding: 48px 40px 80px; }
+
+  .campaign-block { margin-bottom: 72px; }
+  .campaign-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #0d0d0d; }
+  .campaign-num { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; margin-bottom: 6px; }
+  .campaign-title { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 10px; }
+  .campaign-desc { font-family: 'Barlow', sans-serif; font-size: 14px; color: #746c64; font-weight: 300; line-height: 1.7; max-width: 560px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+
+  .card { background: #ffffff; border-radius: 8px; overflow: hidden; text-decoration: none; border: 1px solid #e0dbd3; transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s; display: block; }
+  .card:hover { border-color: #0d0d0d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.10); }
+
+  .card-preview { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+  /* Campaign 17 preview colors */
+  .p17-cream  { background: linear-gradient(135deg, #faf8f5, #ebe5da); }
+  .p17-dark   { background: #0d0d0d; }
+  .p17-white  { background: #ffffff; border-bottom: 1px solid #e8e2d8; }
+  .p17-black  { background: #111; }
+
+  /* Campaign 26 preview colors */
+  .p26-dark   { background: #0d0d0d; }
+  .p26-cream  { background: linear-gradient(135deg, #fdfbf8, #ede9e3); }
+  .p26-white  { background: #ffffff; }
+  .p26-warm   { background: linear-gradient(135deg, #f0ece6, #e8e2da); }
+  .p26-light  { background: linear-gradient(135deg, #faf8f5, #ede9e3); }
+
+  /* Campaign 28 preview colors */
+  .p28-cream  { background: linear-gradient(135deg, #f6f3f0, #ebe5da); }
+  .p28-dark   { background: #0d0d0d; }
+  .p28-offwh  { background: linear-gradient(135deg, #fdfaf6, #f0ebe3); }
+  .p28-deep   { background: #1a1714; }
+
+  .preview-num { font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 700; letter-spacing: -0.05em; opacity: 0.10; user-select: none; }
+  .preview-num.dark  { color: #0d0d0d; }
+  .preview-num.light { color: #f6f3f0; }
+
+  .preview-label { position: absolute; bottom: 10px; left: 10px; font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; background: #fffdd9; color: #746c64; }
+
+  .card-body { padding: 16px 18px 18px; border-top: 1px solid #f0ebe5; }
+  .card-meta { font-family: 'Barlow', sans-serif; font-size: 10px; letter-spacing: 0.2em; color: #b0a89e; text-transform: uppercase; margin-bottom: 4px; }
+  .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.2; }
+  .card-desc { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.55; font-weight: 300; margin-bottom: 10px; }
+  .card-cta { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b0a89e; transition: color 0.15s; }
+  .card:hover .card-cta { color: #0d0d0d; }
+
+  .site-footer { border-top: 1px solid #ddd9d4; padding: 28px 40px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: #0d0d0d; text-transform: uppercase; }
+  .footer-copy { font-family: 'Barlow', sans-serif; font-size: 11px; color: #b0a89e; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Favorites</div>
+  <div class="header-tag">30 variants · 3 campaigns · 10 layouts each</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Skinome — Creative Deep Dive</div>
+  <h1 class="hero-title">Your<br><span>Favorites</span></h1>
+  <p class="hero-body">Campaigns 17, 26, and 28 — each explored across 10 distinct layouts. Different visual languages, different angles, same core truth. Use these to find the format that hits hardest with your audience.</p>
+</section>
+
+<div class="grid-wrap">
+
+  <!-- CAMPAIGN 17 -->
+  <div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-num">Campaign 17 · Shelf Life vs Skin Life</div>
+      <div class="campaign-title">The shorter bar<br>is the better product.</div>
+      <div class="campaign-desc">Progress bars, scatter plots, product labels, manifestos — 10 ways to show that a 90-day shelf life isn't a flaw. It's proof of what the product is optimized for.</div>
+    </div>
+    <div class="grid">
+
+      <a href="17_v1.html" class="card">
+        <div class="card-preview p17-cream"><div class="preview-num dark">v1</div><div class="preview-label">Two Bars</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 01</div>
+          <div class="card-title">Two Bars</div>
+          <div class="card-desc">The refined original. Two horizontal progress bars with percentage labels. Data drives the argument. Short bar wins.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v2.html" class="card">
+        <div class="card-preview p17-dark"><div class="preview-num light">v2</div><div class="preview-label">Number Clash</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 02</div>
+          <div class="card-title">Giant Number Clash</div>
+          <div class="card-desc">Dark split panel. "36" faded on the left, "90" bright on the right. "One was designed for your shelf. One for your skin."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v3.html" class="card">
+        <div class="card-preview p17-cream"><div class="preview-num dark">v3</div><div class="preview-label">The Question</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 03</div>
+          <div class="card-title">The Question</div>
+          <div class="card-desc">Pure typography. "What is your moisturizer actually optimized for?" Two answer cards below: warehouse logistics vs your skin.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v4.html" class="card">
+        <div class="card-preview p17-white"><div class="preview-num dark">v4</div><div class="preview-label">Battery Meter</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 04</div>
+          <div class="card-title">Battery Meter</div>
+          <div class="card-desc">Two vertical battery columns. Their battery: 90% full. Skinome battery: 25% full. "Less isn't a limitation. It's the proof."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v5.html" class="card">
+        <div class="card-preview p17-dark"><div class="preview-num light">v5</div><div class="preview-label">Manifesto</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 05</div>
+          <div class="card-title">Manifesto Dark</div>
+          <div class="card-desc">"OPTIMIZED" at 72px. Two columns of what each product is optimized for — dim vs bright white. Choose which one is on your face.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v6.html" class="card">
+        <div class="card-preview p17-cream"><div class="preview-num dark">v6</div><div class="preview-label">Loading Bar</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 06</div>
+          <div class="card-title">Loading Bar</div>
+          <div class="card-desc">Single 36-month bar with a tick at 90 days. "Your skin stops benefiting here." The remaining 75% labelled for what it actually is.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v7.html" class="card">
+        <div class="card-preview p17-white"><div class="preview-num dark">v7</div><div class="preview-label">Product Labels</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 07</div>
+          <div class="card-title">Two Product Labels</div>
+          <div class="card-desc">Clinical nutrition-label format. Side by side: Conventional vs Skinome. Facts only. "Optimized for: warehouse logistics" vs "Optimized for: your skin."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v8.html" class="card">
+        <div class="card-preview p17-cream"><div class="preview-num dark">v8</div><div class="preview-label">Scatter Plot</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 08</div>
+          <div class="card-title">Scatter Plot</div>
+          <div class="card-desc">SVG chart. X-axis: shelf life. Y-axis: skin benefit. Two dots — inverse relationship. "The data is in the expiry date."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v9.html" class="card">
+        <div class="card-preview p17-cream"><div class="preview-num dark">v9</div><div class="preview-label">The Reframe</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 09</div>
+          <div class="card-title">The Reframe</div>
+          <div class="card-desc">Three strikethrough rows. "Long shelf life = quality" struck and replaced with "Long shelf life = preservatives." The industry taught you wrong definitions.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="17_v10.html" class="card">
+        <div class="card-preview p17-black"><div class="preview-num light">v10</div><div class="preview-label">One Sentence</div></div>
+        <div class="card-body">
+          <div class="card-meta">17 · Variant 10</div>
+          <div class="card-title">Just One Sentence</div>
+          <div class="card-desc">Dark. Minimal. One sentence in weight 300 white: "The moisturizer that lasts three years was not designed for your skin." Nothing else needed.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- CAMPAIGN 26 -->
+  <div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-num">Campaign 26 · Ours Goes Bad. On Purpose.</div>
+      <div class="campaign-title">If it doesn't expire,<br>ask why.</div>
+      <div class="campaign-desc">Stamps, food comparisons, confessions, punk badges — 10 ways to flip the expiry date from perceived weakness to undeniable proof of freshness.</div>
+    </div>
+    <div class="grid">
+
+      <a href="26_v1.html" class="card">
+        <div class="card-preview p26-dark"><div class="preview-num light">v1</div><div class="preview-label">Circular Stamp</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 01</div>
+          <div class="card-title">Circular Stamp</div>
+          <div class="card-desc">Refined original. Double-ring seal on black. "EXPIRES IN 90 DAYS / Because fresh." Corner text. Tagline: "If it doesn't expire, ask why."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v2.html" class="card">
+        <div class="card-preview p26-cream"><div class="preview-num dark">v2</div><div class="preview-label">Food Shelf</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 02</div>
+          <div class="card-title">Food Shelf Comparison</div>
+          <div class="card-desc">Milk 7 days · Yogurt 21 days · Skinome 90 days (inverted dark) · Conventional moisturizer 36 months (struck through). "One of these is not like the others."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v3.html" class="card">
+        <div class="card-preview p26-white"><div class="preview-num dark">v3</div><div class="preview-label">Product Label</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 03</div>
+          <div class="card-title">Product Label</div>
+          <div class="card-desc">Clinical pharma-label format. "Best before: 90 days from manufacture." Contains / Does not contain. Storage. Honest by design.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v4.html" class="card">
+        <div class="card-preview p26-dark"><div class="preview-num light">v4</div><div class="preview-label">Punk Stamp</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 04</div>
+          <div class="card-title">Punk Stamp — Distressed</div>
+          <div class="card-desc">"GOES BAD" at 86px. "IN 90 DAYS." "ON PURPOSE." Heavy slab hierarchy on near-black. Liquid Death energy applied to skincare.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v5.html" class="card">
+        <div class="card-preview p26-dark"><div class="preview-num light">v5</div><div class="preview-label">The Kicker</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 05</div>
+          <div class="card-title">The Kicker Alone</div>
+          <div class="card-desc">Pure typography. Small setup. Then large in pale yellow: "If it doesn't expire, ask why." Zero graphics. Maximum restraint = maximum impact.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v6.html" class="card">
+        <div class="card-preview p26-warm"><div class="preview-num dark">v6</div><div class="preview-label">Two Cartons</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 06</div>
+          <div class="card-title">Side-by-Side Cartons</div>
+          <div class="card-desc">Two CSS carton shapes. "THEIRS" — 36 months, preservatives, logistics. "OURS" — 90 days, actives, your skin. "Two products. Two different priorities."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v7.html" class="card">
+        <div class="card-preview p26-light"><div class="preview-num dark">v7</div><div class="preview-label">Light Badge</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 07</div>
+          <div class="card-title">The Badge — Light</div>
+          <div class="card-desc">Inverted version of v1. Dark stamp circle on warm cream background. "Certified Fresh — 90 Days." Premium, considered feel.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v8.html" class="card">
+        <div class="card-preview p26-dark"><div class="preview-num light">v8</div><div class="preview-label">Countdown</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 08</div>
+          <div class="card-title">Countdown — Just Numbers</div>
+          <div class="card-desc">"90" at 140px dominates. "days." below. Then: "After that — it's gone. Because it's real." The number does the work.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v9.html" class="card">
+        <div class="card-preview p26-light"><div class="preview-num dark">v9</div><div class="preview-label">The Admission</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 09</div>
+          <div class="card-title">The Admission</div>
+          <div class="card-desc">"WE ADMIT IT." Our product expires in 90 days. Needs a fridge. Costs more to ship. Less convenient to stock. "We made this choice because it's right for your skin."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="26_v10.html" class="card">
+        <div class="card-preview p26-dark"><div class="preview-num light">v10</div><div class="preview-label">Expiry as Identity</div></div>
+        <div class="card-body">
+          <div class="card-meta">26 · Variant 10</div>
+          <div class="card-title">Expiry as Identity</div>
+          <div class="card-desc">"EXPIRES" written in massive light grey across the full creative as a watermark. On top: "90 days. This is what honesty looks like."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- CAMPAIGN 28 -->
+  <div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-num">Campaign 28 · 20 Years of Research. One Answer.</div>
+      <div class="campaign-title">Not a brand story.<br>A scientific record.</div>
+      <div class="campaign-desc">Timelines, CVs, certificates, confessions, count-ups — 10 ways to compress Dr. Johanna Gillbro's 20 years of skin microbiome research into a single credibility-building moment.</div>
+    </div>
+    <div class="grid">
+
+      <a href="28_v1.html" class="card">
+        <div class="card-preview p28-cream"><div class="preview-num dark">v1</div><div class="preview-label">Vertical Timeline</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 01</div>
+          <div class="card-title">Vertical Timeline</div>
+          <div class="card-desc">Refined original. Cream background, dotted left-rail timeline, 1999–2019. Milestone dot fills dark at 2019. "20 years. One answer."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v2.html" class="card">
+        <div class="card-preview p28-dark"><div class="preview-num light">v2</div><div class="preview-label">Dark Timeline</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 02</div>
+          <div class="card-title">Dark Timeline</div>
+          <div class="card-desc">Same structure as v1, fully inverted. Years in taupe, events in light grey, 2019 milestone dot glows in cream on near-black.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v3.html" class="card">
+        <div class="card-preview p28-cream"><div class="preview-num dark">v3</div><div class="preview-label">Horizontal Timeline</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 03</div>
+          <div class="card-title">Horizontal Timeline</div>
+          <div class="card-desc">Timeline runs left to right along the bottom half. "Dr. Johanna Gillbro / 20 years" dominates the upper half. Graph-like, scientific.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v4.html" class="card">
+        <div class="card-preview p28-offwh"><div class="preview-num dark">v4</div><div class="preview-label">Academic CV</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 04</div>
+          <div class="card-title">Academic CV</div>
+          <div class="card-desc">"GILLBRO, J. · Dermatology & Skin Microbiome Research." CV entries 1999–2019. No decorative elements. "This isn't a brand story. It's a research record."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v5.html" class="card">
+        <div class="card-preview p28-cream"><div class="preview-num dark">v5</div><div class="preview-label">Industry vs Scientist</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 05</div>
+          <div class="card-title">Industry vs. The Scientist</div>
+          <div class="card-desc">Two columns. Left (greyed): what the industry did 1999–2019. Right (dark): what Johanna did. "Same 20 years. Very different choices."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v6.html" class="card">
+        <div class="card-preview p28-dark"><div class="preview-num light">v6</div><div class="preview-label">The Number</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 06</div>
+          <div class="card-title">The Number</div>
+          <div class="card-desc">"20" at 140px. "years." below in weight 300. Nothing else except: "One researcher. One question. One answer. Skinome." Maximum compression.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v7.html" class="card">
+        <div class="card-preview p28-cream"><div class="preview-num dark">v7</div><div class="preview-label">One Question</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 07</div>
+          <div class="card-title">One Question</div>
+          <div class="card-desc">"Why does conventional skincare damage the microbiome it claims to protect?" She spent 20 years on this question. The year chain leads to: Skinome.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v8.html" class="card">
+        <div class="card-preview p28-offwh"><div class="preview-num dark">v8</div><div class="preview-label">Certificate</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 08</div>
+          <div class="card-title">Patent / Certificate</div>
+          <div class="card-desc">Double CSS border, formal certificate language. "This is to certify that DR. JOHANNA GILLBRO completed 20 years of skin microbiome research and reached the following conclusion."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v9.html" class="card">
+        <div class="card-preview p28-deep"><div class="preview-num light">v9</div><div class="preview-label">The Confession</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 09</div>
+          <div class="card-title">The Confession</div>
+          <div class="card-desc">Dark bg. Four-beat confession: observation → indictment → evidence → resolution. "In 2019, she stopped waiting for someone else to fix it."</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+      <a href="28_v10.html" class="card">
+        <div class="card-preview p28-cream"><div class="preview-num dark">v10</div><div class="preview-label">Count Up</div></div>
+        <div class="card-body">
+          <div class="card-meta">28 · Variant 10</div>
+          <div class="card-title">Count Up</div>
+          <div class="card-desc">Six rows escalating in size and weight. 1999 tiny and faded. 2019 at max size in full black bold: "SKINOME." Visual crescendo — research as buildup.</div>
+          <div class="card-cta">View →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">Skinome — Creative Deep Dive</div>
+  <div class="footer-copy">30 variants · campaigns 17, 26, 28 · 2026</div>
+</footer>
+
+</body>
+</html>
