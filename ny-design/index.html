@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome — Ny Design · Visual Variants</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #eeece9; min-height: 100vh; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+
+  .site-header { background: #0d0d0d; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .site-header .brand { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; }
+  .site-header .brand span { color: #f6f3f0; }
+  .header-tag { font-family: 'Barlow', sans-serif; font-size: 11px; color: #3d3935; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .hero { max-width: 1100px; margin: 0 auto; padding: 72px 40px 56px; border-bottom: 1px solid #ddd9d4; }
+  .hero-eyebrow { font-family: 'Barlow', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #746c64; font-weight: 500; margin-bottom: 16px; }
+  .hero-title { font-family: 'Space Grotesk', sans-serif; font-size: 60px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.04em; line-height: 1.02; margin-bottom: 20px; }
+  .hero-title span { color: #c8c2ba; font-weight: 300; }
+  .hero-body { font-family: 'Barlow', sans-serif; font-size: 16px; color: #746c64; font-weight: 300; line-height: 1.7; max-width: 560px; }
+
+  .grid-wrap { max-width: 1100px; margin: 0 auto; padding: 48px 40px 80px; }
+
+  .campaign-block { margin-bottom: 72px; }
+  .campaign-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #0d0d0d; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .campaign-header-left {}
+  .campaign-num { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; margin-bottom: 6px; }
+  .campaign-title { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 10px; }
+  .campaign-desc { font-family: 'Barlow', sans-serif; font-size: 14px; color: #746c64; font-weight: 300; line-height: 1.7; max-width: 520px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+
+  .card { background: #ffffff; border-radius: 8px; overflow: hidden; text-decoration: none; border: 1px solid #e0dbd3; transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s; display: block; }
+  .card:hover { border-color: #0d0d0d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.10); }
+
+  .card-preview { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+  /* Campaign 17 */
+  .p17-v1  { background: linear-gradient(135deg, #1a3a2a 60%, #c4836a 100%); }
+  .p17-v2  { background: #ffffff; border-bottom: 3px solid #e8453c; }
+  .p17-v3  { background: linear-gradient(160deg, #0a2a4a, #1a4a7a); }
+  .p17-v4  { background: linear-gradient(135deg, #faf4ec, #ede5d8); }
+  .p17-v5  { background: #1a1a1a; }
+  .p17-v6  { background: linear-gradient(135deg, #2d1b3d, #c45e1a); }
+  .p17-v7  { background: #2d5a27; }
+  .p17-v8  { background: #0a0a0f; }
+  .p17-v9  { background: #006AA7; }
+  .p17-v10 { background: linear-gradient(135deg, #faf6f0, #ede9e3); }
+
+  /* Campaign 26 */
+  .p26-v1  { background: #2d8a4e; }
+  .p26-v2  { background: #f5c518; }
+  .p26-v3  { background: linear-gradient(180deg, #0a1628, #0a3d6b); }
+  .p26-v4  { background: linear-gradient(135deg, #f5f0e8, #ede8de); }
+  .p26-v5  { background: #0d1b2a; }
+  .p26-v6  { background: linear-gradient(135deg, #faf6f0, #ede9e3); }
+  .p26-v7  { background: linear-gradient(135deg, #f7971e, #ffd200); }
+  .p26-v8  { background: linear-gradient(135deg, #e8d5b7, #d4bf9a); }
+  .p26-v9  { background: linear-gradient(180deg, #6b1f3a 50%, #f5e6c8 50%); }
+  .p26-v10 { background: #0d3d3a; }
+
+  /* Campaign 28 */
+  .p28-v1  { background: linear-gradient(160deg, #0a1628, #0d2244); }
+  .p28-v2  { background: #1a1814; }
+  .p28-v3  { background: linear-gradient(160deg, #1a3a2a, #2d5a3a); }
+  .p28-v4  { background: linear-gradient(135deg, #faf6f0, #ede9e3); }
+  .p28-v5  { background: linear-gradient(160deg, #7c3d0a, #a85a1a); }
+  .p28-v6  { background: #080810; }
+  .p28-v7  { background: #006AA7; }
+  .p28-v8  { background: linear-gradient(180deg, #040814, #0a1428); }
+  .p28-v9  { background: #ffffff; border-bottom: 1px solid #e8e2d8; }
+  .p28-v10 { background: linear-gradient(135deg, #f6f3f0, #ebe5da); }
+
+  .preview-num { font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700; letter-spacing: -0.05em; opacity: 0.12; user-select: none; }
+  .preview-num.dark  { color: #0d0d0d; }
+  .preview-num.light { color: #f6f3f0; }
+
+  .preview-label { position: absolute; bottom: 10px; left: 10px; font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+  .preview-label.dark-text { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.5); }
+
+  .card-body { padding: 16px 18px 18px; border-top: 1px solid #f0ebe5; }
+  .card-meta { font-family: 'Barlow', sans-serif; font-size: 10px; letter-spacing: 0.2em; color: #b0a89e; text-transform: uppercase; margin-bottom: 4px; }
+  .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.2; }
+  .card-desc { font-family: 'Barlow', sans-serif; font-size: 13px; color: #746c64; line-height: 1.55; font-weight: 300; margin-bottom: 10px; }
+  .card-cta { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b0a89e; transition: color 0.15s; }
+  .card:hover .card-cta { color: #0d0d0d; }
+
+  .site-footer { border-top: 1px solid #ddd9d4; padding: 28px 40px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: #0d0d0d; text-transform: uppercase; }
+  .footer-copy { font-family: 'Barlow', sans-serif; font-size: 11px; color: #b0a89e; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Ny Design</div>
+  <div class="header-tag">30 varianter · färg · grafik · form</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Skinome — Visual Creative Exploration</div>
+  <h1 class="hero-title">Ny<br><span>Design</span></h1>
+  <p class="hero-body">Kampanjerna 17, 26 och 28 — samma budskap som tidigare, men med helt nya visuella riktningar. Färg, grafik, form och illustrationer i stället för ren typografi. Tio distinkta estetiker per kampanj.</p>
+</section>
+
+<div class="grid-wrap">
+
+  <!-- CAMPAIGN 17 -->
+  <div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-num">Campaign 17 · Shelf Life vs Skin Life</div>
+        <div class="campaign-title">The shorter bar<br>is the better product.</div>
+        <div class="campaign-desc">Från botaniskt grönt till neon-mörkt, trafikljus till scatter plot — 10 visuella riktningar för budskapet att 90 dagar är bättre än 36 månader.</div>
+      </div>
+    </div>
+    <div class="grid">
+
+      <a href="17_v1.html" class="card">
+        <div class="card-preview p17-v1"><div class="preview-num light">v1</div><div class="preview-label">Fresh vs Stale</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 01</div><div class="card-title">Fresh vs Stale</div><div class="card-desc">Diagonal CSS clip-path split. Forest green vs warm clay. Leaf-SVG ikoner. Magazineomslag-energi.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v2.html" class="card">
+        <div class="card-preview p17-v2"><div class="preview-num dark">v2</div><div class="preview-label dark-text">Lab Report</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 02</div><div class="card-title">Lab Report</div><div class="card-desc">Röd header. Färgkodade kliniska kort — rött för dem, grönt för Skinome. SVG check/kryss-ikoner.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v3.html" class="card">
+        <div class="card-preview p17-v3"><div class="preview-num light">v3</div><div class="preview-label">Cold Chain</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 03</div><div class="card-title">Cold Chain</div><div class="card-desc">Arktisk blå gradient. CSS kylbox med glödeffekt. SVG snöflingor. Kylkedjan som visuell identitet.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v4.html" class="card">
+        <div class="card-preview p17-v4"><div class="preview-num dark">v4</div><div class="preview-label dark-text">Supermarket Shelf</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 04</div><div class="card-title">Supermarket Shelf</div><div class="card-desc">Varm grädde. Två stiliserade CSS-tuber — dammig grå vs ren vit med grön accent. Mänskligt och relaterbart.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v5.html" class="card">
+        <div class="card-preview p17-v5"><div class="preview-num light">v5</div><div class="preview-label">Traffic Light</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 05</div><div class="card-title">Traffic Light</div><div class="card-desc">Kol-mörk bakgrund. CSS trafikljushus med rött, gult och grönt. "Skinome visar alltid grönt."</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v6.html" class="card">
+        <div class="card-preview p17-v6"><div class="preview-num light">v6</div><div class="preview-label">Gradient Drama</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 06</div><div class="card-title">Gradient Drama</div><div class="card-desc">Diagonalt plommon till bränd orange. Överlappande semi-transparenta cirklar. Kampanjaffisch-energi.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v7.html" class="card">
+        <div class="card-preview p17-v7"><div class="preview-num light">v7</div><div class="preview-label">Botanical Fresh</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 07</div><div class="card-title">Botanical Fresh</div><div class="card-desc">Botaniskt rikt grönt. CSS bladformer via clip-path. Vit cirkel i centrum med "90 DAYS". Naturlig lyx.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v8.html" class="card">
+        <div class="card-preview p17-v8"><div class="preview-num light">v8</div><div class="preview-label">Neon Dark</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 08</div><div class="card-title">Neon Dark</div><div class="card-desc">Nästan svart med CSS rutnätslinjer. "36 MONTHS" i röd neon-glow. "90 DAYS" i stark cyan. Tech-estetik.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v9.html" class="card">
+        <div class="card-preview p17-v9"><div class="preview-num light">v9</div><div class="preview-label">Swedish Minimalism</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 09</div><div class="card-title">Swedish Minimalism</div><div class="card-desc">Svensk blå `#006AA7` + gul accent. Tre-bands-layout. Platt design, noll gradienter. Skarpt skandinaviskt.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="17_v10.html" class="card">
+        <div class="card-preview p17-v10"><div class="preview-num dark">v10</div><div class="preview-label dark-text">Data Mosaic</div></div>
+        <div class="card-body"><div class="card-meta">17 · Variant 10</div><div class="card-title">Data Mosaic</div><div class="card-desc">CSS rutnät av färgade kvadrater. 6 gröna (Skinome) vs 27+ grå (dem). Färgkod: grönt = aktiv, grå = fyllnadsmedel.</div><div class="card-cta">View →</div></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- CAMPAIGN 26 -->
+  <div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-num">Campaign 26 · Ours Goes Bad. On Purpose.</div>
+        <div class="campaign-title">If it doesn't expire,<br>ask why.</div>
+        <div class="campaign-desc">Från färskvaruhylla till arktisk blå, från varningsetikett till bourbon-duotone — 10 sätt att visa att 90 dagar är ett löfte, inte en svaghet.</div>
+      </div>
+    </div>
+    <div class="grid">
+
+      <a href="26_v1.html" class="card">
+        <div class="card-preview p26-v1"><div class="preview-num light">v1</div><div class="preview-label">Fresh Produce</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 01</div><div class="card-title">Fresh Produce</div><div class="card-desc">Vibrant grön. Stor vit prislapp-cirkel. CSS blad/droppe-former spridda. Bondens marknad möter hudvård.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v2.html" class="card">
+        <div class="card-preview p26-v2"><div class="preview-num dark">v2</div><div class="preview-label dark-text">Warning Label</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 02</div><div class="card-title">Warning Label Inverted</div><div class="card-desc">Säkerhetsgult. Faroskylt-format inverterat — "varningen" är beviset på äkthet. Industriell estetik subverterad.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v3.html" class="card">
+        <div class="card-preview p26-v3"><div class="preview-num light">v3</div><div class="preview-label">Cold Chain Blue</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 03</div><div class="card-title">Cold Chain Blue</div><div class="card-desc">Arktisk blå gradient. CSS snöflinga byggd av roterade armar. Glödeffekter. Kylkedjan som varumärkesidentitet.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v4.html" class="card">
+        <div class="card-preview p26-v4"><div class="preview-num dark">v4</div><div class="preview-label dark-text">Fridge Door</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 04</div><div class="card-title">Fridge Door</div><div class="card-desc">Varm köksvägg. CSS-ritad kylskåpsdörr med handtag och kylskåpsmagneter. Gul sticky note: "expires in 90 days ☀"</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v5.html" class="card">
+        <div class="card-preview p26-v5"><div class="preview-num light">v5</div><div class="preview-label">Expiry as Pride</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 05</div><div class="card-title">Expiry as Pride</div><div class="card-desc">Djup marinblå. "WE / EXPIRE." i grädde + knallgrönt. Konserveringslista: deras vs vår. Manifest-energi.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v6.html" class="card">
+        <div class="card-preview p26-v6"><div class="preview-num dark">v6</div><div class="preview-label dark-text">Timeline</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 06</div><div class="card-title">Timeline Comparison</div><div class="card-desc">Horisontell tidslinje. 25% grön (Skinome). 75% urtvättad grå. "De sista 900 dagarna — inte för dig."</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v7.html" class="card">
+        <div class="card-preview p26-v7"><div class="preview-num dark">v7</div><div class="preview-label dark-text">Juice Bar</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 07</div><div class="card-title">Juice Bar</div><div class="card-desc">Orange-gul gradient. Vit rundad produktetikett i cold-press juice-stil. "Aktiva ingredienser: alla."</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v8.html" class="card">
+        <div class="card-preview p26-v8"><div class="preview-num dark">v8</div><div class="preview-label dark-text">Polaroid</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 08</div><div class="card-title">Polaroid</div><div class="card-desc">Varm sand. CSS Polaroid-ram, -3° rotation. "90" i överexponerad stil. Handskriven caption i Barlow italic.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v9.html" class="card">
+        <div class="card-preview p26-v9"><div class="preview-num light">v9</div><div class="preview-label">Duotone</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 09</div><div class="card-title">Duotone</div><div class="card-desc">Skarp horisontell split. Burgundy övre, champagne nedre. 108px siffra. Hög mode, editorial, Vogue-adjacent.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="26_v10.html" class="card">
+        <div class="card-preview p26-v10"><div class="preview-num light">v10</div><div class="preview-label">Mosaic Pattern</div></div>
+        <div class="card-body"><div class="card-meta">26 · Variant 10</div><div class="card-title">Mosaic / Pattern</div><div class="card-desc">Mörk teal. "90" som heltäckande vattenstämpelmönster (-8° rotation). Vit cirkelstämpel ovanpå. Premium och igenkänningsbart.</div><div class="card-cta">View →</div></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- CAMPAIGN 28 -->
+  <div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-num">Campaign 28 · 20 Years of Research. One Answer.</div>
+        <div class="campaign-title">Not a brand story.<br>A scientific record.</div>
+        <div class="campaign-desc">Från djuplabb-marinblå till guldmedalj, stjärnkarta till radial SVG-donut — 10 sätt att visualisera Dr. Johanna Gillbros 20 år av hudvetenskapsforskning.</div>
+      </div>
+    </div>
+    <div class="grid">
+
+      <a href="28_v1.html" class="card">
+        <div class="card-preview p28-v1"><div class="preview-num light">v1</div><div class="preview-label">Deep Lab</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 01</div><div class="card-title">Deep Lab</div><div class="card-desc">Djup marinblå. Vit cirkel med SVG mikrobiom-organismer i ljusgrönt. Konentriska ringar. Forskarinstitut-energi.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v2.html" class="card">
+        <div class="card-preview p28-v2"><div class="preview-num light">v2</div><div class="preview-label">Golden Achievement</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 02</div><div class="card-title">Golden Achievement</div><div class="card-desc">Kol-mörk bakgrund. Guldmedalj med SVG cirkulär text. "20" i 72px guld inuti. Intjänad auktoritet visualiserad.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v3.html" class="card">
+        <div class="card-preview p28-v3"><div class="preview-num light">v3</div><div class="preview-label">Botanical Science</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 03</div><div class="card-title">Botanical Science</div><div class="card-desc">Skogsgrön gradient. Krämig cirkel med botaniska SVG-former. Nyckelår som konstellationsmarkörer runt cirkeln.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v4.html" class="card">
+        <div class="card-preview p28-v4"><div class="preview-num dark">v4</div><div class="preview-label dark-text">Research Arc</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 04</div><div class="card-title">Research Progression</div><div class="card-desc">Grädde bakgrund. SVG-halvcirkel-båge med gradient grå→grön. Milstolpspunkter 1999–2019. Infografisk klarhet.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v5.html" class="card">
+        <div class="card-preview p28-v5"><div class="preview-num light">v5</div><div class="preview-label">Warm Amber</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 05</div><div class="card-title">Warm Amber</div><div class="card-desc">Varm bärnstensgradient. Krämig cirkel med linjekonst-mikroskop i SVG. Mänsklig grundarberättelse.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v6.html" class="card">
+        <div class="card-preview p28-v6"><div class="preview-num light">v6</div><div class="preview-label">Neon Research</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 06</div><div class="card-title">Neon Research</div><div class="card-desc">Nästan svart. Åren staplade vertikalt med progressiv neon-glow: lila→cyan→grön. 2019 SKINOME i fullt ljust grönt.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v7.html" class="card">
+        <div class="card-preview p28-v7"><div class="preview-num light">v7</div><div class="preview-label">Swedish Design</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 07</div><div class="card-title">Swedish Design</div><div class="card-desc">Svensk blå + gul. Tre-bands-layout. Stor "20", CSS ansikte-grafik. Platt design, noll gradienter. IKEA-poster-energi.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v8.html" class="card">
+        <div class="card-preview p28-v8"><div class="preview-num light">v8</div><div class="preview-label">Star Chart</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 08</div><div class="card-title">Star Chart</div><div class="card-desc">Nattlig stjärnhimmel. Fullständig SVG-konstellation — sex milstolpar som stjärnor. 2019 med guldstjärnglöd och starburst.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v9.html" class="card">
+        <div class="card-preview p28-v9"><div class="preview-num dark">v9</div><div class="preview-label dark-text">Magazine Cover</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 09</div><div class="card-title">Magazine Cover</div><div class="card-desc">Stark vit bakgrund. Tjock svart headerbar. Gradient-cirkel blå→grön. Pull quote. TIME/Wired-omslag-energi.</div><div class="card-cta">View →</div></div>
+      </a>
+
+      <a href="28_v10.html" class="card">
+        <div class="card-preview p28-v10"><div class="preview-num dark">v10</div><div class="preview-label dark-text">Radial Progress</div></div>
+        <div class="card-body"><div class="card-meta">28 · Variant 10</div><div class="card-title">Radial Progress</div><div class="card-desc">SVG donut-diagram. 19 grå segment (1999–2018) + 1 knallgrönt (2019). "SKINOME ←" callout. Datajournalistik-estetik.</div><div class="card-cta">View →</div></div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">Skinome — Ny Design</div>
+  <div class="footer-copy">30 varianter · kampanj 17, 26, 28 · 2026</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 28 · v2 — Golden Achievement</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #e8e4de; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d0d0d; color: #fff;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 52px; border-bottom: 1px solid #222;
+  }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a {
+    font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    border: 1px solid #444; color: #aaa; text-decoration: none;
+    font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s;
+  }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; flex-direction: row; align-items: flex-start;
+    padding: 48px 24px 80px; gap: 0;
+  }
+
+  .ig-card {
+    width: 560px; flex-shrink: 0;
+    background: #fff; border-radius: 12px;
+    border: 1px solid #dbdbdb; overflow: hidden;
+  }
+  .ig-post-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+  }
+  .ig-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, #c9a84c, #f0d080);
+    display: flex; align-items: center; justify-content: center;
+    color: #1a1814; font-weight: 700; font-size: 16px;
+    font-family: 'Barlow', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; cursor: pointer; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V2 — GOLDEN ACHIEVEMENT */
+  .creative-v2 {
+    width: 100%; height: 100%;
+    background: #1a1814;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .founded-tag {
+    position: absolute; top: 28px; left: 28px;
+    font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 300;
+    color: #a08840; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .medal-wrap {
+    position: relative; width: 300px; height: 300px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .medal-outer {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: linear-gradient(135deg, #c9a84c 0%, #f0d080 30%, #e8c060 50%, #f0d080 70%, #c9a84c 100%);
+    box-shadow: 0 0 40px rgba(201,168,76,0.3), 0 0 80px rgba(201,168,76,0.15);
+  }
+  .medal-inner {
+    position: absolute;
+    inset: 18px; border-radius: 50%;
+    background: #1a1814;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px;
+  }
+  .medal-num {
+    font-family: 'Barlow', sans-serif; font-size: 72px; font-weight: 700;
+    background: linear-gradient(135deg, #c9a84c, #f0d080);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .medal-research {
+    font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 400;
+    letter-spacing: 0.22em; color: #a08840; text-transform: uppercase;
+  }
+  .medal-divider {
+    width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+    margin: 6px 0;
+  }
+  .medal-answer {
+    font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.15em; color: #e8d490; text-transform: uppercase;
+  }
+
+  /* Rotating text around medal */
+  .medal-ring-text {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .medal-ring-text svg { width: 300px; height: 300px; position: absolute; }
+
+  /* Bottom decorative lines */
+  .gold-lines {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; align-items: center;
+  }
+  .gold-line { width: 40px; height: 1px; background: linear-gradient(90deg, transparent, #c9a84c); }
+  .gold-line.rev { background: linear-gradient(90deg, #c9a84c, transparent); }
+  .gold-dot { width: 4px; height: 4px; border-radius: 50%; background: #c9a84c; }
+
+  .ig-actions { display: flex; gap: 16px; padding: 12px 16px 4px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-likes { padding: 0 16px 6px; font-size: 13px; font-weight: 600; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.5; }
+  .ig-caption strong { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 13px; color: #00376b; }
+  .ig-comments { padding: 0 16px 6px; font-size: 12px; color: #777; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { padding-left: 60px; flex: 1; padding-top: 8px; }
+  .info-num { font-family: 'Barlow', sans-serif; font-size: 72px; font-weight: 100; color: #c8c2ba; line-height: 1; margin-bottom: 4px; }
+  .info-name { font-family: 'Barlow', sans-serif; font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #5a5200; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; margin-bottom: 20px; }
+  .info-section { margin-bottom: 20px; }
+  .info-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #999; margin-bottom: 6px; }
+  .info-text { font-size: 14px; line-height: 1.65; color: #444; }
+  .info-caption { font-size: 14px; line-height: 1.6; color: #222; font-style: italic; border-left: 3px solid #c9a84c; padding-left: 14px; }
+  .variant-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .variant-nav a {
+    font-size: 11px; padding: 4px 12px; border-radius: 20px;
+    border: 1px solid #ccc; color: #666; text-decoration: none;
+    font-family: 'Barlow', sans-serif; transition: all 0.2s;
+  }
+  .variant-nav a:hover { border-color: #555; color: #1a1a1a; }
+  .variant-nav a.active { background: #c9a84c; color: #1a1814; border-color: #c9a84c; font-weight: 600; }
+  .variant-nav a.index-link { border-color: #888; color: #444; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 24px; font-size: 11px; letter-spacing: 0.08em; font-family: 'Barlow', sans-serif; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="brand">SKINOME · ny-design</span>
+  <nav class="header-nav">
+    <a href="28_v1.html">28_v1</a>
+    <a href="28_v2.html" class="active">28_v2</a>
+    <a href="28_v3.html">28_v3</a>
+    <a href="28_v4.html">28_v4</a>
+    <a href="28_v5.html">28_v5</a>
+    <a href="28_v6.html">28_v6</a>
+    <a href="28_v7.html">28_v7</a>
+    <a href="28_v8.html">28_v8</a>
+    <a href="28_v9.html">28_v9</a>
+    <a href="28_v10.html">28_v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v2">
+        <div class="founded-tag">Founded 2019</div>
+        <div class="medal-wrap">
+          <div class="medal-outer"></div>
+          <div class="medal-ring-text">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <path id="circle-path" d="M 150,150 m -120,0 a 120,120 0 1,1 240,0 a 120,120 0 1,1 -240,0"/>
+              </defs>
+              <text font-family="Barlow, sans-serif" font-size="10" font-weight="400" fill="#a08840" letter-spacing="4">
+                <textPath href="#circle-path">DR. JOHANNA GILLBRO · SKINOME · STOCKHOLM · 2019 · 20 YEARS ·</textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="medal-inner">
+            <div class="medal-num">20</div>
+            <div class="medal-research">Years of Research</div>
+            <div class="medal-divider"></div>
+            <div class="medal-answer">One Answer</div>
+          </div>
+        </div>
+        <div class="gold-lines">
+          <div class="gold-line rev"></div>
+          <div class="gold-dot"></div>
+          <div class="gold-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions"><span>🤍</span><span>💬</span><span>📤</span></div>
+    <div class="ig-likes">6,204 likes</div>
+    <div class="ig-caption"><strong>skinome.official</strong> Not a brand story. A 20-year research record. Skinome was the conclusion.</div>
+    <div class="ig-hashtags">#skinome #skinmicrobiome #skinscience #dermatology #johanagillbro #refrigeratedskincare</div>
+    <div class="ig-comments">View all 318 comments</div>
+    <div class="ig-timestamp">3 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">28</div>
+    <div class="info-name">Golden Achievement — Award Ceremony Gold</div>
+    <span class="tone-badge">Medium</span>
+
+    <div class="info-section">
+      <div class="info-label">Visual Strategy</div>
+      <div class="info-text">Gold signifies earned authority — not purchased prestige. The medal metaphor reframes 20 years of research as an accomplishment worthy of recognition, positioning Skinome as the laureate of skin science. The dark charcoal background makes the gold radiate with genuine warmth and gravitas. Circular text around the medal's outer ring echoes the engraving on a real award, lending the composition a ceremonial weight that commands scroll-stopping attention.</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption</div>
+      <div class="info-caption">Not a brand story. A 20-year research record. Skinome was the conclusion.</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Full Caption</div>
+      <div class="info-text">Dr. Johanna Gillbro spent 20 years researching skin science. The conclusion: conventional skincare was working against the microbiome it claimed to protect. Skinome was the answer she couldn't find elsewhere.</div>
+    </div>
+
+    <div class="variant-nav">
+      <a href="28_v1.html">28_v1</a>
+      <a href="28_v2.html" class="active">28_v2</a>
+      <a href="28_v3.html">28_v3</a>
+      <a href="28_v4.html">28_v4</a>
+      <a href="28_v5.html">28_v5</a>
+      <a href="28_v6.html">28_v6</a>
+      <a href="28_v7.html">28_v7</a>
+      <a href="28_v8.html">28_v8</a>
+      <a href="28_v9.html">28_v9</a>
+      <a href="28_v10.html">28_v10</a>
+      <a href="index.html" class="index-link">← index</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">SKINOME · Campaign 28 · ny-design · v2 of 10</footer>
+</body>
+</html>

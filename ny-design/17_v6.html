@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 17 · v6 — Gradient Drama</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #2d1b3d, #c45e1a); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V6 — Gradient Drama Sunset Split */
+  .creative-v6 {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #2d1b3d 0%, #6b2d5e 35%, #c45e1a 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* Grain overlay for richness */
+  .creative-v6::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(196,94,26,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(45,27,61,0.3) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Left circle (plum tint) */
+  .creative-v6 .circle-left {
+    width: 260px; height: 260px; border-radius: 50%;
+    background: rgba(45,27,61,0.55);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(2px);
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-68%, -50%);
+    z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 6px; padding: 20px;
+  }
+  /* Right circle (orange tint) */
+  .creative-v6 .circle-right {
+    width: 260px; height: 260px; border-radius: 50%;
+    background: rgba(196,94,26,0.45);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(2px);
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-32%, -50%);
+    z-index: 3;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 6px; padding: 20px;
+  }
+  /* Overlap zone text */
+  .creative-v6 .overlap-zone {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4; text-align: center;
+    width: 90px;
+  }
+  .creative-v6 .overlap-text {
+    font-family: 'Space Grotesk', sans-serif; font-size: 8px;
+    color: rgba(255,255,255,0.7); line-height: 1.4;
+    text-align: center;
+  }
+  /* Circle text elements */
+  .creative-v6 .circle-months {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 42px; line-height: 1; letter-spacing: -0.03em;
+    color: rgba(255,255,255,0.55); text-align: center;
+  }
+  .creative-v6 .circle-months-unit {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); text-align: center;
+  }
+  .creative-v6 .circle-desc {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    color: rgba(255,255,255,0.3); text-align: center;
+    margin-top: 4px; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .creative-v6 .circle-days {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 52px; line-height: 1; letter-spacing: -0.03em;
+    color: #ffffff; text-align: center;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .creative-v6 .circle-days-unit {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.8); text-align: center;
+  }
+  .creative-v6 .circle-days-desc {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    color: rgba(255,255,255,0.7); text-align: center;
+    margin-top: 4px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  /* Top badge */
+  .creative-v6 .top-badge {
+    position: absolute; top: 24px; left: 0; right: 0;
+    text-align: center; z-index: 5;
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  /* Bottom brand */
+  .creative-v6 .bottom-brand {
+    position: absolute; bottom: 24px; left: 0; right: 0;
+    text-align: center; z-index: 5;
+  }
+  .creative-v6 .bottom-brand .bb-name {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 14px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+  .creative-v6 .bottom-brand .bb-tag {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    color: rgba(255,255,255,0.4); margin-top: 3px;
+    letter-spacing: 0.08em;
+  }
+  /* Decorative arcs */
+  .creative-v6 .deco-arc {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    pointer-events: none; z-index: 1;
+  }
+  .creative-v6 .arc-1 { width: 500px; height: 500px; top: -100px; left: -100px; }
+  .creative-v6 .arc-2 { width: 350px; height: 350px; bottom: -80px; right: -80px; }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-weight: 700; font-size: 13px; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.55; color: #1a1a1a; }
+  .ig-caption .handle-tag { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.7; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #737373; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { flex: 1; padding-left: 60px; display: flex; flex-direction: column; gap: 20px; }
+  .info-campaign-num { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 96px; line-height: 1; color: #e8e2da; letter-spacing: -0.04em; margin-bottom: -8px; }
+  .info-variant-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #746c64; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; width: fit-content; }
+  .info-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; font-family: 'Barlow', sans-serif; margin-bottom: 6px; }
+  .info-strategy { font-size: 14px; line-height: 1.7; color: #444; }
+  .info-caption { background: #1a1a1a; color: #f0ebe4; border-radius: 10px; padding: 20px; font-size: 13px; line-height: 1.75; font-style: italic; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info-nav a { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; color: #666; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #888; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #bbb; }
+  .divider-line { height: 1px; background: #ddd; margin: 4px 0; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 28px 24px; font-size: 11px; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">SKINOME · ny-design</div>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html">v4</a>
+    <a href="17_v5.html">v5</a>
+    <a href="17_v6.html" class="active">v6</a>
+    <a href="17_v7.html">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html">v9</a>
+    <a href="17_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v6">
+        <div class="deco-arc arc-1"></div>
+        <div class="deco-arc arc-2"></div>
+
+        <div class="top-badge">Shelf Life vs Skin Life · Campaign 17</div>
+
+        <!-- Left circle: 36 months -->
+        <div class="circle-left">
+          <div class="circle-months">36</div>
+          <div class="circle-months-unit">months</div>
+          <div class="circle-desc">Industry standard</div>
+        </div>
+
+        <!-- Right circle: 90 days -->
+        <div class="circle-right">
+          <div class="circle-days">90</div>
+          <div class="circle-days-unit">days</div>
+          <div class="circle-days-desc">Skinome</div>
+        </div>
+
+        <!-- Overlap zone -->
+        <div class="overlap-zone">
+          <div class="overlap-text">The<br>difference<br>is your<br>skin</div>
+        </div>
+
+        <div class="bottom-brand">
+          <div class="bb-name">Skinome</div>
+          <div class="bb-tag">Your moisturizer's shelf life tells you whose side it's on</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">5,640 likes</div>
+    <div class="ig-caption">
+      <span class="handle-tag">skinome.official</span> Your moisturizer's shelf life tells you exactly whose side it's on. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions.
+    </div>
+    <div class="ig-hashtags">#skinome #microbiomeskincare #shelflife #cleanbeauty #skincaretruth #preservativefree #stockolmbeauty #skinscience</div>
+    <div class="ig-comments">View all 428 comments</div>
+    <div class="ig-timestamp">4 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">17</div>
+    <div class="info-variant-name">Gradient Drama — Bold Sunset Split</div>
+    <div class="tone-badge">Medium</div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Visual Strategy</div>
+      <div class="info-strategy">
+        A full-bleed diagonal gradient from deep plum to burnt orange creates immediate visual drama — this reads as campaign poster, not a social media asset, which makes it stop-scroll-worthy. The overlapping Venn-circle format borrows from academic and data visualization language, giving intellectual credibility to the comparison. The left circle's faded, half-visible text visually enacts the message: 36 months is secondary. The "difference is your skin" overlap creates a moment of discovery for close readers. Targets design-conscious premium beauty consumers.
+      </div>
+    </div>
+    <div>
+      <div class="info-section-label">Caption</div>
+      <div class="info-caption">"Your moisturizer's shelf life tells you exactly whose side it's on. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions."</div>
+    </div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Navigate Variants</div>
+      <div class="info-nav">
+        <a href="17_v1.html">17_v1</a>
+        <a href="17_v2.html">17_v2</a>
+        <a href="17_v3.html">17_v3</a>
+        <a href="17_v4.html">17_v4</a>
+        <a href="17_v5.html">17_v5</a>
+        <a href="17_v6.html" class="active">17_v6</a>
+        <a href="17_v7.html">17_v7</a>
+        <a href="17_v8.html">17_v8</a>
+        <a href="17_v9.html">17_v9</a>
+        <a href="17_v10.html">17_v10</a>
+        <a href="../index.html" class="index-link">index.html</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Skinome · Campaign 17 · ny-design · Shelf Life vs Skin Life</footer>
+</body>
+</html>

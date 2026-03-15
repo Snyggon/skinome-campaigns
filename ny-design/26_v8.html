@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 26 · v8 — Polaroid</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #c8a882, #8c6a40); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; cursor: pointer; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V8 — POLAROID */
+  .creative-v8 {
+    width: 100%; height: 100%;
+    background: #e8d5b7;
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Subtle grain texture */
+  .creative-v8::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(180,140,90,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(150,110,70,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* The Polaroid frame */
+  .polaroid {
+    background: #fff;
+    padding: 14px 14px 48px;
+    box-shadow:
+      0 4px 16px rgba(100,70,30,0.15),
+      0 12px 40px rgba(100,70,30,0.12);
+    transform: rotate(-3deg);
+    position: relative;
+    z-index: 2;
+    width: 260px;
+  }
+
+  /* Photo area inside polaroid */
+  .polaroid-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Overexposed-style "90" photo */
+  .polaroid-big-num {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 100;
+    font-size: 110px;
+    color: rgba(245,240,225,0.85);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    /* Slight blur for overexposed feel */
+    text-shadow: 0 0 30px rgba(245,240,225,0.4);
+  }
+
+  /* Light leak — overexposed edge */
+  .polaroid-photo::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(255,240,200,0.25) 0%, transparent 70%);
+  }
+
+  /* "DAYS" label inside photo */
+  .polaroid-days-label {
+    position: absolute;
+    bottom: 10px; right: 12px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245,240,225,0.5);
+  }
+
+  /* White strip caption */
+  .polaroid-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 48px;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 12px;
+  }
+  .polaroid-caption span {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 10.5px;
+    color: #555;
+    text-align: center;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+
+  /* Below polaroid text */
+  .polaroid-below {
+    text-align: center;
+    margin-top: 22px;
+    position: relative; z-index: 2;
+  }
+  .polaroid-below p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8c7258;
+    line-height: 1.6;
+  }
+
+  /* Date stamp corner */
+  .date-stamp {
+    position: absolute;
+    bottom: 22px; right: 24px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    color: #c8a480;
+    letter-spacing: 0.12em;
+    z-index: 3;
+    opacity: 0.7;
+  }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-action-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; }
+  .ig-action-btn svg { width: 24px; height: 24px; }
+  .ig-bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.5; color: #1a1a1a; }
+  .ig-caption .username { font-weight: 700; margin-right: 4px; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.6; }
+  .ig-comments-link { padding: 0 16px 4px; font-size: 13px; color: #737373; cursor: pointer; }
+  .ig-timestamp { padding: 0 16px 12px; font-size: 10px; color: #aaa; letter-spacing: 0.05em; text-transform: uppercase; }
+  .ig-comment-box { border-top: 1px solid #f0f0f0; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
+  .ig-comment-avatar { width: 28px; height: 28px; border-radius: 50%; background: #e8e8e8; flex-shrink: 0; }
+  .ig-comment-input { font-size: 13px; color: #aaa; font-family: 'Space Grotesk', sans-serif; }
+
+  .info-col { flex: 1; padding-left: 60px; padding-top: 8px; }
+  .info-num { font-family: 'Barlow', sans-serif; font-weight: 100; font-size: 72px; color: #c8c0b4; line-height: 1; margin-bottom: 4px; }
+  .info-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: #1a1a1a; margin-bottom: 12px; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #1a1a1a; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; }
+  .info-section-label { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; margin-bottom: 8px; margin-top: 20px; }
+  .info-strategy { font-size: 13px; line-height: 1.7; color: #444; font-family: 'Space Grotesk', sans-serif; }
+  .info-caption { font-size: 13px; line-height: 1.6; color: #1a1a1a; font-family: 'Space Grotesk', sans-serif; font-style: italic; background: #f7f4ef; border-left: 3px solid #c8a480; padding: 12px 16px; border-radius: 0 6px 6px 0; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .info-nav a { font-size: 11px; padding: 4px 10px; border-radius: 20px; border: 1px solid #ccc; color: #777; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #555; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #c8c0b4; color: #555; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 24px; font-family: 'Barlow', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border-top: 1px solid #1a1a1a; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">Skinome · ny-design</div>
+  <nav class="header-nav">
+    <a href="26_v1.html">26_v1</a>
+    <a href="26_v2.html">26_v2</a>
+    <a href="26_v3.html">26_v3</a>
+    <a href="26_v4.html">26_v4</a>
+    <a href="26_v5.html">26_v5</a>
+    <a href="26_v6.html">26_v6</a>
+    <a href="26_v7.html">26_v7</a>
+    <a href="26_v8.html" class="active">26_v8</a>
+    <a href="26_v9.html">26_v9</a>
+    <a href="26_v10.html">26_v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v8">
+        <div class="polaroid">
+          <div class="polaroid-photo">
+            <div class="polaroid-big-num">90</div>
+            <div class="polaroid-days-label">days</div>
+          </div>
+          <div class="polaroid-caption">
+            <span>expires soon — and that's the whole point</span>
+          </div>
+        </div>
+
+        <div class="polaroid-below">
+          <p>Skinome · Refrigerated · Fresh · No preservatives</p>
+        </div>
+
+        <div class="date-stamp">Skinome</div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <button class="ig-action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="ig-action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </button>
+      <button class="ig-action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+      <button class="ig-action-btn ig-bookmark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      </button>
+    </div>
+    <div class="ig-likes">2,456 likes</div>
+    <div class="ig-caption"><span class="username">skinome.official</span>We wear our expiry date like a badge. Because fresh things expire. Conventional skincare lasts 36 months because it's full of preservatives that damage your skin microbiome. Ours lasts 90 days because it's full of active ingredients. If your skincare doesn't expire — ask yourself why.</div>
+    <div class="ig-hashtags">#skinome #freshskincare #nopreservatives #skinmicrobiome #refrigeratedskincare #90days</div>
+    <div class="ig-comments-link">View all 97 comments</div>
+    <div class="ig-timestamp">9 hours ago</div>
+    <div class="ig-comment-box">
+      <div class="ig-comment-avatar"></div>
+      <div class="ig-comment-input">Add a comment…</div>
+    </div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">26</div>
+    <div class="info-name">Polaroid</div>
+    <div class="tone-badge">Medium</div>
+
+    <div class="info-section-label">Visual Strategy</div>
+    <div class="info-strategy">
+      The Polaroid format is the most human and personal of any photo format — it signals intimacy, memory, and authenticity. Placing "90" as an overexposed photograph inside the frame turns the expiry number into something to be kept and remembered, not feared. The handwritten-style caption in the white strip is the emotional gut punch: it's the phrase you'd write to yourself. Warm sand tones throughout create a domestic, unhurried feeling — this belongs to real life, not a retail shelf.
+    </div>
+
+    <div class="info-section-label">Caption</div>
+    <div class="info-caption">"We wear our expiry date like a badge. Because fresh things expire."</div>
+
+    <div class="info-section-label">Navigate</div>
+    <div class="info-nav">
+      <a href="26_v1.html">26_v1</a>
+      <a href="26_v2.html">26_v2</a>
+      <a href="26_v3.html">26_v3</a>
+      <a href="26_v4.html">26_v4</a>
+      <a href="26_v5.html">26_v5</a>
+      <a href="26_v6.html">26_v6</a>
+      <a href="26_v7.html">26_v7</a>
+      <a href="26_v8.html" class="active">26_v8</a>
+      <a href="26_v9.html">26_v9</a>
+      <a href="26_v10.html">26_v10</a>
+      <a href="../index.html" class="index-link">← index</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  Skinome · Campaign 26 · Ours Goes Bad. On Purpose. · ny-design
+</footer>
+</body>
+</html>

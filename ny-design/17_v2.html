@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 17 · v2 — Lab Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d0d0d; color: #fff;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 52px;
+    border-bottom: 1px solid #222;
+  }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a {
+    font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    border: 1px solid #444; color: #aaa; text-decoration: none;
+    font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s;
+  }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; flex-direction: row; align-items: flex-start;
+    padding: 48px 24px 80px; gap: 0;
+  }
+
+  .ig-card {
+    width: 560px; flex-shrink: 0;
+    background: #fff; border-radius: 12px;
+    border: 1px solid #dbdbdb; overflow: hidden;
+  }
+  .ig-post-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+  }
+  .ig-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, #e8453c, #2d7a4f);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 16px;
+    font-family: 'Barlow', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; cursor: pointer; }
+
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V2 — Lab Report Clinical Design */
+  .creative-v2 {
+    width: 100%; height: 100%;
+    background: #ffffff;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  /* Top red header bar */
+  .creative-v2 .lab-header {
+    background: #c0392b;
+    padding: 14px 24px 12px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .creative-v2 .lab-header::after {
+    content: '';
+    position: absolute; bottom: -6px; left: 0; right: 0; height: 6px;
+    background: repeating-linear-gradient(90deg, #c0392b 0, #c0392b 12px, #a93226 12px, #a93226 24px);
+  }
+  .creative-v2 .lab-title {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.22em; color: #fff;
+    text-transform: uppercase;
+  }
+  .creative-v2 .lab-subtitle {
+    font-family: 'Space Grotesk', sans-serif; font-size: 8px;
+    color: rgba(255,255,255,0.65); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-top: 2px;
+  }
+  /* Report ID bar */
+  .creative-v2 .report-id-bar {
+    background: #f5f5f5; border-bottom: 1px solid #e0e0e0;
+    padding: 6px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .creative-v2 .report-id-bar span {
+    font-family: 'Barlow', sans-serif; font-size: 9px;
+    color: #888; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  /* Cards area */
+  .creative-v2 .cards-area {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 20px 20px 16px; gap: 14px;
+    margin-top: 6px;
+  }
+  /* Report card */
+  .creative-v2 .report-card {
+    border-radius: 8px; padding: 18px 20px;
+    flex: 1;
+    position: relative; overflow: hidden;
+  }
+  .creative-v2 .report-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+  }
+  .creative-v2 .card-bad {
+    background: #fdf0ef;
+    border: 1px solid #f5c6c3;
+  }
+  .creative-v2 .card-bad::before { background: #e8453c; }
+  .creative-v2 .card-good {
+    background: #eef7f2;
+    border: 1px solid #b8dfc9;
+  }
+  .creative-v2 .card-good::before { background: #2d7a4f; }
+
+  .creative-v2 .card-header-row {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 12px; padding-left: 12px;
+  }
+  .creative-v2 .card-label {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .creative-v2 .card-bad .card-label { color: #c0392b; }
+  .creative-v2 .card-good .card-label { color: #1e6b3c; }
+
+  .creative-v2 .card-shelf-life {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 28px; line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .creative-v2 .card-bad .card-shelf-life { color: #c0392b; }
+  .creative-v2 .card-good .card-shelf-life { color: #1e6b3c; }
+
+  .creative-v2 .card-items {
+    padding-left: 12px; display: flex; flex-direction: column; gap: 5px;
+  }
+  .creative-v2 .card-item {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: #333;
+  }
+  .creative-v2 .card-item .item-icon {
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; flex-shrink: 0; font-weight: 700;
+  }
+  .creative-v2 .card-bad .item-icon { background: rgba(232,69,60,0.15); color: #c0392b; }
+  .creative-v2 .card-good .item-icon { background: rgba(45,122,79,0.15); color: #1e6b3c; }
+
+  /* Bottom bar */
+  .creative-v2 .lab-footer {
+    background: #1a1a1a; padding: 10px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .creative-v2 .lab-footer .lf-brand {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.2em; color: #fff;
+    text-transform: uppercase;
+  }
+  .creative-v2 .lab-footer .lf-note {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    color: #666; letter-spacing: 0.08em;
+  }
+
+  /* Corner stamp */
+  .creative-v2 .corner-stamp {
+    position: absolute; top: 68px; right: 22px;
+    width: 54px; height: 54px; border-radius: 50%;
+    border: 2px solid rgba(45,122,79,0.4);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
+  }
+  .creative-v2 .corner-stamp .stamp-inner {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 7px; letter-spacing: 0.08em; text-align: center;
+    color: rgba(45,122,79,0.7); text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-weight: 700; font-size: 13px; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.55; color: #1a1a1a; }
+  .ig-caption .handle-tag { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.7; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #737373; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { flex: 1; padding-left: 60px; display: flex; flex-direction: column; gap: 20px; }
+  .info-campaign-num { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 96px; line-height: 1; color: #e8e2da; letter-spacing: -0.04em; margin-bottom: -8px; }
+  .info-variant-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #746c64; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; width: fit-content; }
+  .info-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; font-family: 'Barlow', sans-serif; margin-bottom: 6px; }
+  .info-strategy { font-size: 14px; line-height: 1.7; color: #444; }
+  .info-caption { background: #1a1a1a; color: #f0ebe4; border-radius: 10px; padding: 20px; font-size: 13px; line-height: 1.75; font-style: italic; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info-nav a { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; color: #666; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #888; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #bbb; }
+  .divider-line { height: 1px; background: #ddd; margin: 4px 0; }
+
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 28px 24px; font-size: 11px; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">SKINOME · ny-design</div>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html" class="active">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html">v4</a>
+    <a href="17_v5.html">v5</a>
+    <a href="17_v6.html">v6</a>
+    <a href="17_v7.html">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html">v9</a>
+    <a href="17_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v2">
+        <!-- Lab header -->
+        <div class="lab-header">
+          <div class="lab-title">Shelf Life Analysis — Comparative Report</div>
+          <div class="lab-subtitle">Ingredient Safety &amp; Microbiome Impact Assessment · Ref: SKN-2024-SL</div>
+        </div>
+        <div class="report-id-bar">
+          <span>Report date: 2024-03</span>
+          <span>Classification: Consumer Disclosure</span>
+          <span>Status: Published</span>
+        </div>
+
+        <div class="corner-stamp">
+          <div class="stamp-inner">MICRO<br>BIOME<br>SAFE</div>
+        </div>
+
+        <div class="cards-area">
+          <!-- Bad card -->
+          <div class="report-card card-bad">
+            <div class="card-header-row">
+              <div>
+                <div class="card-label">Conventional Moisturizer</div>
+                <div class="card-shelf-life">36 months</div>
+              </div>
+            </div>
+            <div class="card-items">
+              <div class="card-item">
+                <div class="item-icon">⚠</div>
+                <span>Contains: phenoxyethanol, parabens, methylisothiazolinone</span>
+              </div>
+              <div class="card-item">
+                <div class="item-icon">✗</div>
+                <span>Microbiome disruption: confirmed</span>
+              </div>
+              <div class="card-item">
+                <div class="item-icon">✗</div>
+                <span>Optimized for: warehouse logistics &amp; supply chain</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Good card -->
+          <div class="report-card card-good">
+            <div class="card-header-row">
+              <div>
+                <div class="card-label">Skinome</div>
+                <div class="card-shelf-life">90 days</div>
+              </div>
+            </div>
+            <div class="card-items">
+              <div class="card-item">
+                <div class="item-icon">✓</div>
+                <span>Contains: active ingredients only</span>
+              </div>
+              <div class="card-item">
+                <div class="item-icon">✓</div>
+                <span>Microbiome safe: confirmed</span>
+              </div>
+              <div class="card-item">
+                <div class="item-icon">✓</div>
+                <span>Optimized for: your skin</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab-footer">
+          <span class="lf-brand">Skinome</span>
+          <span class="lf-note">The lab report your moisturizer never showed you</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">3,102 likes</div>
+    <div class="ig-caption">
+      <span class="handle-tag">skinome.official</span> The lab report your moisturizer never showed you. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions.
+    </div>
+    <div class="ig-hashtags">#skinome #skinmicrobiome #cleanbeauty #shelflife #preservativefree #skincaretruth #microbiomesafe #ingredientcheck</div>
+    <div class="ig-comments">View all 218 comments</div>
+    <div class="ig-timestamp">5 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">17</div>
+    <div class="info-variant-name">Lab Report — Clinical Color Coding</div>
+    <div class="tone-badge">Medium</div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Visual Strategy</div>
+      <div class="info-strategy">
+        The clinical report format weaponizes the visual language of safety data sheets and lab results — familiar to anyone who reads ingredient labels. Red and green are maximally unambiguous: danger vs. safety. The striped header echoes hazard tape, creating instinctive urgency without explicit alarm. SVG check and cross icons deliver instant legibility at feed-scroll speed. This format targets ingredient-aware consumers who would recognize phenoxyethanol and methylisothiazolinone by name.
+      </div>
+    </div>
+    <div>
+      <div class="info-section-label">Caption</div>
+      <div class="info-caption">"The lab report your moisturizer never showed you. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions."</div>
+    </div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Navigate Variants</div>
+      <div class="info-nav">
+        <a href="17_v1.html">17_v1</a>
+        <a href="17_v2.html" class="active">17_v2</a>
+        <a href="17_v3.html">17_v3</a>
+        <a href="17_v4.html">17_v4</a>
+        <a href="17_v5.html">17_v5</a>
+        <a href="17_v6.html">17_v6</a>
+        <a href="17_v7.html">17_v7</a>
+        <a href="17_v8.html">17_v8</a>
+        <a href="17_v9.html">17_v9</a>
+        <a href="17_v10.html">17_v10</a>
+        <a href="../index.html" class="index-link">index.html</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Skinome · Campaign 17 · ny-design · Shelf Life vs Skin Life</footer>
+</body>
+</html>

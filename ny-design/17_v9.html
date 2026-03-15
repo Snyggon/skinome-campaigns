@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 17 · v9 — Swedish Minimalism</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #006AA7, #FECC02); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V9 — Swedish Minimalism Nordic Palette */
+  .creative-v9 {
+    width: 100%; height: 100%;
+    background: #006AA7;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  /* Swedish yellow accent line at very top */
+  .creative-v9 .swedish-bar {
+    height: 5px;
+    background: #FECC02;
+    flex-shrink: 0;
+    position: relative; z-index: 5;
+  }
+  /* Top blue section */
+  .creative-v9 .top-section {
+    background: #006AA7;
+    flex-shrink: 0;
+    padding: 22px 36px 20px;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    position: relative; z-index: 3;
+  }
+  .creative-v9 .top-title {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 34px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #ffffff; line-height: 1;
+  }
+  .creative-v9 .top-sub {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 300;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.5); margin-top: 4px;
+    text-transform: uppercase;
+  }
+  /* White center band */
+  .creative-v9 .white-band {
+    background: #ffffff;
+    flex: 1;
+    display: flex; align-items: stretch;
+    position: relative; z-index: 2;
+    border-top: none; border-bottom: none;
+  }
+  /* Left column: theirs */
+  .creative-v9 .wb-col {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px 20px; gap: 6px;
+  }
+  .creative-v9 .wb-col-theirs {
+    border-right: 1px solid #e8e8e8;
+  }
+  .creative-v9 .wb-who {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .creative-v9 .wb-col-theirs .wb-who { color: #aaa; }
+  .creative-v9 .wb-col-skinome .wb-who { color: #006AA7; }
+  .creative-v9 .wb-num {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 52px; line-height: 1; letter-spacing: -0.03em;
+  }
+  .creative-v9 .wb-col-theirs .wb-num { color: #c8c0ba; }
+  .creative-v9 .wb-col-skinome .wb-num { color: #1a1a1a; }
+  .creative-v9 .wb-unit {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .creative-v9 .wb-col-theirs .wb-unit { color: #c0b8b0; }
+  .creative-v9 .wb-col-skinome .wb-unit { color: #444; }
+  .creative-v9 .wb-slash {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    font-weight: 600; letter-spacing: 0.06em;
+  }
+  .creative-v9 .wb-col-theirs .wb-slash { color: #c8c0ba; }
+  .creative-v9 .wb-col-skinome .wb-slash { color: #006AA7; }
+  /* Yellow divider on white band */
+  .creative-v9 .yellow-accent {
+    width: 3px; background: #FECC02; flex-shrink: 0;
+    position: relative;
+  }
+  .creative-v9 .yellow-accent::before {
+    content: 'vs';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #FECC02;
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 8px; color: #000;
+    letter-spacing: 0.05em;
+    line-height: 24px; text-align: center;
+  }
+  /* Bottom blue section */
+  .creative-v9 .bottom-section {
+    background: #005a8e;
+    flex-shrink: 0;
+    padding: 16px 36px 18px;
+    position: relative; z-index: 3;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .creative-v9 .bottom-section .bs-main {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+  .creative-v9 .bottom-section .bs-sub {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+  /* Bottom yellow line */
+  .creative-v9 .bottom-yellow-line {
+    position: absolute; top: 0; left: 36px; right: 36px;
+    height: 1px; background: rgba(254,204,2,0.3);
+  }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-weight: 700; font-size: 13px; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.55; color: #1a1a1a; }
+  .ig-caption .handle-tag { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.7; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #737373; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { flex: 1; padding-left: 60px; display: flex; flex-direction: column; gap: 20px; }
+  .info-campaign-num { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 96px; line-height: 1; color: #e8e2da; letter-spacing: -0.04em; margin-bottom: -8px; }
+  .info-variant-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #746c64; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; width: fit-content; }
+  .info-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; font-family: 'Barlow', sans-serif; margin-bottom: 6px; }
+  .info-strategy { font-size: 14px; line-height: 1.7; color: #444; }
+  .info-caption { background: #1a1a1a; color: #f0ebe4; border-radius: 10px; padding: 20px; font-size: 13px; line-height: 1.75; font-style: italic; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info-nav a { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; color: #666; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #888; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #bbb; }
+  .divider-line { height: 1px; background: #ddd; margin: 4px 0; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 28px 24px; font-size: 11px; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">SKINOME · ny-design</div>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html">v4</a>
+    <a href="17_v5.html">v5</a>
+    <a href="17_v6.html">v6</a>
+    <a href="17_v7.html">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html" class="active">v9</a>
+    <a href="17_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v9">
+        <!-- Swedish yellow top stripe -->
+        <div class="swedish-bar"></div>
+
+        <!-- Top blue: SHELF LIFE headline -->
+        <div class="top-section">
+          <div class="top-title">Shelf Life</div>
+          <div class="top-sub">Two products · one honest comparison · Stockholm</div>
+        </div>
+
+        <!-- White band: two columns comparison -->
+        <div class="white-band">
+          <div class="wb-col wb-col-theirs">
+            <div class="wb-who">Theirs</div>
+            <div class="wb-num">36</div>
+            <div class="wb-unit">months</div>
+            <div class="wb-slash">/ Industry</div>
+          </div>
+          <div class="yellow-accent"></div>
+          <div class="wb-col wb-col-skinome">
+            <div class="wb-who">Skinome</div>
+            <div class="wb-num">90</div>
+            <div class="wb-unit">days</div>
+            <div class="wb-slash">/ Your skin</div>
+          </div>
+        </div>
+
+        <!-- Bottom blue: tagline -->
+        <div class="bottom-section">
+          <div class="bottom-yellow-line"></div>
+          <div class="bs-main">Designed in Stockholm. For skin, not supply chains.</div>
+          <div class="bs-sub">Skinome · microbiome-safe · no preservatives · 90 days</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">2,193 likes</div>
+    <div class="ig-caption">
+      <span class="handle-tag">skinome.official</span> Swedish research. Swedish honesty. 90 days because that's what fresh looks like. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions.
+    </div>
+    <div class="ig-hashtags">#skinome #swedish #nordic #microbiomesafe #shelflife #cleanbeauty #stockholmbeauty #preservativefree</div>
+    <div class="ig-comments">View all 159 comments</div>
+    <div class="ig-timestamp">9 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">17</div>
+    <div class="info-variant-name">Swedish Minimalism — Nordic Color Palette</div>
+    <div class="tone-badge">Medium</div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Visual Strategy</div>
+      <div class="info-strategy">
+        Swedish blue and yellow are globally recognized national identity colors — borrowing this palette directly associates Skinome with Swedish design values: honesty, precision, quality without pretension. The clean horizontal band structure is pure Scandinavian modernism: structured, uncluttered, trustworthy. The yellow accent line and vertical divider create strong visual rhythm without complexity. This variant has particular resonance for Skinome's Swedish domestic market and its strong Norwegian market, where Scandinavian design credentials carry premium weight.
+      </div>
+    </div>
+    <div>
+      <div class="info-section-label">Caption</div>
+      <div class="info-caption">"Swedish research. Swedish honesty. 90 days because that's what fresh looks like. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions."</div>
+    </div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Navigate Variants</div>
+      <div class="info-nav">
+        <a href="17_v1.html">17_v1</a>
+        <a href="17_v2.html">17_v2</a>
+        <a href="17_v3.html">17_v3</a>
+        <a href="17_v4.html">17_v4</a>
+        <a href="17_v5.html">17_v5</a>
+        <a href="17_v6.html">17_v6</a>
+        <a href="17_v7.html">17_v7</a>
+        <a href="17_v8.html">17_v8</a>
+        <a href="17_v9.html" class="active">17_v9</a>
+        <a href="17_v10.html">17_v10</a>
+        <a href="../index.html" class="index-link">index.html</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Skinome · Campaign 17 · ny-design · Shelf Life vs Skin Life</footer>
+</body>
+</html>

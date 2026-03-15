@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 17 · v10 — Data Mosaic</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #2d5a27, #4aad74); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V10 — Data Mosaic Color Grid */
+  .creative-v10 {
+    width: 100%; height: 100%;
+    background: #f7f2eb;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  /* Top header */
+  .creative-v10 .mosaic-header {
+    background: #1a1a1a;
+    padding: 12px 24px 10px;
+    flex-shrink: 0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .creative-v10 .mh-title {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #fff;
+  }
+  .creative-v10 .mh-sub {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    color: #666; letter-spacing: 0.1em;
+  }
+  /* Main mosaic area */
+  .creative-v10 .mosaic-area {
+    flex: 1; display: flex; flex-direction: row;
+    gap: 0; align-items: stretch;
+    padding: 0;
+  }
+  /* Skinome side (left) */
+  .creative-v10 .mosaic-side {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 20px 16px 16px;
+    gap: 12px;
+  }
+  .creative-v10 .ms-left { border-right: 2px solid #e8e0d4; }
+  .creative-v10 .ms-right { }
+  /* Side label */
+  .creative-v10 .side-label {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .creative-v10 .ms-left .side-label { color: #2d7a4f; }
+  .creative-v10 .ms-right .side-label { color: #888; }
+  .creative-v10 .side-count {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 28px; line-height: 1; letter-spacing: -0.02em;
+  }
+  .creative-v10 .ms-left .side-count { color: #2d7a4f; }
+  .creative-v10 .ms-right .side-count { color: #bbb; }
+  .creative-v10 .side-count-label {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 1px; margin-bottom: 8px;
+  }
+  .creative-v10 .ms-left .side-count-label { color: rgba(45,122,79,0.7); }
+  .creative-v10 .ms-right .side-count-label { color: #bbb; }
+  /* Grid of squares */
+  .creative-v10 .sq-grid {
+    display: grid;
+    gap: 4px;
+  }
+  .creative-v10 .ms-left .sq-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .creative-v10 .ms-right .sq-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .creative-v10 .sq {
+    aspect-ratio: 1;
+    border-radius: 4px;
+    position: relative;
+  }
+  /* Green active squares */
+  .creative-v10 .sq-green {
+    background: #2d7a4f;
+    box-shadow: 0 1px 4px rgba(45,122,79,0.3);
+  }
+  .creative-v10 .sq-green::after {
+    content: '';
+    position: absolute; inset: 0; border-radius: 4px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  }
+  /* Grey filler squares */
+  .creative-v10 .sq-grey {
+    background: #d8d0c8;
+  }
+  .creative-v10 .sq-light-grey {
+    background: #e8e2d8;
+  }
+  /* Shelf life stat below grid */
+  .creative-v10 .shelf-stat {
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .creative-v10 .ss-num {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 20px; line-height: 1; letter-spacing: -0.01em;
+  }
+  .creative-v10 .ms-left .ss-num { color: #2d7a4f; }
+  .creative-v10 .ms-right .ss-num { color: #999; }
+  .creative-v10 .ss-label {
+    font-family: 'Space Grotesk', sans-serif; font-size: 8px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 1px;
+  }
+  .creative-v10 .ms-left .ss-label { color: rgba(45,122,79,0.6); }
+  .creative-v10 .ms-right .ss-label { color: #bbb; }
+  /* Color key + caption strip */
+  .creative-v10 .mosaic-footer {
+    background: #1a1a1a;
+    padding: 12px 24px;
+    flex-shrink: 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .creative-v10 .mf-key {
+    display: flex; gap: 20px; align-items: center;
+  }
+  .creative-v10 .mf-key-item {
+    display: flex; align-items: center; gap: 7px;
+  }
+  .creative-v10 .mf-swatch {
+    width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0;
+  }
+  .creative-v10 .mf-swatch-green { background: #2d7a4f; }
+  .creative-v10 .mf-swatch-grey { background: #888; }
+  .creative-v10 .mf-key-label {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    color: rgba(255,255,255,0.55); letter-spacing: 0.06em;
+  }
+  .creative-v10 .mf-tagline {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 9px; letter-spacing: 0.1em; color: rgba(255,255,255,0.3);
+  }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-weight: 700; font-size: 13px; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.55; color: #1a1a1a; }
+  .ig-caption .handle-tag { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.7; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #737373; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { flex: 1; padding-left: 60px; display: flex; flex-direction: column; gap: 20px; }
+  .info-campaign-num { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 96px; line-height: 1; color: #e8e2da; letter-spacing: -0.04em; margin-bottom: -8px; }
+  .info-variant-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #746c64; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; width: fit-content; }
+  .info-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; font-family: 'Barlow', sans-serif; margin-bottom: 6px; }
+  .info-strategy { font-size: 14px; line-height: 1.7; color: #444; }
+  .info-caption { background: #1a1a1a; color: #f0ebe4; border-radius: 10px; padding: 20px; font-size: 13px; line-height: 1.75; font-style: italic; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info-nav a { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; color: #666; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #888; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #bbb; }
+  .divider-line { height: 1px; background: #ddd; margin: 4px 0; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 28px 24px; font-size: 11px; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">SKINOME · ny-design</div>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html">v4</a>
+    <a href="17_v5.html">v5</a>
+    <a href="17_v6.html">v6</a>
+    <a href="17_v7.html">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html">v9</a>
+    <a href="17_v10.html" class="active">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v10">
+        <div class="mosaic-header">
+          <span class="mh-title">Ingredient Count · Visual Comparison</span>
+          <span class="mh-sub">Skinome vs Conventional</span>
+        </div>
+
+        <div class="mosaic-area">
+          <!-- Left: Skinome (6 green squares) -->
+          <div class="mosaic-side ms-left">
+            <div class="side-label">Skinome</div>
+            <div class="side-count">6</div>
+            <div class="side-count-label">active ingredients</div>
+            <!-- 6 green squares, 3 cols × 2 rows -->
+            <div class="sq-grid">
+              <div class="sq sq-green"></div>
+              <div class="sq sq-green"></div>
+              <div class="sq sq-green"></div>
+              <div class="sq sq-green"></div>
+              <div class="sq sq-green"></div>
+              <div class="sq sq-green"></div>
+            </div>
+            <div class="shelf-stat">
+              <div class="ss-num">90 days</div>
+              <div class="ss-label">shelf life · no exceptions</div>
+            </div>
+          </div>
+
+          <!-- Right: Conventional (27+ grey squares) -->
+          <div class="mosaic-side ms-right">
+            <div class="side-label">Conventional</div>
+            <div class="side-count">27+</div>
+            <div class="side-count-label">incl. preservatives</div>
+            <!-- 30 grey squares, 6 cols × 5 rows -->
+            <div class="sq-grid">
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-light-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-light-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-light-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-light-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-light-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-light-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-grey"></div>
+              <div class="sq sq-light-grey"></div>
+              <div class="sq sq-grey"></div>
+            </div>
+            <div class="shelf-stat">
+              <div class="ss-num">36 months</div>
+              <div class="ss-label">shelf life · warehouse-ready</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mosaic-footer">
+          <div class="mf-key">
+            <div class="mf-key-item">
+              <div class="mf-swatch mf-swatch-green"></div>
+              <span class="mf-key-label">Active ingredient</span>
+            </div>
+            <div class="mf-key-item">
+              <div class="mf-swatch mf-swatch-grey"></div>
+              <span class="mf-key-label">Filler / preservative</span>
+            </div>
+          </div>
+          <div class="mf-tagline">6 ingredients that work. Or 27+ that mostly just keep the product alive. — Skinome</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">7,341 likes</div>
+    <div class="ig-caption">
+      <span class="handle-tag">skinome.official</span> 6 ingredients that work. Or 27+ that mostly just keep the product alive. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions.
+    </div>
+    <div class="ig-hashtags">#skinome #ingredientcheck #cleanbeauty #shelflife #microbiomesafe #preservativefree #skincaretruth #lessisnmore</div>
+    <div class="ig-comments">View all 619 comments</div>
+    <div class="ig-timestamp">14 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">17</div>
+    <div class="info-variant-name">Data Mosaic — Colorful Cell Grid</div>
+    <div class="tone-badge">Medium</div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Visual Strategy</div>
+      <div class="info-strategy">
+        The mosaic grid format makes the ingredient count argument visceral and visual — 6 vibrant green squares versus a dense wall of grey instantly communicates the simplicity advantage without requiring any ingredient literacy. The visual weight disparity (6 vs 27+) creates the same emotional response as "6 vs 27" in text, but more immediately. Color carries the entire argument: green is living, active, intentional; grey is bulk, filler, industrial. The data visualization aesthetic appeals to analytically-minded consumers who distrust marketing but trust data. Excellent shareability — designed to be screenshotted and captioned.
+      </div>
+    </div>
+    <div>
+      <div class="info-section-label">Caption</div>
+      <div class="info-caption">"6 ingredients that work. Or 27+ that mostly just keep the product alive. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions."</div>
+    </div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Navigate Variants</div>
+      <div class="info-nav">
+        <a href="17_v1.html">17_v1</a>
+        <a href="17_v2.html">17_v2</a>
+        <a href="17_v3.html">17_v3</a>
+        <a href="17_v4.html">17_v4</a>
+        <a href="17_v5.html">17_v5</a>
+        <a href="17_v6.html">17_v6</a>
+        <a href="17_v7.html">17_v7</a>
+        <a href="17_v8.html">17_v8</a>
+        <a href="17_v9.html">17_v9</a>
+        <a href="17_v10.html" class="active">17_v10</a>
+        <a href="../index.html" class="index-link">index.html</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Skinome · Campaign 17 · ny-design · Shelf Life vs Skin Life</footer>
+</body>
+</html>

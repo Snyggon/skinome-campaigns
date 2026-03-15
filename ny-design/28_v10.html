@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 28 · v10 — Radial Progress</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #e8e4de; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d0d0d; color: #fff;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 52px; border-bottom: 1px solid #222;
+  }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a {
+    font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    border: 1px solid #444; color: #aaa; text-decoration: none;
+    font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s;
+  }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; flex-direction: row; align-items: flex-start;
+    padding: 48px 24px 80px; gap: 0;
+  }
+  .ig-card {
+    width: 560px; flex-shrink: 0;
+    background: #fff; border-radius: 12px;
+    border: 1px solid #dbdbdb; overflow: hidden;
+  }
+  .ig-post-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+  }
+  .ig-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, #d8d0c0, #3a8a4e);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 16px;
+    font-family: 'Barlow', sans-serif; flex-shrink: 0;
+  }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; cursor: pointer; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V10 — RADIAL PROGRESS */
+  .creative-v10 {
+    width: 100%; height: 100%;
+    background: #f6f3f0;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; gap: 30px;
+    padding: 30px;
+  }
+  /* Left: donut chart */
+  .donut-wrap {
+    position: relative; width: 260px; height: 260px; flex-shrink: 0;
+  }
+  .donut-svg { width: 260px; height: 260px; transform: rotate(-90deg); }
+  .donut-center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .donut-num {
+    font-family: 'Barlow', sans-serif; font-size: 64px; font-weight: 700;
+    color: #1a1a18; line-height: 1; letter-spacing: -0.02em;
+  }
+  .donut-label {
+    font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 300;
+    letter-spacing: 0.3em; color: #888; text-transform: uppercase;
+    margin-top: -4px;
+  }
+
+  /* Right: info column */
+  .donut-info {
+    display: flex; flex-direction: column; gap: 16px; flex: 1; min-width: 0;
+  }
+  .donut-tagline {
+    font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 300;
+    color: #555; line-height: 1.55;
+  }
+  .donut-tagline strong { font-weight: 700; color: #1a1a18; }
+
+  .donut-skinome-tag {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    background: rgba(45, 138, 78, 0.08);
+    border: 1px solid rgba(45, 138, 78, 0.25);
+    border-radius: 8px;
+  }
+  .skinome-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #2d8a4e; flex-shrink: 0;
+  }
+  .skinome-tag-text {
+    font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600;
+    color: #2d8a4e; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  /* Legend */
+  .donut-legend { display: flex; flex-direction: column; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-swatch {
+    width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+  }
+  .legend-swatch.research { background: #c8c0b8; }
+  .legend-swatch.discovery { background: #2d8a4e; }
+  .legend-text {
+    font-family: 'Barlow', sans-serif; font-size: 11px; color: #666;
+    letter-spacing: 0.04em;
+  }
+
+  /* Bottom text across full width */
+  .donut-bottom {
+    position: absolute; bottom: 22px; left: 0; right: 0; text-align: center;
+    font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 300;
+    color: #999; letter-spacing: 0.12em;
+  }
+
+  .ig-actions { display: flex; gap: 16px; padding: 12px 16px 4px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-likes { padding: 0 16px 6px; font-size: 13px; font-weight: 600; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.5; }
+  .ig-caption strong { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 13px; color: #00376b; }
+  .ig-comments { padding: 0 16px 6px; font-size: 12px; color: #777; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { padding-left: 60px; flex: 1; padding-top: 8px; }
+  .info-num { font-family: 'Barlow', sans-serif; font-size: 72px; font-weight: 100; color: #c8c2ba; line-height: 1; margin-bottom: 4px; }
+  .info-name { font-family: 'Barlow', sans-serif; font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #5a5200; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; margin-bottom: 20px; }
+  .info-section { margin-bottom: 20px; }
+  .info-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #999; margin-bottom: 6px; }
+  .info-text { font-size: 14px; line-height: 1.65; color: #444; }
+  .info-caption { font-size: 14px; line-height: 1.6; color: #222; font-style: italic; border-left: 3px solid #2d8a4e; padding-left: 14px; }
+  .variant-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .variant-nav a {
+    font-size: 11px; padding: 4px 12px; border-radius: 20px;
+    border: 1px solid #ccc; color: #666; text-decoration: none;
+    font-family: 'Barlow', sans-serif; transition: all 0.2s;
+  }
+  .variant-nav a:hover { border-color: #555; color: #1a1a1a; }
+  .variant-nav a.active { background: #2d8a4e; color: #fff; border-color: #2d8a4e; font-weight: 600; }
+  .variant-nav a.index-link { border-color: #888; color: #444; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 24px; font-size: 11px; letter-spacing: 0.08em; font-family: 'Barlow', sans-serif; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="brand">SKINOME · ny-design</span>
+  <nav class="header-nav">
+    <a href="28_v1.html">28_v1</a>
+    <a href="28_v2.html">28_v2</a>
+    <a href="28_v3.html">28_v3</a>
+    <a href="28_v4.html">28_v4</a>
+    <a href="28_v5.html">28_v5</a>
+    <a href="28_v6.html">28_v6</a>
+    <a href="28_v7.html">28_v7</a>
+    <a href="28_v8.html">28_v8</a>
+    <a href="28_v9.html">28_v9</a>
+    <a href="28_v10.html" class="active">28_v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v10">
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Each segment is 360/20 = 18 degrees. We draw 19 grey + 1 green. -->
+              <!-- Using conic-gradient approach via SVG circle segments -->
+              <!-- circumference at r=100: 2*pi*100 = 628.3 -->
+              <!-- stroke-dasharray per segment: 628.3/20 = 31.4 -->
+              <!-- gap between segments: 2px -->
+            </defs>
+            <!-- Background track -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#e8e4de" stroke-width="32"/>
+
+            <!-- 19 grey research segments (years 1999–2017) -->
+            <!-- Each segment: dasharray = 29.4 (segment) + (628.3 - 29.4) rest -->
+            <!-- Offset per segment: cumulative -->
+
+            <!-- seg 1 (1999) -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#d8d2c8" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="0"/>
+            <!-- seg 2 (2000) -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#d2ccc2" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-31.4"/>
+            <!-- seg 3 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#ccC6bc" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-62.8"/>
+            <!-- seg 4 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#c6c0b6" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-94.2"/>
+            <!-- seg 5 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#c0bab0" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-125.6"/>
+            <!-- seg 6 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#bab4aa" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-157.0"/>
+            <!-- seg 7 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#b4aea4" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-188.4"/>
+            <!-- seg 8 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#aea89e" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-219.8"/>
+            <!-- seg 9 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#a8a298" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-251.2"/>
+            <!-- seg 10 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#a29c92" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-282.6"/>
+            <!-- seg 11 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#9c968c" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-314.0"/>
+            <!-- seg 12 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#969086" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-345.4"/>
+            <!-- seg 13 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#908a80" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-376.8"/>
+            <!-- seg 14 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#8a847a" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-408.2"/>
+            <!-- seg 15 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#847e74" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-439.6"/>
+            <!-- seg 16 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#7e786e" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-471.0"/>
+            <!-- seg 17 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#787268" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-502.4"/>
+            <!-- seg 18 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#726c62" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-533.8"/>
+            <!-- seg 19 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#6c665c" stroke-width="28"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-565.2"/>
+
+            <!-- seg 20 — GREEN (2019 = Skinome) -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="#2d8a4e" stroke-width="32"
+              stroke-dasharray="29.4 598.9" stroke-dashoffset="-596.6"
+              filter="url(#greenGlow)"/>
+            <defs>
+              <filter id="greenGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- "2019" label near the green segment — at roughly 342 deg on the circle -->
+            <!-- At -596.6 offset, segment starts at 596.6/628.3 * 360 = 341.8 deg -->
+            <!-- Point on circle at 342 deg (adding 90 for SVG): x = 130 + 128*cos(342) -->
+            <!-- cos(342°)=cos(-18°)=0.951, sin(342°)=sin(-18°)=-0.309 -->
+            <!-- x = 130 + 128*0.951 = 251.7, y = 130 + 128*(-0.309) = 90.4 -->
+            <!-- Arrow callout -->
+            <line x1="245" y1="92" x2="220" y2="108" stroke="#2d8a4e" stroke-width="1.5"/>
+            <text x="250" y="90" font-family="Barlow, sans-serif" font-size="11" fill="#2d8a4e" font-weight="700" text-anchor="start">SKINOME</text>
+            <text x="250" y="102" font-family="Barlow, sans-serif" font-size="9" fill="#2d8a4e" opacity="0.7">2019 ←</text>
+          </svg>
+          <div class="donut-center">
+            <div class="donut-num">20</div>
+            <div class="donut-label">Years</div>
+          </div>
+        </div>
+
+        <div class="donut-info">
+          <div class="donut-tagline">Every year was a step.<br><strong>The last one was the answer.</strong></div>
+
+          <div class="donut-skinome-tag">
+            <div class="skinome-dot"></div>
+            <div class="skinome-tag-text">Skinome Founded 2019</div>
+          </div>
+
+          <div class="donut-legend">
+            <div class="legend-item">
+              <div class="legend-swatch research"></div>
+              <div class="legend-text">Research (1999–2018)</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-swatch discovery"></div>
+              <div class="legend-text">Discovery — Skinome (2019)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="donut-bottom">Dr. Johanna Gillbro · Skin Microbiome Research · Stockholm</div>
+      </div>
+    </div>
+
+    <div class="ig-actions"><span>🤍</span><span>💬</span><span>📤</span></div>
+    <div class="ig-likes">4,923 likes</div>
+    <div class="ig-caption"><strong>skinome.official</strong> 20 years of research. The last year was the breakthrough.</div>
+    <div class="ig-hashtags">#skinome #skinresearch #microbiome #johanagillbro #dataviz #skinscience #breakthrough</div>
+    <div class="ig-comments">View all 267 comments</div>
+    <div class="ig-timestamp">4 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">28</div>
+    <div class="info-name">Radial Progress — Graphic Data Viz</div>
+    <span class="tone-badge">Medium</span>
+
+    <div class="info-section">
+      <div class="info-label">Visual Strategy</div>
+      <div class="info-text">The donut chart is the native graphic form of data journalism — it appears in the Economist, FiveThirtyEight, and every credible science publication. Using it here elevates the research story from anecdote to evidence. The progressive greying of 19 segments makes each year feel like accumulated work; the single vivid green segment makes 2019 feel inevitable rather than arbitrary. The cream background and infographic layout give this the clean authority of a scientific explainer — highly shareable by an informed audience.</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption</div>
+      <div class="info-caption">20 years of research. The last year was the breakthrough.</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Full Caption</div>
+      <div class="info-text">Dr. Johanna Gillbro spent 20 years researching skin science. The conclusion: conventional skincare was working against the microbiome it claimed to protect. Skinome was the answer she couldn't find elsewhere.</div>
+    </div>
+
+    <div class="variant-nav">
+      <a href="28_v1.html">28_v1</a>
+      <a href="28_v2.html">28_v2</a>
+      <a href="28_v3.html">28_v3</a>
+      <a href="28_v4.html">28_v4</a>
+      <a href="28_v5.html">28_v5</a>
+      <a href="28_v6.html">28_v6</a>
+      <a href="28_v7.html">28_v7</a>
+      <a href="28_v8.html">28_v8</a>
+      <a href="28_v9.html">28_v9</a>
+      <a href="28_v10.html" class="active">28_v10</a>
+      <a href="index.html" class="index-link">← index</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">SKINOME · Campaign 28 · ny-design · v10 of 10</footer>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 17 · v7 — Botanical Fresh</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #1a4d14, #4aad74); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V7 — Botanical Fresh */
+  .creative-v7 {
+    width: 100%; height: 100%;
+    background: #2d5a27;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  /* Organic mottled texture via radial gradients */
+  .creative-v7::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 120px 100px at 10% 15%, rgba(50,100,40,0.4) 0%, transparent 100%),
+      radial-gradient(ellipse 80px 80px at 90% 10%, rgba(20,60,14,0.5) 0%, transparent 100%),
+      radial-gradient(ellipse 140px 120px at 5% 85%, rgba(20,50,15,0.4) 0%, transparent 100%),
+      radial-gradient(ellipse 100px 100px at 95% 80%, rgba(50,100,40,0.35) 0%, transparent 100%),
+      radial-gradient(ellipse 200px 160px at 50% 50%, rgba(38,80,32,0.3) 0%, transparent 100%);
+    pointer-events: none; z-index: 0;
+  }
+  /* Main white circle */
+  .creative-v7 .main-circle {
+    width: 220px; height: 220px; border-radius: 50%;
+    background: #ffffff;
+    box-shadow:
+      0 8px 40px rgba(0,0,0,0.2),
+      0 0 0 8px rgba(255,255,255,0.08),
+      0 0 0 16px rgba(255,255,255,0.04);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 4px;
+    position: relative; z-index: 5;
+  }
+  .creative-v7 .circle-expires {
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+    color: #8a7a6a; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 400;
+  }
+  .creative-v7 .circle-num {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 88px; line-height: 1; letter-spacing: -0.04em;
+    color: #1a1a1a;
+  }
+  .creative-v7 .circle-unit {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #3a3a3a;
+    margin-top: -8px;
+  }
+  /* Botanical leaf shapes (CSS clip-path) scattered */
+  .creative-v7 .leaf {
+    position: absolute; z-index: 3; pointer-events: none;
+  }
+  /* CSS leaf using clip-path */
+  .creative-v7 .leaf-shape {
+    background: rgba(255,255,255,0.15);
+    clip-path: ellipse(50% 100% at 50% 100%);
+    transform-origin: bottom center;
+  }
+  .creative-v7 .leaf-1 { top: 8%; left: 8%; width: 28px; height: 48px; transform: rotate(-25deg); }
+  .creative-v7 .leaf-2 { top: 14%; right: 10%; width: 22px; height: 38px; transform: rotate(20deg); }
+  .creative-v7 .leaf-3 { top: 42%; left: 4%; width: 18px; height: 32px; transform: rotate(-40deg); }
+  .creative-v7 .leaf-4 { bottom: 18%; left: 12%; width: 26px; height: 44px; transform: rotate(15deg); }
+  .creative-v7 .leaf-5 { bottom: 22%; right: 8%; width: 20px; height: 36px; transform: rotate(-20deg); }
+  .creative-v7 .leaf-6 { top: 6%; left: 40%; width: 16px; height: 28px; transform: rotate(35deg); }
+  .creative-v7 .leaf-7 { bottom: 8%; right: 30%; width: 24px; height: 42px; transform: rotate(-15deg); }
+  .creative-v7 .leaf-8 { top: 50%; right: 5%; width: 14px; height: 24px; transform: rotate(50deg); }
+  /* Small dots */
+  .creative-v7 .dot {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    z-index: 2; pointer-events: none;
+  }
+  .creative-v7 .dot-1 { width: 6px; height: 6px; top: 30%; left: 15%; }
+  .creative-v7 .dot-2 { width: 4px; height: 4px; top: 18%; right: 25%; }
+  .creative-v7 .dot-3 { width: 8px; height: 8px; bottom: 35%; right: 18%; }
+  /* Bottom cream strip */
+  .creative-v7 .bottom-strip {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: #f5ede0;
+    padding: 12px 28px 14px;
+    z-index: 6;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .creative-v7 .bottom-strip .bs-main {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #1a3a1a; text-align: center;
+  }
+  .creative-v7 .bottom-strip .bs-sub {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    color: #6a8a5a; text-align: center;
+  }
+  /* Top label */
+  .creative-v7 .top-label {
+    position: absolute; top: 20px; left: 0; right: 0;
+    text-align: center; z-index: 5;
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-weight: 700; font-size: 13px; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.55; color: #1a1a1a; }
+  .ig-caption .handle-tag { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.7; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #737373; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { flex: 1; padding-left: 60px; display: flex; flex-direction: column; gap: 20px; }
+  .info-campaign-num { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 96px; line-height: 1; color: #e8e2da; letter-spacing: -0.04em; margin-bottom: -8px; }
+  .info-variant-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #746c64; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; width: fit-content; }
+  .info-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; font-family: 'Barlow', sans-serif; margin-bottom: 6px; }
+  .info-strategy { font-size: 14px; line-height: 1.7; color: #444; }
+  .info-caption { background: #1a1a1a; color: #f0ebe4; border-radius: 10px; padding: 20px; font-size: 13px; line-height: 1.75; font-style: italic; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info-nav a { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; color: #666; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #888; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #bbb; }
+  .divider-line { height: 1px; background: #ddd; margin: 4px 0; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 28px 24px; font-size: 11px; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">SKINOME · ny-design</div>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html">v4</a>
+    <a href="17_v5.html">v5</a>
+    <a href="17_v6.html">v6</a>
+    <a href="17_v7.html" class="active">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html">v9</a>
+    <a href="17_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v7">
+        <div class="top-label">Microbiome-Safe · Stockholm · Est. 2019</div>
+
+        <!-- Leaf shapes -->
+        <div class="leaf leaf-1 leaf-shape"></div>
+        <div class="leaf leaf-2 leaf-shape"></div>
+        <div class="leaf leaf-3 leaf-shape"></div>
+        <div class="leaf leaf-4 leaf-shape"></div>
+        <div class="leaf leaf-5 leaf-shape"></div>
+        <div class="leaf leaf-6 leaf-shape"></div>
+        <div class="leaf leaf-7 leaf-shape"></div>
+        <div class="leaf leaf-8 leaf-shape"></div>
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+
+        <!-- Main circle with "90 DAYS" -->
+        <div class="main-circle">
+          <div class="circle-expires">expires in</div>
+          <div class="circle-num">90</div>
+          <div class="circle-unit">days</div>
+        </div>
+
+        <div class="bottom-strip">
+          <div class="bs-main">No preservatives. Just ingredients that actually expire.</div>
+          <div class="bs-sub">Skinome · 90 days · no exceptions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">3,571 likes</div>
+    <div class="ig-caption">
+      <span class="handle-tag">skinome.official</span> Fresh ingredients expire. That's not a flaw. It's the point. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions.
+    </div>
+    <div class="ig-hashtags">#skinome #botanical #freshskincare #microbiomesafe #naturalbeauty #shelflife #preservativefree #cleanbeauty</div>
+    <div class="ig-comments">View all 241 comments</div>
+    <div class="ig-timestamp">7 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">17</div>
+    <div class="info-variant-name">Botanical Fresh — Organic Green Nature</div>
+    <div class="tone-badge">Medium</div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Visual Strategy</div>
+      <div class="info-strategy">
+        Rich botanical green dominates the frame — this color is the natural, clean beauty category at its most confident. The white circle creates a product close-up energy: pure, uncluttered, premium. Scattered leaf shapes rendered in CSS (no imagery needed) suggest a living garden environment, reinforcing that Skinome's ingredients are natural and perishable — by design. The large "90" number in a clean white circle is immediately legible at feed-scroll speed. Targets natural/organic beauty consumers who respond to botanical visual language.
+      </div>
+    </div>
+    <div>
+      <div class="info-section-label">Caption</div>
+      <div class="info-caption">"Fresh ingredients expire. That's not a flaw. It's the point. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions."</div>
+    </div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Navigate Variants</div>
+      <div class="info-nav">
+        <a href="17_v1.html">17_v1</a>
+        <a href="17_v2.html">17_v2</a>
+        <a href="17_v3.html">17_v3</a>
+        <a href="17_v4.html">17_v4</a>
+        <a href="17_v5.html">17_v5</a>
+        <a href="17_v6.html">17_v6</a>
+        <a href="17_v7.html" class="active">17_v7</a>
+        <a href="17_v8.html">17_v8</a>
+        <a href="17_v9.html">17_v9</a>
+        <a href="17_v10.html">17_v10</a>
+        <a href="../index.html" class="index-link">index.html</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Skinome · Campaign 17 · ny-design · Shelf Life vs Skin Life</footer>
+</body>
+</html>

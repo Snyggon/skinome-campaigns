@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 26 · v6 — Timeline Comparison</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #2a2a2a, #444); display: flex; align-items: center; justify-content: center; color: #4ade80; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; cursor: pointer; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V6 — TIMELINE COMPARISON */
+  .creative-v6 {
+    width: 100%; height: 100%;
+    background: #faf8f4;
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: center;
+    padding: 40px 36px;
+    overflow: hidden;
+  }
+
+  .v6-above-label {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 28px;
+  }
+
+  /* The horizontal timeline bar */
+  .timeline-track {
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #e0ddd8;
+    position: relative;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .timeline-green {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 25%;
+    background: linear-gradient(90deg, #22c55e, #4ade80);
+    border-radius: 5px;
+  }
+
+  /* Markers on the timeline */
+  .timeline-marker {
+    position: absolute;
+    top: -6px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 3px solid #faf8f4;
+    transform: translateX(-50%);
+  }
+  .marker-start { left: 0%; background: #888; transform: translateX(0); }
+  .marker-skinome { left: 25%; background: #22c55e; }
+  .marker-end { left: 100%; background: #cc3333; transform: translateX(-100%); }
+
+  /* X mark for end */
+  .marker-end::before,
+  .marker-end::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 2px;
+    background: #fff;
+    top: 50%; left: 50%;
+    border-radius: 1px;
+  }
+  .marker-end::before { transform: translate(-50%,-50%) rotate(45deg); }
+  .marker-end::after { transform: translate(-50%,-50%) rotate(-45deg); }
+
+  /* Labels below the timeline */
+  .timeline-labels {
+    width: 100%;
+    position: relative;
+    height: 70px;
+    flex-shrink: 0;
+    margin-bottom: 24px;
+  }
+
+  .tl-label {
+    position: absolute;
+    top: 12px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .tl-label-start { left: 0; }
+  .tl-label-skinome {
+    left: 25%;
+    transform: translateX(-50%);
+    align-items: center;
+    text-align: center;
+    max-width: 120px;
+  }
+  .tl-label-end {
+    right: 0;
+    align-items: flex-end;
+    text-align: right;
+    max-width: 120px;
+  }
+
+  .tl-label-day {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  .tl-label-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: #1a1a1a;
+    line-height: 1.35;
+  }
+  .tl-label-text.green { color: #22c55e; }
+  .tl-label-text.red { color: #cc3333; }
+
+  /* The "honest" label above */
+  .v6-headline {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1a1a1a;
+    line-height: 1.3;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .v6-headline em { color: #22c55e; font-style: normal; }
+
+  /* Bottom comparison boxes */
+  .v6-compare-row {
+    display: flex; gap: 12px;
+    width: 100%;
+  }
+  .v6-compare-box {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 8px;
+  }
+  .v6-compare-box.good { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); }
+  .v6-compare-box.bad { background: rgba(200,50,50,0.05); border: 1px solid rgba(200,50,50,0.15); }
+
+  .v6-compare-label {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .v6-compare-label.green { color: #22c55e; }
+  .v6-compare-label.red { color: #cc3333; }
+
+  .v6-compare-value {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .v6-compare-value.green { color: #22c55e; }
+  .v6-compare-value.red { color: #aaa; }
+
+  .v6-compare-sub {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+    font-size: 9px;
+    color: #888;
+    line-height: 1.4;
+  }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-action-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; }
+  .ig-action-btn svg { width: 24px; height: 24px; }
+  .ig-bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.5; color: #1a1a1a; }
+  .ig-caption .username { font-weight: 700; margin-right: 4px; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.6; }
+  .ig-comments-link { padding: 0 16px 4px; font-size: 13px; color: #737373; cursor: pointer; }
+  .ig-timestamp { padding: 0 16px 12px; font-size: 10px; color: #aaa; letter-spacing: 0.05em; text-transform: uppercase; }
+  .ig-comment-box { border-top: 1px solid #f0f0f0; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
+  .ig-comment-avatar { width: 28px; height: 28px; border-radius: 50%; background: #e8e8e8; flex-shrink: 0; }
+  .ig-comment-input { font-size: 13px; color: #aaa; font-family: 'Space Grotesk', sans-serif; }
+
+  .info-col { flex: 1; padding-left: 60px; padding-top: 8px; }
+  .info-num { font-family: 'Barlow', sans-serif; font-weight: 100; font-size: 72px; color: #c8c0b4; line-height: 1; margin-bottom: 4px; }
+  .info-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: #1a1a1a; margin-bottom: 12px; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #1a1a1a; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; }
+  .info-section-label { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; margin-bottom: 8px; margin-top: 20px; }
+  .info-strategy { font-size: 13px; line-height: 1.7; color: #444; font-family: 'Space Grotesk', sans-serif; }
+  .info-caption { font-size: 13px; line-height: 1.6; color: #1a1a1a; font-family: 'Space Grotesk', sans-serif; font-style: italic; background: #f7f4ef; border-left: 3px solid #22c55e; padding: 12px 16px; border-radius: 0 6px 6px 0; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .info-nav a { font-size: 11px; padding: 4px 10px; border-radius: 20px; border: 1px solid #ccc; color: #777; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #555; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #c8c0b4; color: #555; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 24px; font-family: 'Barlow', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border-top: 1px solid #1a1a1a; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">Skinome · ny-design</div>
+  <nav class="header-nav">
+    <a href="26_v1.html">26_v1</a>
+    <a href="26_v2.html">26_v2</a>
+    <a href="26_v3.html">26_v3</a>
+    <a href="26_v4.html">26_v4</a>
+    <a href="26_v5.html">26_v5</a>
+    <a href="26_v6.html" class="active">26_v6</a>
+    <a href="26_v7.html">26_v7</a>
+    <a href="26_v8.html">26_v8</a>
+    <a href="26_v9.html">26_v9</a>
+    <a href="26_v10.html">26_v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v6">
+        <div class="v6-above-label">What your moisturizer's shelf life looks like. Honestly.</div>
+
+        <div class="v6-headline">90 days of <em>fresh</em>.<br>36 months of shelf chemistry.</div>
+
+        <!-- Timeline -->
+        <div class="timeline-track">
+          <div class="timeline-green"></div>
+          <div class="timeline-marker marker-start"></div>
+          <div class="timeline-marker marker-skinome"></div>
+          <div class="timeline-marker marker-end"></div>
+        </div>
+
+        <div class="timeline-labels">
+          <div class="tl-label tl-label-start">
+            <span class="tl-label-day">Day 1</span>
+            <span class="tl-label-text">Manufactured</span>
+          </div>
+          <div class="tl-label tl-label-skinome">
+            <span class="tl-label-day">Day 90</span>
+            <span class="tl-label-text green">Skinome expires<br>(fresh, active, alive)</span>
+          </div>
+          <div class="tl-label tl-label-end">
+            <span class="tl-label-day">Day 1,095</span>
+            <span class="tl-label-text red">Conventional<br>"expires"</span>
+          </div>
+        </div>
+
+        <!-- Compare boxes -->
+        <div class="v6-compare-row">
+          <div class="v6-compare-box good">
+            <div class="v6-compare-label green">Skinome</div>
+            <div class="v6-compare-value green">90 days</div>
+            <div class="v6-compare-sub">Active ingredients.<br>Zero preservatives.</div>
+          </div>
+          <div class="v6-compare-box bad">
+            <div class="v6-compare-label red">Conventional</div>
+            <div class="v6-compare-value red">36 months</div>
+            <div class="v6-compare-sub">Preservatives keep<br>logistics happy.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <button class="ig-action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="ig-action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </button>
+      <button class="ig-action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+      <button class="ig-action-btn ig-bookmark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      </button>
+    </div>
+    <div class="ig-likes">6,021 likes</div>
+    <div class="ig-caption"><span class="username">skinome.official</span>The last 900 days of your moisturizer's life exist for logistics, not your skin. We expire in 90 days. On purpose. Because we chose active ingredients over preservatives. If your skincare doesn't expire — ask yourself why.</div>
+    <div class="ig-hashtags">#skinome #nopreservatives #shelflife #skinmicrobiome #freshskincare #ingredientstransparency #cleanbeauty</div>
+    <div class="ig-comments-link">View all 341 comments</div>
+    <div class="ig-timestamp">6 hours ago</div>
+    <div class="ig-comment-box">
+      <div class="ig-comment-avatar"></div>
+      <div class="ig-comment-input">Add a comment…</div>
+    </div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-num">26</div>
+    <div class="info-name">Timeline Comparison</div>
+    <div class="tone-badge">Medium</div>
+
+    <div class="info-section-label">Visual Strategy</div>
+    <div class="info-strategy">
+      Data visualization is inherently authoritative — it asks the viewer to read and reason, not just feel. The color-coded timeline is instantly legible: vivid green equals alive and fresh, washed grey equals dead and chemical. Placing Skinome's expiry at the 25% mark visually demonstrates how brief — and how intentional — fresh skincare's life is. The comparison boxes at the bottom close the argument in a format that's almost impossible to argue with.
+    </div>
+
+    <div class="info-section-label">Caption</div>
+    <div class="info-caption">"The last 900 days of your moisturizer's life exist for logistics, not your skin."</div>
+
+    <div class="info-section-label">Navigate</div>
+    <div class="info-nav">
+      <a href="26_v1.html">26_v1</a>
+      <a href="26_v2.html">26_v2</a>
+      <a href="26_v3.html">26_v3</a>
+      <a href="26_v4.html">26_v4</a>
+      <a href="26_v5.html">26_v5</a>
+      <a href="26_v6.html" class="active">26_v6</a>
+      <a href="26_v7.html">26_v7</a>
+      <a href="26_v8.html">26_v8</a>
+      <a href="26_v9.html">26_v9</a>
+      <a href="26_v10.html">26_v10</a>
+      <a href="../index.html" class="index-link">← index</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  Skinome · Campaign 26 · Ours Goes Bad. On Purpose. · ny-design
+</footer>
+</body>
+</html>

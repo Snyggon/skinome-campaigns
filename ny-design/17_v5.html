@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 17 · v5 — Traffic Light</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #e63946, #2a9d8f); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V5 — Traffic Light Universal Signal */
+  .creative-v5 {
+    width: 100%; height: 100%;
+    background: #1a1a1a;
+    display: flex; position: relative; overflow: hidden;
+  }
+  /* Subtle radial glow at center */
+  .creative-v5::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(50,50,60,0.5) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* Left side: rotated question text */
+  .creative-v5 .left-panel {
+    width: 44%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 40px 0 40px 36px;
+    position: relative; z-index: 3;
+  }
+  .creative-v5 .question-rotated {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .creative-v5 .left-taglines {
+    display: flex; flex-direction: column; gap: 8px; margin-top: 24px;
+  }
+  .creative-v5 .left-tagline-item {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .creative-v5 .lt-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .creative-v5 .lt-dot-red { background: #e63946; }
+  .creative-v5 .lt-dot-amber { background: #f4a261; }
+  .creative-v5 .lt-dot-green { background: #2a9d8f; }
+  .creative-v5 .lt-text {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    color: rgba(255,255,255,0.4); letter-spacing: 0.08em;
+  }
+  /* Divider */
+  .creative-v5 .center-line {
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+    position: absolute; left: 44%; top: 10%; bottom: 10%;
+    z-index: 2;
+  }
+  /* Right panel: traffic light */
+  .creative-v5 .right-panel {
+    width: 56%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 30px 30px 30px 20px;
+    position: relative; z-index: 3;
+  }
+  /* Traffic light housing */
+  .creative-v5 .traffic-housing {
+    background: #111;
+    border: 2px solid #333;
+    border-radius: 28px;
+    padding: 20px 24px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative;
+  }
+  /* Housing top knob */
+  .creative-v5 .traffic-housing::before {
+    content: '';
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 14px;
+    background: #222; border: 1px solid #333;
+    border-radius: 4px 4px 0 0;
+  }
+  /* Traffic light circle */
+  .creative-v5 .tl-light {
+    width: 72px; height: 72px; border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 2px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .creative-v5 .tl-red {
+    background: #e63946;
+    box-shadow: 0 0 20px rgba(230,57,70,0.5), 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .creative-v5 .tl-amber {
+    background: #f4a261;
+    box-shadow: 0 0 20px rgba(244,162,97,0.4), 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .creative-v5 .tl-green {
+    background: #2a9d8f;
+    box-shadow: 0 0 28px rgba(42,157,143,0.7), 0 0 60px rgba(42,157,143,0.3), 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .creative-v5 .tl-ingredient {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.9); text-align: center;
+    line-height: 1.2;
+  }
+  .creative-v5 .tl-sub {
+    font-family: 'Space Grotesk', sans-serif; font-size: 7px;
+    color: rgba(255,255,255,0.6); text-align: center;
+    letter-spacing: 0.04em;
+  }
+  /* Verdict bar below housing */
+  .creative-v5 .verdict {
+    margin-top: 18px; text-align: center;
+  }
+  .creative-v5 .verdict-main {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: 0.1em;
+    color: #2a9d8f; text-transform: uppercase;
+  }
+  .creative-v5 .verdict-sub {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    color: rgba(255,255,255,0.35); margin-top: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  /* Bottom strip */
+  .creative-v5 .bottom-strip {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(42,157,143,0.12);
+    border-top: 1px solid rgba(42,157,143,0.2);
+    padding: 10px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 5;
+  }
+  .creative-v5 .bottom-strip .bs-l {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #fff;
+  }
+  .creative-v5 .bottom-strip .bs-r {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-weight: 700; font-size: 13px; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.55; color: #1a1a1a; }
+  .ig-caption .handle-tag { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.7; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #737373; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { flex: 1; padding-left: 60px; display: flex; flex-direction: column; gap: 20px; }
+  .info-campaign-num { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 96px; line-height: 1; color: #e8e2da; letter-spacing: -0.04em; margin-bottom: -8px; }
+  .info-variant-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #746c64; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; width: fit-content; }
+  .info-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; font-family: 'Barlow', sans-serif; margin-bottom: 6px; }
+  .info-strategy { font-size: 14px; line-height: 1.7; color: #444; }
+  .info-caption { background: #1a1a1a; color: #f0ebe4; border-radius: 10px; padding: 20px; font-size: 13px; line-height: 1.75; font-style: italic; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info-nav a { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; color: #666; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #888; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #bbb; }
+  .divider-line { height: 1px; background: #ddd; margin: 4px 0; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 28px 24px; font-size: 11px; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">SKINOME · ny-design</div>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html">v4</a>
+    <a href="17_v5.html" class="active">v5</a>
+    <a href="17_v6.html">v6</a>
+    <a href="17_v7.html">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html">v9</a>
+    <a href="17_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v5">
+        <!-- Left panel: rotated question + legend -->
+        <div class="left-panel">
+          <div class="question-rotated">What's in your moisturizer?</div>
+          <div class="left-taglines">
+            <div class="left-tagline-item">
+              <div class="lt-dot lt-dot-red"></div>
+              <span class="lt-text">STOP — disrupts microbiome</span>
+            </div>
+            <div class="left-tagline-item">
+              <div class="lt-dot lt-dot-amber"></div>
+              <span class="lt-text">CAUTION — proceed carefully</span>
+            </div>
+            <div class="left-tagline-item">
+              <div class="lt-dot lt-dot-green"></div>
+              <span class="lt-text">GO — microbiome safe</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="center-line"></div>
+
+        <!-- Right panel: traffic light -->
+        <div class="right-panel">
+          <div class="traffic-housing">
+            <div class="tl-light tl-red">
+              <div class="tl-ingredient">Parabens</div>
+              <div class="tl-sub">conventional</div>
+            </div>
+            <div class="tl-light tl-amber">
+              <div class="tl-ingredient">Phenoxy-<br>ethanol</div>
+              <div class="tl-sub">conventional</div>
+            </div>
+            <div class="tl-light tl-green">
+              <div class="tl-ingredient">Nothing</div>
+              <div class="tl-sub">skinome</div>
+            </div>
+          </div>
+          <div class="verdict">
+            <div class="verdict-main">Skinome always shows green</div>
+            <div class="verdict-sub">90 days · no preservatives · no exceptions</div>
+          </div>
+        </div>
+
+        <div class="bottom-strip">
+          <span class="bs-l">Skinome</span>
+          <span class="bs-r">Three ingredients. Three colors. One decision.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">4,219 likes</div>
+    <div class="ig-caption">
+      <span class="handle-tag">skinome.official</span> Three ingredients. Three colors. One decision. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions.
+    </div>
+    <div class="ig-hashtags">#skinome #ingredientcheck #parabenfree #microbiomesafe #cleanbeauty #shelflife #preservativefree #skincaretruth</div>
+    <div class="ig-comments">View all 312 comments</div>
+    <div class="ig-timestamp">1 hour ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">17</div>
+    <div class="info-variant-name">Traffic Light — Universal Signal Colors</div>
+    <div class="tone-badge">Medium</div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Visual Strategy</div>
+      <div class="info-strategy">
+        The traffic light is one of humanity's most universal and instinctively understood visual systems — red means danger, green means safe. By mapping preservative ingredients directly to traffic light positions, the ad bypasses rational skepticism and triggers gut-level recognition. The dark charcoal background makes the colored lights pop with maximum contrast, and the green glow on Skinome's circle signals active, living safety. Targets broad audiences — no ingredient knowledge required to understand the message immediately.
+      </div>
+    </div>
+    <div>
+      <div class="info-section-label">Caption</div>
+      <div class="info-caption">"Three ingredients. Three colors. One decision. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions."</div>
+    </div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Navigate Variants</div>
+      <div class="info-nav">
+        <a href="17_v1.html">17_v1</a>
+        <a href="17_v2.html">17_v2</a>
+        <a href="17_v3.html">17_v3</a>
+        <a href="17_v4.html">17_v4</a>
+        <a href="17_v5.html" class="active">17_v5</a>
+        <a href="17_v6.html">17_v6</a>
+        <a href="17_v7.html">17_v7</a>
+        <a href="17_v8.html">17_v8</a>
+        <a href="17_v9.html">17_v9</a>
+        <a href="17_v10.html">17_v10</a>
+        <a href="../index.html" class="index-link">index.html</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Skinome · Campaign 17 · ny-design · Shelf Life vs Skin Life</footer>
+</body>
+</html>

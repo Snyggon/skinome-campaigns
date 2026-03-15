@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome · Campaign 17 · v4 — Supermarket Shelf</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ebe4; font-family: 'Space Grotesk', sans-serif; color: #1a1a1a; min-height: 100vh; }
+
+  .site-header { position: sticky; top: 0; z-index: 100; background: #0d0d0d; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #222; }
+  .site-header .brand { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid #444; color: #aaa; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.05em; transition: all 0.2s; }
+  .header-nav a:hover { border-color: #888; color: #fff; }
+  .header-nav a.active { background: #fff; color: #0d0d0d; border-color: #fff; font-weight: 600; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-start; padding: 48px 24px 80px; gap: 0; }
+
+  .ig-card { width: 560px; flex-shrink: 0; background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; overflow: hidden; }
+  .ig-post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+  .ig-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #a07040, #5a9040); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; font-family: 'Barlow', sans-serif; flex-shrink: 0; }
+  .ig-handle-block { display: flex; flex-direction: column; }
+  .ig-handle { font-weight: 600; font-size: 13px; color: #1a1a1a; }
+  .ig-location { font-size: 11px; color: #777; }
+  .ig-more { margin-left: auto; color: #555; font-size: 18px; cursor: pointer; }
+  .post-creative { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+
+  /* V4 — Supermarket Shelf Illustration */
+  .creative-v4 {
+    width: 100%; height: 100%;
+    background: #faf4ec;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  /* Shelf background pattern - wooden shelf lines */
+  .creative-v4::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 58px,
+      rgba(180,150,100,0.08) 58px, rgba(180,150,100,0.08) 62px
+    );
+    pointer-events: none;
+  }
+  /* Top banner */
+  .creative-v4 .shelf-banner {
+    background: #2d2d2d;
+    padding: 10px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+    z-index: 5; position: relative;
+  }
+  .creative-v4 .shelf-banner .sb-title {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #fff;
+  }
+  .creative-v4 .shelf-banner .sb-sub {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+    color: #888; letter-spacing: 0.1em;
+  }
+  /* Shelf area */
+  .creative-v4 .shelf-area {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    gap: 40px; padding: 20px 40px;
+    position: relative; z-index: 2;
+  }
+  /* Shelf divider label */
+  .creative-v4 .shelf-vs {
+    font-family: 'Barlow', sans-serif; font-weight: 300;
+    font-size: 11px; letter-spacing: 0.2em; color: #bbb;
+    text-transform: uppercase; flex-shrink: 0;
+  }
+  /* Product tube CSS shape */
+  .creative-v4 .tube-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    flex: 1;
+  }
+  .creative-v4 .tube {
+    width: 90px; height: 160px;
+    border-radius: 45px 45px 14px 14px;
+    position: relative; overflow: hidden;
+    box-shadow: 4px 8px 24px rgba(0,0,0,0.12);
+    flex-shrink: 0;
+  }
+  /* "Theirs" tube — grey, dusty */
+  .creative-v4 .tube-theirs {
+    background: linear-gradient(160deg, #c8c0b4 0%, #a89e92 40%, #9a9088 100%);
+  }
+  /* Dusty overlay on theirs */
+  .creative-v4 .tube-theirs::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(200,190,180,0.3) 0%, rgba(160,150,140,0.5) 100%);
+  }
+  /* Skinome tube — white, green accent */
+  .creative-v4 .tube-skinome {
+    background: linear-gradient(160deg, #ffffff 0%, #f0f7f0 60%, #e8f4e8 100%);
+    border: 1.5px solid #d0e8d0;
+  }
+  /* Green accent stripe on Skinome tube */
+  .creative-v4 .tube-skinome::before {
+    content: '';
+    position: absolute; left: 0; right: 0;
+    top: 55%; height: 18%;
+    background: linear-gradient(90deg, #2d7a4f, #4aad74);
+  }
+  /* Tube label text */
+  .creative-v4 .tube-label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 3px; z-index: 2; padding: 12px 8px;
+  }
+  .creative-v4 .tube-brand-name {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .creative-v4 .tube-theirs .tube-brand-name { color: rgba(255,255,255,0.6); }
+  .creative-v4 .tube-skinome .tube-brand-name { color: #1a3a2a; }
+  .creative-v4 .tube-shelf-life {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px;
+  }
+  .creative-v4 .tube-theirs .tube-shelf-life { color: rgba(255,255,255,0.45); }
+  .creative-v4 .tube-skinome .tube-shelf-life { color: #2d7a4f; font-weight: 600; }
+  .creative-v4 .tube-date {
+    font-family: 'Space Grotesk', sans-serif; font-size: 8px;
+    text-align: center; line-height: 1.4; margin-top: 4px;
+  }
+  .creative-v4 .tube-theirs .tube-date { color: rgba(255,255,255,0.3); }
+  .creative-v4 .tube-skinome .tube-date { color: rgba(45,122,79,0.7); }
+  /* Shadow pill under tube */
+  .creative-v4 .tube-shadow {
+    width: 80px; height: 8px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.15), transparent);
+    border-radius: 50%;
+    margin-top: -6px;
+  }
+  /* Product name below tube */
+  .creative-v4 .tube-name {
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    text-align: center;
+  }
+  .creative-v4 .tube-wrap-theirs .tube-name { color: #999; }
+  .creative-v4 .tube-wrap-skinome .tube-name { color: #1a3a2a; }
+  .creative-v4 .tube-descriptor {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    color: #888; text-align: center; line-height: 1.4; max-width: 100px;
+  }
+  .creative-v4 .tube-wrap-skinome .tube-descriptor { color: #4a9a6a; font-weight: 500; }
+
+  /* Shelf plank line */
+  .creative-v4 .shelf-plank {
+    position: absolute; bottom: 88px; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #d4c4a4, #c8b890, #d4c4a4);
+    z-index: 1;
+  }
+  /* Bottom caption strip */
+  .creative-v4 .shelf-caption {
+    background: #1a3a2a; padding: 14px 28px;
+    flex-shrink: 0; z-index: 5; position: relative;
+  }
+  .creative-v4 .shelf-caption p {
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+    color: rgba(255,255,255,0.8); line-height: 1.5; text-align: center;
+  }
+  .creative-v4 .shelf-caption strong { color: #fff; }
+
+  .ig-actions { display: flex; align-items: center; gap: 16px; padding: 10px 16px 6px; }
+  .ig-actions span { font-size: 22px; cursor: pointer; }
+  .ig-actions .bookmark { margin-left: auto; }
+  .ig-likes { padding: 0 16px 6px; font-weight: 700; font-size: 13px; }
+  .ig-caption { padding: 0 16px 8px; font-size: 13px; line-height: 1.55; color: #1a1a1a; }
+  .ig-caption .handle-tag { font-weight: 700; }
+  .ig-hashtags { padding: 0 16px 8px; font-size: 12px; color: #00376b; line-height: 1.7; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #737373; }
+  .ig-timestamp { padding: 0 16px 14px; font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .info-col { flex: 1; padding-left: 60px; display: flex; flex-direction: column; gap: 20px; }
+  .info-campaign-num { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 96px; line-height: 1; color: #e8e2da; letter-spacing: -0.04em; margin-bottom: -8px; }
+  .info-variant-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; }
+  .tone-badge { display: inline-block; background: #fffdd9; color: #746c64; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; width: fit-content; }
+  .info-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; font-family: 'Barlow', sans-serif; margin-bottom: 6px; }
+  .info-strategy { font-size: 14px; line-height: 1.7; color: #444; }
+  .info-caption { background: #1a1a1a; color: #f0ebe4; border-radius: 10px; padding: 20px; font-size: 13px; line-height: 1.75; font-style: italic; }
+  .info-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info-nav a { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; color: #666; text-decoration: none; font-family: 'Barlow', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
+  .info-nav a:hover { border-color: #888; color: #1a1a1a; }
+  .info-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .info-nav a.index-link { background: #f0ebe4; border-color: #bbb; }
+  .divider-line { height: 1px; background: #ddd; margin: 4px 0; }
+  .site-footer { background: #0d0d0d; color: #555; text-align: center; padding: 28px 24px; font-size: 11px; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">SKINOME · ny-design</div>
+  <nav class="header-nav">
+    <a href="17_v1.html">v1</a>
+    <a href="17_v2.html">v2</a>
+    <a href="17_v3.html">v3</a>
+    <a href="17_v4.html" class="active">v4</a>
+    <a href="17_v5.html">v5</a>
+    <a href="17_v6.html">v6</a>
+    <a href="17_v7.html">v7</a>
+    <a href="17_v8.html">v8</a>
+    <a href="17_v9.html">v9</a>
+    <a href="17_v10.html">v10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-avatar">S</div>
+      <div class="ig-handle-block">
+        <span class="ig-handle">skinome.official</span>
+        <span class="ig-location">Stockholm, Sweden</span>
+      </div>
+      <span class="ig-more">···</span>
+    </div>
+
+    <div class="post-creative">
+      <div class="creative-v4">
+        <div class="shelf-banner">
+          <span class="sb-title">Two Products · One Shelf · One Choice</span>
+          <span class="sb-sub">Moisturizer comparison</span>
+        </div>
+
+        <div class="shelf-area">
+          <!-- Theirs tube -->
+          <div class="tube-wrap tube-wrap-theirs">
+            <div class="tube tube-theirs">
+              <div class="tube-label">
+                <div class="tube-brand-name">Theirs</div>
+                <div class="tube-shelf-life">36 months</div>
+                <div class="tube-date">Last touched:<br>2022</div>
+              </div>
+            </div>
+            <div class="tube-shadow"></div>
+            <div class="tube-name">Conventional</div>
+            <div class="tube-descriptor">Designed to sit on a shelf</div>
+          </div>
+
+          <div class="shelf-vs">vs</div>
+
+          <!-- Skinome tube -->
+          <div class="tube-wrap tube-wrap-skinome">
+            <div class="tube tube-skinome">
+              <div class="tube-label">
+                <div class="tube-brand-name">Skinome</div>
+                <div class="tube-shelf-life">90 days</div>
+                <div class="tube-date">Made:<br>this week</div>
+              </div>
+            </div>
+            <div class="tube-shadow"></div>
+            <div class="tube-name">Skinome</div>
+            <div class="tube-descriptor">Designed for your skin</div>
+          </div>
+        </div>
+
+        <div class="shelf-plank"></div>
+
+        <div class="shelf-caption">
+          <p><strong>One was designed to sit.</strong> One was designed for your skin. Check the manufacture date on your current moisturizer. We'll wait.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <span>♡</span><span>💬</span><span>↗</span>
+      <span class="bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">2,431 likes</div>
+    <div class="ig-caption">
+      <span class="handle-tag">skinome.official</span> Check the manufacture date on your current moisturizer. We'll wait. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions.
+    </div>
+    <div class="ig-hashtags">#skinome #shelflife #cleanbeauty #skincaretruth #microbiomeskincare #preservativefree #activeingredients #freshskincare</div>
+    <div class="ig-comments">View all 176 comments</div>
+    <div class="ig-timestamp">6 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">17</div>
+    <div class="info-variant-name">Supermarket Shelf — Illustrated Product Context</div>
+    <div class="tone-badge">Medium</div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Visual Strategy</div>
+      <div class="info-strategy">
+        Product illustration grounds the abstract shelf-life argument in physical reality — consumers can immediately picture their own bathroom cabinet. The warm cream background evokes the "natural" skincare category language while the contrast between the grey/dusty conventional tube and Skinome's clean white-and-green immediately communicates the quality gap without text. The "last touched: 2022" detail on the competitor tube is a sharp humour device that drives sharing. Targets switchers who are mid-consideration and need a final push.
+      </div>
+    </div>
+    <div>
+      <div class="info-section-label">Caption</div>
+      <div class="info-caption">"Check the manufacture date on your current moisturizer. We'll wait. A moisturizer that lasts 36 months needs preservatives to survive. What is it actually optimized for? Not you. Skinome: 90 days. No exceptions."</div>
+    </div>
+    <div class="divider-line"></div>
+    <div>
+      <div class="info-section-label">Navigate Variants</div>
+      <div class="info-nav">
+        <a href="17_v1.html">17_v1</a>
+        <a href="17_v2.html">17_v2</a>
+        <a href="17_v3.html">17_v3</a>
+        <a href="17_v4.html" class="active">17_v4</a>
+        <a href="17_v5.html">17_v5</a>
+        <a href="17_v6.html">17_v6</a>
+        <a href="17_v7.html">17_v7</a>
+        <a href="17_v8.html">17_v8</a>
+        <a href="17_v9.html">17_v9</a>
+        <a href="17_v10.html">17_v10</a>
+        <a href="../index.html" class="index-link">index.html</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Skinome · Campaign 17 · ny-design · Shelf Life vs Skin Life</footer>
+</body>
+</html>
