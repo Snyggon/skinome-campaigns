@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign 42 — Apology Letter — Skinome</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f6f3f0; min-height: 100vh; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .site-header { background: #0d0d0d; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .site-header .brand { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; }
+  .site-header .brand span { color: #f6f3f0; }
+  .pill-nav { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+  .pill-nav a { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; padding: 4px 9px; border-radius: 20px; border: 1px solid #2a2520; color: #746c64; transition: all 0.15s; }
+  .pill-nav a:hover { background: #1e1e1e; color: #d5d0c9; }
+  .pill-nav a.tough.active { background: #3d3935; color: #f6f3f0; border-color: #3d3935; }
+  .pill-nav a.medium.active { background: #fffdd9; color: #746c64; border-color: #fffdd9; }
+  .pill-nav .sep { color: #2a2520; font-size: 10px; }
+  .main-wrap { max-width: 1100px; margin: 0 auto; padding: 56px 40px 80px; display: flex; gap: 0; align-items: flex-start; }
+  .ig-card { width: 560px; flex-shrink: 0; background: #ffffff; border: 1px solid #e0dbd3; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+  .ig-post-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #fdf8f0; border-bottom: 1px solid #e8e0d0; }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar { width: 42px; height: 42px; border-radius: 50%; background: #0d0d0d; border: 1px solid #d5c8b0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #f6f3f0; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+  .ig-user-info .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-user-info .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #0d0d0d; letter-spacing: 2px; cursor: pointer; }
+
+  /* CREATIVE 42 — FAKE APOLOGY LETTER */
+  .post-creative {
+    width: 100%; aspect-ratio: 1;
+    background: #fdf8f0;
+    display: flex; flex-direction: column;
+    padding: 40px 52px;
+    position: relative; overflow: hidden;
+  }
+  .c42-letterhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #d5c8b0; padding-bottom: 14px; }
+  .c42-brand { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: #0d0d0d; letter-spacing: 0.04em; }
+  .c42-ref { font-family: 'Barlow', sans-serif; font-size: 9px; color: #746c64; letter-spacing: 0.15em; text-transform: uppercase; text-align: right; }
+  .c42-subject { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #746c64; margin-bottom: 6px; }
+  .c42-subject-line { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .c42-salutation { font-family: 'Barlow', sans-serif; font-size: 13px; color: #0d0d0d; margin-bottom: 10px; }
+  .c42-body { font-family: 'Barlow', sans-serif; font-size: 12px; color: #3d3935; line-height: 1.75; flex: 1; }
+  .c42-body p { margin-bottom: 8px; }
+  .c42-body strong { color: #0d0d0d; font-weight: 700; }
+  .c42-body .strikeout { text-decoration: line-through; color: #aaa; }
+  .c42-sig { margin-top: 14px; }
+  .c42-sig-close { font-family: 'Barlow', sans-serif; font-size: 12px; color: #3d3935; margin-bottom: 4px; font-style: italic; }
+  .c42-sig-name { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: #0d0d0d; }
+  .c42-sig-title { font-family: 'Barlow', sans-serif; font-size: 10px; color: #746c64; letter-spacing: 0.05em; }
+  .c42-ps { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #d5c8b0; font-family: 'Barlow', sans-serif; font-size: 11px; color: #3d3935; font-style: italic; }
+  .c42-ps strong { color: #0d0d0d; font-style: normal; }
+
+  .ig-actions { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; background: #fdf8f0; }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #0d0d0d; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #fdf8f0; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #fdf8f0; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #fdf8f0; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #746c64; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #fdf8f0; }
+
+  .info-col { flex: 1; padding-left: 60px; padding-top: 8px; }
+  .info-campaign-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #e8e2d8; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-campaign-name { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+  .tone-badge { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; margin-bottom: 28px; background: #fffdd9; color: #746c64; }
+  .info-divider { width: 32px; height: 2px; background: #e0dbd3; margin-bottom: 24px; }
+  .info-section { margin-bottom: 24px; }
+  .info-section-title { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #746c64; margin-bottom: 10px; }
+  .info-section-body { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; }
+  .info-section-body strong { color: #0d0d0d; font-weight: 700; }
+  .info-angles { list-style: none; margin-top: 8px; }
+  .info-angles li { font-family: 'Barlow', sans-serif; font-size: 13px; color: #3d3935; line-height: 1.6; padding: 6px 0; border-bottom: 1px solid #f0ebe5; }
+  .info-angles li:last-child { border-bottom: none; }
+  .info-angles li::before { content: "→ "; color: #d5d0c9; }
+  .info-caption-box { background: #f6f3f0; border-left: 2px solid #3d3935; padding: 14px 16px; }
+  .info-caption-box p { font-family: 'Barlow', sans-serif; font-size: 13px; color: #3d3935; line-height: 1.7; }
+  .info-caption-box p em { color: #746c64; font-style: normal; }
+  .info-nav { display: flex; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8e2d8; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; color: #746c64; text-transform: uppercase; padding: 8px 16px; border: 1px solid #e0dbd3; border-radius: 4px; transition: all 0.15s; }
+  .info-nav a:hover { background: #0d0d0d; color: #f6f3f0; border-color: #0d0d0d; }
+  .info-nav a.home { margin-left: auto; }
+  .site-footer { background: #0d0d0d; padding: 24px 40px; margin-top: 60px; }
+  .site-footer p { font-family: 'Barlow', sans-serif; font-size: 11px; color: #746c64; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><span>Skinome</span> · Campaigns</div>
+  <nav class="pill-nav">
+    <a href="campaign_31.html" class="tough">31</a>
+    <a href="campaign_32.html" class="tough">32</a>
+    <a href="campaign_33.html" class="medium">33</a>
+    <a href="campaign_34.html" class="tough">34</a>
+    <a href="campaign_35.html" class="medium">35</a>
+    <a href="campaign_36.html" class="medium">36</a>
+    <a href="campaign_37.html" class="tough">37</a>
+    <a href="campaign_38.html" class="medium">38</a>
+    <a href="campaign_39.html" class="tough">39</a>
+    <a href="campaign_40.html" class="tough">40</a>
+    <span class="sep">·</span>
+    <a href="campaign_41.html" class="medium">41</a>
+    <a href="campaign_42.html" class="medium active">42</a>
+    <a href="campaign_43.html" class="tough">43</a>
+    <a href="campaign_44.html" class="tough">44</a>
+    <a href="campaign_45.html" class="medium">45</a>
+    <a href="campaign_46.html" class="tough">46</a>
+    <a href="campaign_47.html" class="medium">47</a>
+    <a href="campaign_48.html" class="tough">48</a>
+    <a href="campaign_49.html" class="medium">49</a>
+    <a href="campaign_50.html" class="tough">50</a>
+    <span class="sep">·</span>
+    <a href="index.html">← All</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div class="ig-user-info">
+          <div class="ig-handle">skinome.official</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="c42-letterhead">
+        <div class="c42-brand">THE SKINCARE INDUSTRY</div>
+        <div class="c42-ref">Ref: SKI-2026-APOLOGY<br>To: Every customer, ever</div>
+      </div>
+      <div class="c42-subject">Subject</div>
+      <div class="c42-subject-line">An Apology We'll Never Send</div>
+      <div class="c42-salutation">Dear customer,</div>
+      <div class="c42-body">
+        <p>We are sorry that we <strong>never told you</strong> your moisturizer was manufactured 18 months before you bought it.</p>
+        <p>We are sorry for the <strong>phenoxyethanol</strong> we added so it could sit in a warehouse without spoiling. <span class="strikeout">We meant well.</span></p>
+        <p>We are sorry that our <strong>"natural"</strong> label technically meant the base ingredients were plant-derived while the preservatives were synthetic.</p>
+        <p>We <span class="strikeout">will do better</span> are not planning to change.</p>
+      </div>
+      <div class="c42-sig">
+        <div class="c42-sig-close">Insincerely yours,</div>
+        <div class="c42-sig-name">The Skincare Industry</div>
+        <div class="c42-sig-title">Est. decades ago · Profit-first · Microbiome-indifferent</div>
+      </div>
+      <div class="c42-ps">P.S. <strong>Skinome</strong> wrote this letter. We thought you should read it.</div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">38,440 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome.official</span> The skincare industry will never send this. So we did it for them. Every apology in this letter is backed by INCI lists, EU regulation, and 30 years of industry practice. We're not angry — we just thought you deserved to know. Skinome. Built differently.
+      <div class="ig-hashtags">#apology #skinome #skincaretruth #openingtheindustry #microbiome #preservativefree #transparency</div>
+    </div>
+    <div class="ig-comments">View all 8,120 comments</div>
+    <div class="ig-timestamp">4 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">42</div>
+    <div class="info-campaign-name">The Apology Letter</div>
+    <div class="tone-badge">Medium</div>
+    <div class="info-divider"></div>
+    <div class="info-section">
+      <div class="info-section-title">Strategy</div>
+      <div class="info-section-body">A fake apology letter written on behalf of the skincare industry — the one they'll never actually send. The strikethroughs expose the corporate mind behind the apology (they meant well → crossed out; will do better → crossed out, replaced with "are not planning to change"). The P.S. reveals the source: Skinome wrote this. The format is shareable, funny, and devastating.</div>
+    </div>
+    <div class="info-section">
+      <div class="info-section-title">Mechanisms</div>
+      <ul class="info-angles">
+        <li>Fake apology format = darkly funny; humor lowers defenses before the truth lands</li>
+        <li>Strikethroughs reveal the "real" corporate voice beneath the apology</li>
+        <li>"Insincerely yours" + "Microbiome-indifferent" — editorial voice at peak sharpness</li>
+        <li>P.S. reveal: Skinome wrote this — transforms the ad from attack to expose</li>
+      </ul>
+    </div>
+    <div class="info-section">
+      <div class="info-section-title">Caption (English / Swedish)</div>
+      <div class="info-caption-box">
+        <p><em>EN:</em> The skincare industry will never send this. So we wrote it for them. Every apology is backed by INCI lists, EU regulation, and 30 years of industry practice. We thought you deserved to know.</p>
+        <p style="margin-top:8px"><em>SV:</em> Hudvårdsindustrin kommer aldrig skicka det här. Så vi skrev det åt dem. Varje ursäkt stöds av INCI-listor, EU-förordningar och 30 år av branschpraxis. Vi tyckte att du förtjänade att veta.</p>
+      </div>
+    </div>
+    <div class="info-nav">
+      <a href="campaign_41.html">← 41</a>
+      <a href="campaign_43.html">43 →</a>
+      <a href="index.html" class="home">All Campaigns</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>Skinome · Confrontational Campaign Series · Campaigns 31–50 · 2026</p>
+</footer>
+</body>
+</html>

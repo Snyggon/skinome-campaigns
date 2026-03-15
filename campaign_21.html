@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign 21 — #1 Killer — Skinome</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f6f3f0; min-height: 100vh; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+
+  .site-header { background: #0d0d0d; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .site-header .brand { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #746c64; }
+  .site-header .brand span { color: #f6f3f0; }
+  .pill-nav { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+  .pill-nav a { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; padding: 4px 9px; border-radius: 20px; border: 1px solid #2a2520; color: #746c64; transition: all 0.15s; }
+  .pill-nav a:hover { background: #1e1e1e; color: #d5d0c9; }
+  .pill-nav a.medium.active { background: #fffdd9; color: #746c64; border-color: #fffdd9; }
+  .pill-nav .sep { color: #2a2520; font-size: 10px; }
+
+  .main-wrap { max-width: 1100px; margin: 0 auto; padding: 56px 40px 80px; display: flex; gap: 0; align-items: flex-start; }
+  .ig-card { width: 560px; flex-shrink: 0; background: #ffffff; border: 1px solid #e0dbd3; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+
+  .ig-post-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #f6f3f0; }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar { width: 42px; height: 42px; border-radius: 50%; background: #0d0d0d; border: 1px solid #d5d0c9; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #f6f3f0; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+  .ig-user-info .ig-handle { font-size: 14px; font-weight: 700; color: #0d0d0d; font-family: 'Space Grotesk', sans-serif; }
+  .ig-user-info .ig-location { font-size: 12px; color: #746c64; font-family: 'Barlow', sans-serif; }
+  .ig-more { font-size: 20px; color: #0d0d0d; letter-spacing: 2px; cursor: pointer; }
+
+  /* CREATIVE 21 — Ironic Listicle / Big #1 */
+  .post-creative {
+    width: 100%; aspect-ratio: 1;
+    background: #fffdd9;
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: space-between;
+    padding: 32px 36px;
+    position: relative; overflow: hidden;
+  }
+
+  .c21-tag {
+    font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase; color: #c8ba60;
+    margin-bottom: 0;
+  }
+
+  .c21-number-block {
+    display: flex; align-items: baseline; gap: 0;
+    line-height: 1;
+  }
+  .c21-hash {
+    font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700;
+    color: #c8ba60; letter-spacing: -0.05em;
+  }
+  .c21-num {
+    font-family: 'Space Grotesk', sans-serif; font-size: 120px; font-weight: 700;
+    color: #0d0d0d; letter-spacing: -0.07em; line-height: 0.85;
+  }
+
+  .c21-headline {
+    font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700;
+    color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.25;
+    max-width: 260px; margin-top: -8px;
+  }
+
+  .c21-answer-block {
+    background: #0d0d0d; padding: 16px 20px;
+    width: 100%;
+  }
+  .c21-answer-label {
+    font-family: 'Barlow', sans-serif; font-size: 8px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; color: #746c64;
+    margin-bottom: 6px;
+  }
+  .c21-answer-name {
+    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700;
+    color: #f6f3f0; letter-spacing: -0.01em; margin-bottom: 4px;
+  }
+  .c21-answer-def {
+    font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 300;
+    color: #746c64; line-height: 1.5;
+  }
+  .c21-answer-where {
+    font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 400;
+    color: #3d3935; margin-top: 6px;
+  }
+
+  .c21-footer { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+  .c21-subline {
+    font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 400;
+    color: #746c64;
+  }
+  .c21-logo {
+    font-family: 'Space Grotesk', sans-serif; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #c8ba60;
+  }
+
+  .ig-actions { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; background: #f6f3f0; }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #0d0d0d; }
+  .ig-likes { padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #0d0d0d; background: #f6f3f0; font-family: 'Space Grotesk', sans-serif; }
+  .ig-caption { padding: 0 16px 10px; font-size: 14px; color: #3d3935; line-height: 1.6; font-family: 'Barlow', sans-serif; background: #f6f3f0; }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments { padding: 0 16px 6px; font-size: 13px; color: #746c64; font-family: 'Barlow', sans-serif; background: #f6f3f0; }
+  .ig-timestamp { padding: 0 16px 16px; font-size: 11px; color: #d5d0c9; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Barlow', sans-serif; background: #f6f3f0; }
+
+  .info-col { flex: 1; padding-left: 60px; padding-top: 8px; }
+  .info-campaign-num { font-family: 'Space Grotesk', sans-serif; font-size: 80px; font-weight: 700; color: #e8e2d8; line-height: 1; letter-spacing: -0.05em; margin-bottom: 8px; }
+  .info-campaign-name { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+  .tone-badge { display: inline-block; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; margin-bottom: 28px; background: #fffdd9; color: #746c64; }
+  .info-divider { width: 32px; height: 2px; background: #e0dbd3; margin-bottom: 24px; }
+  .info-section { margin-bottom: 24px; }
+  .info-section-title { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #d5d0c9; margin-bottom: 10px; }
+  .info-section-body { font-family: 'Barlow', sans-serif; font-size: 14px; color: #3d3935; line-height: 1.7; }
+  .info-section-body strong { color: #0d0d0d; font-weight: 700; }
+  .info-angles { list-style: none; margin-top: 8px; }
+  .info-angles li { font-family: 'Barlow', sans-serif; font-size: 13px; color: #3d3935; line-height: 1.6; padding: 6px 0; border-bottom: 1px solid #f0ebe5; }
+  .info-angles li:last-child { border-bottom: none; }
+  .info-angles li::before { content: "→ "; color: #d5d0c9; }
+  .info-caption-box { background: #f6f3f0; border-left: 2px solid #fffdd9; padding: 14px 16px; }
+  .info-caption-box p { font-family: 'Barlow', sans-serif; font-size: 13px; color: #3d3935; line-height: 1.7; }
+  .info-caption-box p em { color: #746c64; font-style: normal; }
+  .info-nav { display: flex; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8e2d8; }
+  .info-nav a { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; color: #746c64; text-transform: uppercase; padding: 8px 16px; border: 1px solid #e0dbd3; border-radius: 4px; transition: all 0.15s; }
+  .info-nav a:hover { background: #0d0d0d; color: #f6f3f0; border-color: #0d0d0d; }
+  .info-nav a.home { margin-left: auto; }
+  .site-footer { background: #0d0d0d; padding: 24px 40px; margin-top: 60px; }
+  .site-footer p { font-family: 'Barlow', sans-serif; font-size: 11px; color: #2a2520; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>Skinome</span> · Campaigns</div>
+  <nav class="pill-nav">
+    <a href="campaign_11.html" class="medium">11</a>
+    <a href="campaign_12.html" class="medium">12</a>
+    <a href="campaign_13.html" class="tough">13</a>
+    <a href="campaign_14.html" class="tough">14</a>
+    <a href="campaign_15.html" class="medium">15</a>
+    <a href="campaign_16.html" class="tough">16</a>
+    <a href="campaign_17.html" class="medium">17</a>
+    <a href="campaign_18.html" class="tough">18</a>
+    <a href="campaign_19.html" class="medium">19</a>
+    <a href="campaign_20.html" class="tough">20</a>
+    <span class="sep">·</span>
+    <a href="campaign_21.html" class="medium active">21</a>
+    <a href="campaign_22.html" class="tough">22</a>
+    <a href="campaign_23.html" class="tough">23</a>
+    <a href="campaign_24.html" class="tough">24</a>
+    <a href="campaign_25.html" class="medium">25</a>
+    <a href="campaign_26.html" class="medium">26</a>
+    <a href="campaign_27.html" class="medium">27</a>
+    <a href="campaign_28.html" class="medium">28</a>
+    <a href="campaign_29.html" class="tough">29</a>
+    <a href="campaign_30.html" class="tough">30</a>
+    <span class="sep">·</span>
+    <a href="index.html">← All</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div class="ig-user-info">
+          <div class="ig-handle">skinome.official</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="c21-tag">Skincare science, unpacked</div>
+
+      <div>
+        <div class="c21-number-block">
+          <span class="c21-hash">#</span>
+          <span class="c21-num">1</span>
+        </div>
+        <div class="c21-headline">Preservative disrupting<br>your skin microbiome<br>right now</div>
+      </div>
+
+      <div class="c21-answer-block">
+        <div class="c21-answer-label">The answer</div>
+        <div class="c21-answer-name">Methylisothiazolinone (MI)</div>
+        <div class="c21-answer-def">A broad-spectrum biocide. Kills bacteria — including the ones protecting your skin barrier.</div>
+        <div class="c21-answer-where">Found in: moisturizers, serums, cleansers, toners. Maybe your bathroom right now.</div>
+      </div>
+
+      <div class="c21-footer">
+        <div class="c21-subline">Skinome: zero MI. Zero compromise.</div>
+        <div class="c21-logo">Skinome</div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">5,423 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome.official</span> Methylisothiazolinone (MI) is one of the most common preservatives in skincare. It works by killing bacteria — which includes the bacteria your skin needs to stay balanced. Save this and check your products tonight. Skinome: zero MI, zero preservatives.
+      <div class="ig-hashtags">#methylisothiazolinone #skinmicrobiome #readthelabel #skinome #preservativefree #cleanbeauty #skincareingredients</div>
+    </div>
+    <div class="ig-comments">View all 678 comments</div>
+    <div class="ig-timestamp">20 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">21</div>
+    <div class="info-campaign-name">#1 Killer of<br>Your Microbiome</div>
+    <div class="tone-badge">Medium</div>
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-section-title">Strategy</div>
+      <div class="info-section-body">
+        Ironic appropriation of the listicle format. The giant "#1" subverts clickbait expectations — but the content underneath is genuinely scientific and serious. The contrast between the bold visual format and the clinical information creates the same tension as Liquid Death's death metal branding for water. Style signals: "we know what gets attention." Content signals: "we also know what matters."
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-section-title">Confrontational Mechanism</div>
+      <ul class="info-angles">
+        <li>Hijacks the listicle format — immediately familiar and stoppable</li>
+        <li>Pale yellow background is warm enough to not feel threatening, forcing engagement before judgment</li>
+        <li>The dark answer box makes the information feel authoritative</li>
+        <li>"Maybe your bathroom right now" — personalized accusation</li>
+        <li>Saves post mechanic: "check your products tonight" drives saves</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-section-title">Caption (English / Swedish)</div>
+      <div class="info-caption-box">
+        <p><em>EN:</em> Methylisothiazolinone (MI) is one of the most common preservatives in skincare. It kills bacteria — including the ones your skin needs. Save this. Check your products tonight.</p>
+        <p style="margin-top:8px"><em>SV:</em> Metylistiazolion (MI) är ett av de vanligaste konserveringsmedlen i hudvård. Det dödar bakterier — inklusive de din hud behöver. Spara detta. Kontrollera dina produkter ikväll.</p>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="campaign_20.html">← 20</a>
+      <a href="campaign_22.html">22 →</a>
+      <a href="index.html" class="home">All Campaigns</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>Skinome · Confrontational Campaign Series · Campaigns 11–30 · 2026</p>
+</footer>
+</body>
+</html>

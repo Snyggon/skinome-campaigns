@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome — Campaign Library (50 Ads)</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d0d0d;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #f6f3f0;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: 1px solid #1a1a1a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .site-header .brand span { color: #f6f3f0; }
+  .header-tag {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #3d3935;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px 64px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #746c64;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: #f6f3f0;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    margin-bottom: 24px;
+  }
+  .hero-title span { color: #3d3935; font-weight: 300; }
+  .hero-body {
+    font-family: 'Barlow', sans-serif;
+    font-size: 17px;
+    color: #746c64;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 36px;
+  }
+
+  /* Tone legend */
+  .tone-legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    letter-spacing: 0.06em;
+  }
+  .legend-pip {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-pip.soft   { background: #d5d0c9; }
+  .legend-pip.medium { background: #fffdd9; }
+  .legend-pip.tough  { background: #3d3935; border: 1px solid #746c64; }
+
+  /* ── CAMPAIGN GRID ── */
+  .grid-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    border: 1px solid #1a1a1a;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    display: block;
+  }
+  .card:hover {
+    border-color: #3d3935;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+
+  .card-preview {
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-preview.soft-1  { background: linear-gradient(135deg, #f6f3f0, #e8e2d8); }
+  .card-preview.soft-2  { background: linear-gradient(135deg, #fffdd9, #f6f3f0); }
+  .card-preview.soft-3  { background: linear-gradient(135deg, #f6f3f0, #d5d0c9); }
+  .card-preview.med-1   { background: linear-gradient(135deg, #0d0d0d, #1a1a1a); }
+  .card-preview.med-2   { background: linear-gradient(135deg, #f6f3f0, #d5d0c9); }
+  .card-preview.med-3   { background: linear-gradient(135deg, #0b0b0b, #1e1e1e); }
+  .card-preview.med-4   { background: linear-gradient(135deg, #f6f3f0, #e8e2d8); }
+  .card-preview.tough-1 { background: linear-gradient(135deg, #0d0d0d, #111); }
+  .card-preview.tough-2 { background: #000; }
+  .card-preview.tough-3 { background: #000; }
+
+  /* Series 2 preview backgrounds */
+  .card-preview.s2-med-a  { background: linear-gradient(135deg, #f6f3f0, #ebe5da); }
+  .card-preview.s2-med-b  { background: linear-gradient(135deg, #0a0a0a, #1c2020); }
+  .card-preview.s2-med-c  { background: linear-gradient(135deg, #dae8ed, #b8d4db); }
+  .card-preview.s2-med-d  { background: linear-gradient(135deg, #f6f3f0, #d5d0c9); }
+  .card-preview.s2-med-e  { background: linear-gradient(135deg, #fffdd9, #f0eecc); }
+  .card-preview.s2-med-f  { background: linear-gradient(135deg, #fdfbf4, #ede8d8); }
+  .card-preview.s2-med-g  { background: #000; }
+  .card-preview.s2-med-h  { background: linear-gradient(135deg, #0a0a14, #0d0d20); }
+  .card-preview.s2-med-i  { background: linear-gradient(135deg, #0a0a0a, #111118); }
+  .card-preview.s2-tough-a { background: #0a0a0a; }
+  .card-preview.s2-tough-b { background: #000; }
+  .card-preview.s2-tough-c { background: linear-gradient(135deg, #000, #0d0d0d); }
+  .card-preview.s2-tough-d { background: linear-gradient(135deg, #0d0005, #0a0a0a); }
+  .card-preview.s2-tough-e { background: linear-gradient(135deg, #050008, #0a0a0a); }
+  .card-preview.s2-tough-f { background: linear-gradient(135deg, #fdfbf4, #ede8d8); }
+  .card-preview.s2-tough-g { background: linear-gradient(135deg, #0a0a0a, #1a1a1a); }
+  .card-preview.s2-tough-h { background: linear-gradient(135deg, #1a1a1a, #0d0d0d); }
+
+  /* Series 3 preview backgrounds */
+  .card-preview.s3-dark-a  { background: #0d0d0d; }
+  .card-preview.s3-dark-b  { background: linear-gradient(135deg, #0d0d0d, #111); }
+  .card-preview.s3-dark-c  { background: linear-gradient(135deg, #0d1117, #1a2030); }
+  .card-preview.s3-dark-d  { background: linear-gradient(135deg, #111310, #1e2018); }
+  .card-preview.s3-dark-e  { background: linear-gradient(135deg, #1a1520, #0d0d0d); }
+  .card-preview.s3-light-a { background: #ffffff; }
+  .card-preview.s3-light-b { background: linear-gradient(135deg, #f6f3f0, #ede9e3); }
+  .card-preview.s3-light-c { background: linear-gradient(135deg, #fdf8f0, #f0e8d8); }
+  .card-preview.s3-light-d { background: linear-gradient(135deg, #f5f0e8, #e8dfc8); }
+  .card-preview.s3-split-a { background: linear-gradient(to right, #d5d0c9 50%, #0d3d30 50%); }
+  .card-preview.s3-navy    { background: linear-gradient(135deg, #1a1f2e, #101520); }
+
+  /* Series divider */
+  .series-divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 0 0 56px;
+  }
+  .series-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #f6f3f0;
+    margin-bottom: 8px;
+  }
+  .series-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #3d3935;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+
+  .preview-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    opacity: 0.12;
+    user-select: none;
+  }
+  .preview-num.dark  { color: #0d0d0d; }
+  .preview-num.light { color: #f6f3f0; }
+
+  .preview-tone {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .preview-tone.soft   { background: #d5d0c9; color: #3d3935; }
+  .preview-tone.medium { background: #fffdd9; color: #746c64; }
+  .preview-tone.tough  { background: #3d3935; color: #f6f3f0; }
+
+  .card-body {
+    padding: 20px 20px 22px;
+    border-top: 1px solid #1a1a1a;
+  }
+  .card-meta {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #2a2520;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f6f3f0;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .card-desc {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+  .card-cta {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3d3935;
+    transition: color 0.15s;
+  }
+  .card:hover .card-cta { color: #d5d0c9; }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #2a2520;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .tier-group { margin-bottom: 48px; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid #1a1a1a;
+    padding: 32px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #2a2520;
+    text-transform: uppercase;
+  }
+  .footer-copy {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #1a1a1a;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Campaign Mockups</div>
+  <div class="header-tag">The Label Campaign Series</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Skinome — Instagram Campaign Mockups</div>
+  <h1 class="hero-title">Campaign<br><span>Library</span></h1>
+  <p class="hero-body">50 Instagram campaigns across three series. Series 1 builds on ingredient curiosity. Series 2 goes further: confrontational marketing grounded in science. Series 3 turns up the pressure — formats that tease the industry directly, from tombstones and wanted posters to EU regulation parodies and fake apology letters.</p>
+
+  <div class="tone-legend">
+    <div class="legend-item">
+      <div class="legend-pip soft"></div>
+      <span>Soft — Curiosity and education</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-pip medium"></div>
+      <span>Medium — Provocation and data</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-pip tough"></div>
+      <span>Tough — Industry challenge</span>
+    </div>
+  </div>
+</section>
+
+<div class="grid-wrap">
+
+  <div class="series-heading">Series 1 — The Label Campaign</div>
+  <p class="series-sub">The original 10 ads. Built around a single insight: most brands don't want you to read the label. Start here for cold audiences.</p>
+
+  <!-- SOFT TIER -->
+  <div class="tier-group">
+    <div class="section-label">Soft — Gentle curiosity, no friction, maximum shareability</div>
+    <div class="grid">
+
+      <a href="campaign_01.html" class="card">
+        <div class="card-preview soft-1">
+          <div class="preview-num dark">01</div>
+          <div class="preview-tone soft">Soft</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 01</div>
+          <div class="card-title">The Gentle Invitation</div>
+          <div class="card-desc">6 vs 27+ — a simple number that says everything. Warm, curiosity-driven, no preaching. Ideal first touchpoint for cold audiences.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_02.html" class="card">
+        <div class="card-preview soft-2">
+          <div class="preview-num dark">02</div>
+          <div class="preview-tone soft">Soft</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 02</div>
+          <div class="card-title">The Food Analogy</div>
+          <div class="card-desc">You read your oat milk label. Why not your face cream? Split visual, Swedish caption — universally relatable entry point.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_03.html" class="card">
+        <div class="card-preview soft-3">
+          <div class="preview-num dark">03</div>
+          <div class="preview-tone soft">Soft</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 03</div>
+          <div class="card-title">The Side-by-Side</div>
+          <div class="card-desc">Two ingredient lists. No commentary needed. Ends with "That's it." — high save and share rate expected.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- MEDIUM TIER -->
+  <div class="tier-group">
+    <div class="section-label">Medium — Provocation with data, comment drivers, perception shifts</div>
+    <div class="grid">
+
+      <a href="campaign_04.html" class="card">
+        <div class="card-preview med-1">
+          <div class="preview-num light">04</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 04</div>
+          <div class="card-title">Count Them</div>
+          <div class="card-desc">Go ahead — count your moisturizer's ingredients. Drop your number in comments. Highest comment-engagement mechanic in the set.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_05.html" class="card">
+        <div class="card-preview med-2">
+          <div class="preview-num dark">05</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 05</div>
+          <div class="card-title">Shelf Life</div>
+          <div class="card-desc">Best Before 2028. Turns Skinome's 3-month expiry from perceived weakness into proof of purity. Reframe campaign.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_06.html" class="card">
+        <div class="card-preview med-3">
+          <div class="preview-num light">06</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 06</div>
+          <div class="card-title">The 60% Stat</div>
+          <div class="card-desc">60% of what you apply absorbs into your bloodstream. "Read. The. Label." — stat-driven, science-backed, Swedish copy.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_07.html" class="card">
+        <div class="card-preview med-4">
+          <div class="preview-num dark">07</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 07</div>
+          <div class="card-title">Pronounce It</div>
+          <div class="card-desc">Try saying Methylchloroisothiazolinone. If you can't say it, should it be on your face? Proven viral content mechanic.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- TOUGH TIER -->
+  <div class="tier-group">
+    <div class="section-label">Tough — Industry challenge, brand manifesto, maximum conviction</div>
+    <div class="grid">
+
+      <a href="campaign_08.html" class="card">
+        <div class="card-preview tough-1">
+          <div class="preview-num light">08</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 08</div>
+          <div class="card-title">Congratulations</div>
+          <div class="card-desc">Congratulations. You just paid for preservatives. Confrontational opener, educational pivot. Brand taking a real commercial stance.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_09.html" class="card">
+        <div class="card-preview tough-2">
+          <div class="preview-num light">09</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 09</div>
+          <div class="card-title">Name Them</div>
+          <div class="card-desc">7 real preservatives named and classified. "Thought you should know." Skinome: zero of these. Highest viral potential in the set.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_10.html" class="card">
+        <div class="card-preview tough-3">
+          <div class="preview-num light">10</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 10</div>
+          <div class="card-title">The Industry's Lie</div>
+          <div class="card-desc">"Long shelf life doesn't mean good for your skin." Brand manifesto in four words: We chose your skin. Deploy sparingly.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- SERIES 2 — CONFRONTATIONAL MARKETING                       -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="grid-wrap" style="padding-top: 0;">
+  <hr class="series-divider">
+  <div class="series-heading">Series 2 — Confrontational</div>
+  <p class="series-sub">20 ads built on six psychological frameworks: Villain Principle, Tribe Signal, Specificity Rule, Underdog Frame, Paradox Mechanism, Earned Authority. Every claim is backed by verifiable Skinome fact. Run medium-tone first, escalate on performance.</p>
+
+  <!-- MEDIUM TIER — S2 -->
+  <div class="tier-group">
+    <div class="section-label">Medium — Questions that provoke, data that sticks</div>
+    <div class="grid">
+
+      <a href="campaign_11.html" class="card">
+        <div class="card-preview s2-med-a">
+          <div class="preview-num dark">11</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 11</div>
+          <div class="card-title">Why Does It Last 3 Years?</div>
+          <div class="card-desc">Rhetorical question as hook. If it lasts 3 years on a shelf, what exactly is keeping it "fresh"? Forces the audience to arrive at the answer themselves.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_12.html" class="card">
+        <div class="card-preview s2-med-b">
+          <div class="preview-num light">12</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 12</div>
+          <div class="card-title">Best Before: Never vs 90 Days</div>
+          <div class="card-desc">Split-panel VS format. Dark vs light. Two expiry dates as a binary choice. No copy needed — the visual does the argument.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_15.html" class="card">
+        <div class="card-preview s2-med-c">
+          <div class="preview-num dark">15</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 15</div>
+          <div class="card-title">Clean Water, Dirty Skincare</div>
+          <div class="card-desc">Dalarna water purity vs an ingredient list full of preservatives. Teal/dark split grid with three-tier alert highlighting. Origin story meets exposé.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_17.html" class="card">
+        <div class="card-preview s2-med-d">
+          <div class="preview-num dark">17</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 17</div>
+          <div class="card-title">Shelf Life vs Skin Life</div>
+          <div class="card-desc">Progress bar comparison: competitor at 100%, Skinome at 25% — and the shorter bar wins. Inverts visual dominance to reframe the trade-off.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_19.html" class="card">
+        <div class="card-preview s2-med-e">
+          <div class="preview-num dark">19</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 19</div>
+          <div class="card-title">We Refrigerate Because We Respect You</div>
+          <div class="card-desc">Ice-blue frost palette. Cold-chain steps with crystal CSS motifs. Turns refrigeration from logistics into brand philosophy — warmth through cold.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_21.html" class="card">
+        <div class="card-preview s2-med-e">
+          <div class="preview-num dark">21</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 21</div>
+          <div class="card-title">#1 Killer of Your Microbiome</div>
+          <div class="card-desc">120px giant "#1" on pale yellow. Answer box names Methylisothiazolinone. Hook-and-reveal structure engineered for maximum stop-scroll friction.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_25.html" class="card">
+        <div class="card-preview s2-med-f">
+          <div class="preview-num dark">25</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 25</div>
+          <div class="card-title">Shelf-Stable vs. Fresh</div>
+          <div class="card-desc">Dictionary entry format. Two definitions: shelf·sta·ble (indictment) and fresh / see also: Skinome (celebration). "Not to be confused with: good for your skin."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_26.html" class="card">
+        <div class="card-preview s2-med-g">
+          <div class="preview-num light">26</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 26</div>
+          <div class="card-title">Ours Goes Bad. On Purpose.</div>
+          <div class="card-desc">Punk circular stamp on black. "EXPIRES in 90 days." Turns a perceived weakness into a badge of honour. "If it doesn't expire, ask why."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_27.html" class="card">
+        <div class="card-preview s2-med-h">
+          <div class="preview-num light">27</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 27</div>
+          <div class="card-title">We Ship Cold. No Exceptions.</div>
+          <div class="card-desc">Shipping label / logistics format in Roboto Mono. Spec rows: Storage "2°C–8°C ALWAYS", Preservatives "None. Not required. Not present." Clinical authority aesthetic.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_28.html" class="card">
+        <div class="card-preview s2-med-i">
+          <div class="preview-num light">28</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 28</div>
+          <div class="card-title">20 Years of Research. One Answer.</div>
+          <div class="card-desc">Vertical CSS timeline from 1999 to 2019. Key research milestones culminate in a single filled dot: "Skinome." Earned authority made visual.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- TOUGH TIER — S2 -->
+  <div class="tier-group">
+    <div class="section-label">Tough — Industry indictment, earned provocation, maximum conviction</div>
+    <div class="grid">
+
+      <a href="campaign_13.html" class="card">
+        <div class="card-preview s2-tough-a">
+          <div class="preview-num light">13</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 13</div>
+          <div class="card-title">Formaldehyde-Releasing</div>
+          <div class="card-desc">Ingredient dossier format. DMDM Hydantoin profiled clinically. Giant "FORMALDEHYDE" watermark. "Check your ingredient list." Dark. Specific. Verifiable.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_14.html" class="card">
+        <div class="card-preview s2-tough-b">
+          <div class="preview-num light">14</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 14</div>
+          <div class="card-title">Microbiome System Error</div>
+          <div class="card-desc">Terminal hacker aesthetic. Green on near-black. Diagnostic output escalates [!] → [X] CRITICAL. Blinking cursor. Tech-literate, deeply confrontational.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_16.html" class="card">
+        <div class="card-preview s2-tough-c">
+          <div class="preview-num light">16</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 16</div>
+          <div class="card-title">They Know.</div>
+          <div class="card-desc">Pure black. No imagery. Copy only: "They know. They made a calculation. Shelf life won. You lost." The most minimal and prosecutorial ad in the set.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_18.html" class="card">
+        <div class="card-preview s2-tough-d">
+          <div class="preview-num light">18</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 18</div>
+          <div class="card-title">The Science Was There</div>
+          <div class="card-desc">Two-column editorial: left = research findings by year, right = industry action ("Nothing. Nothing. Nothing. Skinome."). The single word "Skinome." is the payoff.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_20.html" class="card">
+        <div class="card-preview s2-tough-e">
+          <div class="preview-num light">20</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 20</div>
+          <div class="card-title">The Receipt</div>
+          <div class="card-desc">Itemized receipt in Roboto Mono. Active ingredients: 12 SEK. Brand tax: 254.50 SEK. Total: 890 SEK. "Ingredients that touch your skin: 15.50 kr. Everything else: 874.50 kr."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_22.html" class="card">
+        <div class="card-preview s2-tough-f">
+          <div class="preview-num dark">22</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 22</div>
+          <div class="card-title">Read It. Really Read It.</div>
+          <div class="card-desc">Annotated ingredient list with three-tier underline system: yellow = contact allergen, red = microbiome-disrupting, purple = endocrine concern. Forensic document aesthetic.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_23.html" class="card">
+        <div class="card-preview s2-tough-f">
+          <div class="preview-num dark">23</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 23</div>
+          <div class="card-title">Certificate of Preservatives Received</div>
+          <div class="card-desc">Ornate gold-border certificate. Lists preservatives as "awards". Signed by "The Cosmetics Industry, since 1960." Irony at peak saturation — designed for shares.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_24.html" class="card">
+        <div class="card-preview s2-tough-g">
+          <div class="preview-num light">24</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 24</div>
+          <div class="card-title">1,000 Species. Protect All of Them.</div>
+          <div class="card-desc">JS-generated dot grid data visualisation. Left: mostly dark dots (~25% alive). Right: ~98% bright. Visual proof of microbiome impact — data made human.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_29.html" class="card">
+        <div class="card-preview s2-tough-h">
+          <div class="preview-num light">29</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 29</div>
+          <div class="card-title">Dear Skincare Industry.</div>
+          <div class="card-desc">Open letter. IM Fell English italic serif on parchment. "You knew this. You chose shelf life anyway." Signed: Dr. Johanna Gillbro. Highest predicted engagement in the set.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_30.html" class="card">
+        <div class="card-preview s2-tough-b">
+          <div class="preview-num light">30</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 30</div>
+          <div class="card-title">3 vs 36</div>
+          <div class="card-desc">The series closer. Two giant numbers on a split dark panel. "36" almost invisible. "3" bright. Smaller number, brighter light. "One was designed for you. One wasn't."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- SERIES 3 — CONFRONTATIONAL INDUSTRY TEASE                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="grid-wrap" style="padding-top: 0;">
+  <hr class="series-divider">
+  <div class="series-heading">Series 3 — Industry Tease</div>
+  <p class="series-sub">20 campaigns that almost tease the skincare industry. Parody formats — receipts, tombstones, EU regulations, wanted posters, fake apology letters, betting odds boards — each one showing Skinome as the only alternative that actually qualifies. Strong contrast. No subtlety.</p>
+
+  <!-- MEDIUM TIER — S3 -->
+  <div class="tier-group">
+    <div class="section-label">Medium — Provocation through format, saveable and shareable</div>
+    <div class="grid">
+
+      <a href="campaign_33.html" class="card">
+        <div class="card-preview s3-light-a">
+          <div class="preview-num dark">33</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 33</div>
+          <div class="card-title">WARNING: None of These</div>
+          <div class="card-desc">Inverted warning label on yellow. Six preservatives listed with ✕ marks. "In Skinome, you won't find a single one." High-contrast, share-ready graphic.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_35.html" class="card">
+        <div class="card-preview s3-light-a">
+          <div class="preview-num dark">35</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 35</div>
+          <div class="card-title">Purchase Receipt</div>
+          <div class="card-desc">Shopping receipt turned indictment. Every competitor product struck through. Hidden cost: microbiome damage. "Thank you for shopping with chemicals."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_36.html" class="card">
+        <div class="card-preview s3-light-b">
+          <div class="preview-num dark">36</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 36</div>
+          <div class="card-title">Data Table</div>
+          <div class="card-desc">Scientific comparison table. Six rows. Industry standard column struck through. Verdict: "Only one of these is skincare." Tables are trusted more than claims.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_38.html" class="card">
+        <div class="card-preview s3-light-d">
+          <div class="preview-num dark">38</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 38</div>
+          <div class="card-title">The Skin Gazette</div>
+          <div class="card-desc">Newspaper front page. "Skincare Brand Sold You Products Made 3 Years Ago." Two-column editorial layout. Pull quote: "We expire in 90 days. That's the proof it's fresh."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_41.html" class="card">
+        <div class="card-preview s3-light-b">
+          <div class="preview-num dark">41</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 41</div>
+          <div class="card-title">Ingredient Autopsy</div>
+          <div class="card-desc">Side-by-side autopsy of two moisturizers. Five clinical findings each. Beige vs dark. "Conclusion: Only one of these is skincare." The darkest column wins.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_42.html" class="card">
+        <div class="card-preview s3-light-c">
+          <div class="preview-num dark">42</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 42</div>
+          <div class="card-title">The Apology Letter</div>
+          <div class="card-desc">Fake apology from the skincare industry — the one they'll never send. Strikethroughs reveal the real corporate voice. "Insincerely yours, The Skincare Industry." P.S.: Skinome wrote this.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_45.html" class="card">
+        <div class="card-preview s3-dark-e">
+          <div class="preview-num light">45</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 45</div>
+          <div class="card-title">Wanted: Phenoxyethanol</div>
+          <div class="card-desc">Western wanted poster for a specific preservative. Charges, method, status. Found in Skinome: "Not present. Not now. Not ever." Named ingredient = named villain.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_47.html" class="card">
+        <div class="card-preview s3-split-a">
+          <div class="preview-num dark">47</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 47</div>
+          <div class="card-title">36 vs 90</div>
+          <div class="card-desc">Split panel. 36 months left, 90 days right. Visual expectation (bigger = better) reversed by copy. "Expires fast because it's actually fresh." Deep forest green closes.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_49.html" class="card">
+        <div class="card-preview s3-dark-a">
+          <div class="preview-num light">49</div>
+          <div class="preview-tone medium">Medium</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 49</div>
+          <div class="card-title">Periodic Table</div>
+          <div class="card-desc">Periodic table of skincare ingredients. Top row: four preservatives (red). Bottom row: four Skinome properties (green). "Only one row belongs on your skin."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- TOUGH TIER — S3 -->
+  <div class="tier-group">
+    <div class="section-label">Tough — Industry indictment at peak intensity, maximum disruption</div>
+    <div class="grid">
+
+      <a href="campaign_31.html" class="card">
+        <div class="card-preview s3-dark-a">
+          <div class="preview-num light">31</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 31</div>
+          <div class="card-title">GRATTIS.</div>
+          <div class="card-desc">Sarcastic congratulations. "Your moisturizer was manufactured in 2022. You called it skincare." Line-by-line build to gut-punch. 80px Swedish "Grattis" as the hook.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_32.html" class="card">
+        <div class="card-preview s3-light-a">
+          <div class="preview-num dark">32</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 32</div>
+          <div class="card-title">Three Charges</div>
+          <div class="card-desc">Legal indictment format. Three numbered charges against conventional skincare. Dark verdict panel: "Guilty." / "Skinome: not charged." Prosecution without hyperbole.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_34.html" class="card">
+        <div class="card-preview s3-dark-a">
+          <div class="preview-num light">34</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 34</div>
+          <div class="card-title">Industry Translator</div>
+          <div class="card-desc">Two-column grid. Left: industry claim (dim). Right: what it means (bright). "Dermatologist tested" → "One test. Paid for by us." Five rows. No mercy.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_37.html" class="card">
+        <div class="card-preview s3-navy">
+          <div class="preview-num light">37</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 37</div>
+          <div class="card-title">EU Regulation</div>
+          <div class="card-desc">Official EU regulation document parody. Dark navy, EU stars, real reg number. "Legal ≠ good." Three clauses exposing what's permitted. Skinome chose otherwise.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_39.html" class="card">
+        <div class="card-preview s3-dark-d">
+          <div class="preview-num light">39</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 39</div>
+          <div class="card-title">R.I.P. Microbiome</div>
+          <div class="card-desc">Tombstone memorial for your skin microbiome. "Thriving · Until You Started Taking Care of It." Named preservatives on the epitaph. "Give it a reason to come back."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_40.html" class="card">
+        <div class="card-preview s3-dark-a">
+          <div class="preview-num light">40</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 40</div>
+          <div class="card-title">WE REFUSE.</div>
+          <div class="card-desc">Brand manifesto. Four numbered refusals. "To add preservatives that extend our margins at the cost of your microbiome." Signed: Skinome, Stockholm. No compromise.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_43.html" class="card">
+        <div class="card-preview s3-dark-c">
+          <div class="preview-num light">43</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 43</div>
+          <div class="card-title">Betting Odds Board</div>
+          <div class="card-desc">Live sports-betting scoreboard. Industry rows: 14/1, 22/1, 8/1 — all fail. Skinome: 1/1 — pass. "Skinome. Always evens." Risk language applied to skincare transparency.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_44.html" class="card">
+        <div class="card-preview s3-light-a">
+          <div class="preview-num dark">44</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 44</div>
+          <div class="card-title">Product Recall</div>
+          <div class="card-desc">Official recall notice for "any product manufactured more than 90 days ago." 94% of mass-market moisturizers affected. Small print: "Not a real recall." It probably should be.</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_46.html" class="card">
+        <div class="card-preview s3-dark-a">
+          <div class="preview-num light">46</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 46</div>
+          <div class="card-title">Industry Awards</div>
+          <div class="card-desc">"Celebrating 30 Years of Doing It Wrong." Fake award ceremony. Categories: Best Mislabeling, Longest Shelf-to-Skin Time. Skinome: "Not eligible. Too different to compete."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_48.html" class="card">
+        <div class="card-preview s3-light-a">
+          <div class="preview-num dark">48</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 48</div>
+          <div class="card-title">Terms & Conditions</div>
+          <div class="card-desc">Three legal clauses — what you agreed to when you bought conventional skincare. Manufacture date withheld. Preservatives in 6-point font. Skinome's T&C: "No small print."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+      <a href="campaign_50.html" class="card">
+        <div class="card-preview s3-light-c">
+          <div class="preview-num dark">50</div>
+          <div class="preview-tone tough">Tough</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 50</div>
+          <div class="card-title">Academic Abstract</div>
+          <div class="card-desc">Series closer. Peer-reviewed paper format. Dr Johanna Gillbro, 20 years research. "Fresh is not a marketing word. It is a measurable property. Only Skinome meets it."</div>
+          <div class="card-cta">View campaign →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">Skinome — Campaign Library</div>
+  <div class="footer-copy">50 campaigns — skinome_official — 2026</div>
+</footer>
+
+</body>
+</html>

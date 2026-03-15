@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign 03 — The Side-by-Side — Skinome</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f6f3f0;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .site-header {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .site-header .brand span { color: #f6f3f0; }
+
+  .pill-nav {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .pill-nav a {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 1px solid #2a2520;
+    color: #746c64;
+    transition: all 0.15s;
+  }
+  .pill-nav a:hover { background: #1e1e1e; color: #d5d0c9; }
+  .pill-nav a.soft.active   { background: #d5d0c9; color: #3d3935; border-color: #d5d0c9; }
+  .pill-nav a.medium.active { background: #fffdd9; color: #746c64; border-color: #fffdd9; }
+  .pill-nav a.tough.active  { background: #3d3935; color: #f6f3f0; border-color: #3d3935; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3d3935 0%, #746c64 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif;
+    flex-shrink: 0;
+  }
+  .ig-user-info .ig-handle {
+    font-size: 14px; font-weight: 700; color: #0d0d0d;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .ig-user-info .ig-location {
+    font-size: 12px; color: #746c64;
+    font-family: 'Barlow', sans-serif;
+  }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; cursor: pointer; }
+
+  /* CREATIVE 03 — "The List" */
+  .post-creative {
+    width: 100%; aspect-ratio: 1;
+    background: #f6f3f0;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    padding: 28px 24px;
+    gap: 0;
+  }
+
+  .c03-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .c03-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #3d3935;
+  }
+  .c03-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    color: #a09890;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .c03-cols {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .c03-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .col-header {
+    padding: 6px 10px;
+    border-radius: 4px 4px 0 0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .col-header.theirs { background: #3d3935; color: #f6f3f0; }
+  .col-header.ours { background: #d5d0c9; color: #3d3935; }
+
+  .col-body {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #e0dbd3;
+    border-radius: 0 0 4px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: hidden;
+  }
+
+  .ingredient-item {
+    font-family: 'Barlow', sans-serif;
+    font-size: 7px;
+    color: #746c64;
+    padding: 2px 0;
+    border-bottom: 1px solid #f0ebe4;
+    line-height: 1.3;
+  }
+  .ingredient-item.complex { color: #b0a090; }
+  .ingredient-item.simple { color: #3d3935; font-weight: 500; }
+  .ingredient-item:last-child { border-bottom: none; }
+
+  .c03-more {
+    font-family: 'Barlow', sans-serif;
+    font-size: 7px;
+    color: #c0b8b0;
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .c03-footer {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .c03-tagline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: #3d3935;
+    line-height: 1.3;
+  }
+  .c03-tagline strong { font-weight: 700; }
+  .c03-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #d5d0c9;
+    text-transform: uppercase;
+  }
+
+  .ig-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #fff;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+
+  .ig-likes {
+    padding: 0 16px 6px;
+    font-size: 14px; font-weight: 700; color: #0d0d0d;
+    background: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .ig-caption {
+    padding: 0 16px 10px;
+    font-size: 14px; color: #3d3935; line-height: 1.6;
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+  }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments {
+    padding: 0 16px 6px;
+    font-size: 13px; color: #746c64;
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+  }
+  .ig-timestamp {
+    padding: 0 16px 16px;
+    font-size: 11px; color: #b0a89e;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+  }
+
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+
+  .info-campaign-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #e8e2d8;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin-bottom: 8px;
+  }
+  .info-campaign-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .tone-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .tone-badge.soft   { background: #d5d0c9; color: #3d3935; }
+  .tone-badge.medium { background: #fffdd9; color: #746c64; }
+  .tone-badge.tough  { background: #3d3935; color: #f6f3f0; }
+
+  .info-divider {
+    height: 1px;
+    background: #d5d0c9;
+    margin-bottom: 28px;
+  }
+
+  .info-section { margin-bottom: 28px; }
+  .info-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #746c64;
+    margin-bottom: 10px;
+  }
+  .info-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #3d3935;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .info-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .info-bullets li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #3d3935;
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+  }
+  .info-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: #d5d0c9;
+    font-weight: 700;
+  }
+
+  .caption-preview {
+    background: #fff;
+    border: 1px solid #e0dbd3;
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .caption-preview .cap-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #3d3935;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .caption-preview .cap-tags {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    line-height: 1.6;
+  }
+
+  .info-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #d5d0c9;
+  }
+  .info-nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .info-nav a:hover { color: #0d0d0d; }
+
+  .site-footer {
+    background: #0d0d0d;
+    padding: 24px 40px;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #2a2520;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; The Label Campaign</div>
+  <nav class="pill-nav">
+    <a href="campaign_01.html" class="soft">01</a>
+    <a href="campaign_02.html" class="soft">02</a>
+    <a href="campaign_03.html" class="soft active">03</a>
+    <a href="campaign_04.html" class="medium">04</a>
+    <a href="campaign_05.html" class="medium">05</a>
+    <a href="campaign_06.html" class="medium">06</a>
+    <a href="campaign_07.html" class="medium">07</a>
+    <a href="campaign_08.html" class="tough">08</a>
+    <a href="campaign_09.html" class="tough">09</a>
+    <a href="campaign_10.html" class="tough">10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div class="ig-user-info">
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="c03-header">
+        <div>
+          <div class="c03-title">Ingredient lists</div>
+          <div class="c03-subtitle">A quiet comparison</div>
+        </div>
+      </div>
+
+      <div class="c03-cols">
+        <!-- Their list -->
+        <div class="c03-col">
+          <div class="col-header theirs">Popular brand</div>
+          <div class="col-body">
+            <div class="ingredient-item complex">Aqua / Water</div>
+            <div class="ingredient-item complex">Dimethicone</div>
+            <div class="ingredient-item complex">Glycerin</div>
+            <div class="ingredient-item complex">Cyclopentasiloxane</div>
+            <div class="ingredient-item complex">Phenoxyethanol</div>
+            <div class="ingredient-item complex">Methylparaben</div>
+            <div class="ingredient-item complex">Propylparaben</div>
+            <div class="ingredient-item complex">Carbomer</div>
+            <div class="ingredient-item complex">Sodium Hyaluronate</div>
+            <div class="ingredient-item complex">Disodium EDTA</div>
+            <div class="ingredient-item complex">Tocopheryl Acetate</div>
+            <div class="ingredient-item complex">BHT</div>
+            <div class="ingredient-item complex">Parfum / Fragrance</div>
+            <div class="ingredient-item complex">Imidazolidinyl Urea</div>
+            <div class="c03-more">...+9 more</div>
+          </div>
+        </div>
+
+        <!-- Our list -->
+        <div class="c03-col">
+          <div class="col-header ours">Skinome</div>
+          <div class="col-body" style="border-color:#d5d0c9;">
+            <div class="ingredient-item simple">Water</div>
+            <div class="ingredient-item simple">Glycerin</div>
+            <div class="ingredient-item simple">Sodium Hyaluronate</div>
+            <div class="ingredient-item simple">Limosilactobacillus reuteri</div>
+            <div class="ingredient-item simple">Xanthan Gum</div>
+            <div class="ingredient-item simple">Citric Acid</div>
+            <div style="flex:1;"></div>
+            <div style="font-family:'Barlow',sans-serif;font-size:7px;color:#746c64;font-style:italic;margin-top:auto;">That's it.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="c03-footer">
+        <div class="c03-tagline">Less is <strong>more.</strong><br>Always has been.</div>
+        <div class="c03-logo">SKINOME</div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">6,034 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      We didn't simplify our formula to cut costs. We did it because your skin microbiome doesn't need 23 ingredients — it needs the right ones. Fewer ingredients, more space for your skin to breathe.
+      <div class="ig-hashtags">#skinome #cleaningredients #lessismore #microbiome #skintransparency #ingredientlist</div>
+    </div>
+    <div class="ig-comments">View all 412 comments</div>
+    <div class="ig-timestamp">1 day ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">03</div>
+    <div class="info-campaign-name">The Side-by-Side</div>
+    <span class="tone-badge soft">Soft</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Strategy</div>
+      <div class="info-text">
+        The visual contrast is the entire argument — no claims needed. Two lists, side by side, and the conclusion is inescapable. This format gets saved, screenshotted, and forwarded as a reference. The creative discipline is restraint: Skinome's list ends with "That's it." — three words that land harder than any statistic. Infographic-style posts like this consistently outperform on saves and shares, which tells the algorithm this is quality content worth distributing.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Visual contrast does the persuasion — no copy needed to make the case</li>
+        <li>"That's it." — three words that are more powerful than any claim</li>
+        <li>Infographic format drives saves and shares over comments</li>
+        <li>Naming real ingredients (parabens, BHT) adds credibility and shareability</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">We didn't simplify our formula to cut costs. We did it because your skin microbiome doesn't need 23 ingredients — it needs the right ones. Fewer ingredients, more space for your skin to breathe.</div>
+        <div class="cap-tags">#skinome #cleaningredients #lessismore #microbiome #skintransparency #ingredientlist</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="campaign_02.html">← Previous</a>
+      <a href="campaign_04.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  All 10 campaigns &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; The Label Campaign Series 2026
+</footer>
+
+</body>
+</html>

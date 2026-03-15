@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign 02 — The Food Analogy — Skinome</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f6f3f0;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .site-header {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .site-header .brand span { color: #f6f3f0; }
+
+  .pill-nav {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .pill-nav a {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 1px solid #2a2520;
+    color: #746c64;
+    transition: all 0.15s;
+  }
+  .pill-nav a:hover { background: #1e1e1e; color: #d5d0c9; }
+  .pill-nav a.soft.active   { background: #d5d0c9; color: #3d3935; border-color: #d5d0c9; }
+  .pill-nav a.medium.active { background: #fffdd9; color: #746c64; border-color: #fffdd9; }
+  .pill-nav a.tough.active  { background: #3d3935; color: #f6f3f0; border-color: #3d3935; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, #3d3935 0%, #746c64 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif;
+    flex-shrink: 0;
+  }
+  .ig-user-info .ig-handle {
+    font-size: 14px; font-weight: 700; color: #0d0d0d;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .ig-user-info .ig-location {
+    font-size: 12px; color: #746c64;
+    font-family: 'Barlow', sans-serif;
+  }
+  .ig-more { font-size: 20px; color: #3d3935; letter-spacing: 2px; cursor: pointer; }
+
+  /* CREATIVE 02 */
+  .post-creative {
+    width: 100%; aspect-ratio: 1;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    background: #fffdd9;
+  }
+
+  .c02-top {
+    flex: 1;
+    background: #f6f3f0;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    border-bottom: 1px solid #e8e2d8;
+    padding: 20px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .c02-food-label {
+    background: #fff;
+    border: 1px solid #d5d0c9;
+    border-radius: 4px;
+    padding: 8px 12px;
+    width: 75%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .food-label-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1a1714;
+    border-bottom: 1px solid #e8e2d8;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  .food-label-ingredients {
+    font-family: 'Barlow', sans-serif;
+    font-size: 7px;
+    color: #746c64;
+    line-height: 1.5;
+  }
+  .food-label-ingredients.short { color: #3d3935; }
+  .c02-tag {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: #3d3935;
+    color: #f6f3f0;
+    font-size: 7px;
+    font-family: 'Barlow', sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .c02-bottom {
+    flex: 1;
+    background: #fffdd9;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; padding: 20px;
+    flex-direction: column; gap: 8px;
+  }
+
+  .c02-center-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: #f6f3f0;
+    border: 1px solid #d5d0c9;
+    padding: 8px 16px;
+    border-radius: 40px;
+    white-space: nowrap;
+  }
+  .c02-center-text span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #3d3935;
+    letter-spacing: 0.05em;
+  }
+
+  .c02-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #3d3935;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 200px;
+  }
+  .c02-headline strong { font-weight: 700; }
+
+  .c02-logo {
+    position: absolute; bottom: 14px; right: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; color: #d5d0c9;
+    text-transform: uppercase;
+  }
+
+  .ig-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #fff;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #3d3935; }
+
+  .ig-likes {
+    padding: 0 16px 6px;
+    font-size: 14px; font-weight: 700; color: #0d0d0d;
+    background: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .ig-caption {
+    padding: 0 16px 10px;
+    font-size: 14px; color: #3d3935; line-height: 1.6;
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+  }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #0d0d0d; }
+  .ig-hashtags { color: #746c64; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments {
+    padding: 0 16px 6px;
+    font-size: 13px; color: #746c64;
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+  }
+  .ig-timestamp {
+    padding: 0 16px 16px;
+    font-size: 11px; color: #b0a89e;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+  }
+
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+
+  .info-campaign-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #e8e2d8;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin-bottom: 8px;
+  }
+  .info-campaign-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .tone-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .tone-badge.soft   { background: #d5d0c9; color: #3d3935; }
+  .tone-badge.medium { background: #fffdd9; color: #746c64; }
+  .tone-badge.tough  { background: #3d3935; color: #f6f3f0; }
+
+  .info-divider {
+    height: 1px;
+    background: #d5d0c9;
+    margin-bottom: 28px;
+  }
+
+  .info-section { margin-bottom: 28px; }
+  .info-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #746c64;
+    margin-bottom: 10px;
+  }
+  .info-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #3d3935;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .info-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .info-bullets li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #3d3935;
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+  }
+  .info-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: #d5d0c9;
+    font-weight: 700;
+  }
+
+  .caption-preview {
+    background: #fff;
+    border: 1px solid #e0dbd3;
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .caption-preview .cap-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #3d3935;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .caption-preview .cap-tags {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    line-height: 1.6;
+  }
+
+  .info-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #d5d0c9;
+  }
+  .info-nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .info-nav a:hover { color: #0d0d0d; }
+
+  .site-footer {
+    background: #0d0d0d;
+    padding: 24px 40px;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #2a2520;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; The Label Campaign</div>
+  <nav class="pill-nav">
+    <a href="campaign_01.html" class="soft">01</a>
+    <a href="campaign_02.html" class="soft active">02</a>
+    <a href="campaign_03.html" class="soft">03</a>
+    <a href="campaign_04.html" class="medium">04</a>
+    <a href="campaign_05.html" class="medium">05</a>
+    <a href="campaign_06.html" class="medium">06</a>
+    <a href="campaign_07.html" class="medium">07</a>
+    <a href="campaign_08.html" class="tough">08</a>
+    <a href="campaign_09.html" class="tough">09</a>
+    <a href="campaign_10.html" class="tough">10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div class="ig-user-info">
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <!-- TOP: Food -->
+      <div class="c02-top">
+        <div class="c02-tag">YOUR OAT MILK</div>
+        <div class="c02-food-label">
+          <div class="food-label-title">Ingredients</div>
+          <div class="food-label-ingredients short">
+            Water, oats (10%), sunflower oil, calcium carbonate, sea salt, vitamins D, B12
+          </div>
+        </div>
+        <div style="font-family:'Barlow',sans-serif;font-size:8px;color:#746c64;letter-spacing:0.1em;text-transform:uppercase;">7 ingredients. You know them all.</div>
+      </div>
+
+      <!-- CENTER PILL -->
+      <div class="c02-center-text">
+        <span>So why not your face cream?</span>
+      </div>
+
+      <!-- BOTTOM: Skincare -->
+      <div class="c02-bottom">
+        <div class="c02-tag" style="background:#fffdd9;color:#746c64;top:10px;right:10px;">YOUR MOISTURIZER</div>
+        <div class="c02-food-label" style="background:#fff8e8;border-color:#e8e0c8;">
+          <div class="food-label-title" style="color:#746c64;">Ingredients</div>
+          <div class="food-label-ingredients">
+            Aqua, Glycerin, Dimethicone, Cyclopentasiloxane, Phenoxyethanol, Methylparaben, Propylparaben, Sodium Hyaluronate, Carbomer, Parfum, BHT, Disodium EDTA...
+          </div>
+        </div>
+        <div style="font-family:'Barlow',sans-serif;font-size:8px;color:#a09070;letter-spacing:0.1em;text-transform:uppercase;text-align:center;">20+ ingredients. How many can you name?</div>
+      </div>
+
+      <div class="c02-logo">SKINOME</div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">4,112 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      Du läser innehållsförteckningen på din havre. Din quinoa. Din yoghurt. Din hud förtjänar samma omsorg. Vi har bara 6 ingredienser. Du känner igen dem alla.
+      <div class="ig-hashtags">#skinome #lasetiketten #hudvård #mikrobiom #renttlista #naturligthudvård</div>
+    </div>
+    <div class="ig-comments">View all 287 comments</div>
+    <div class="ig-timestamp">5 hours ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">02</div>
+    <div class="info-campaign-name">The Food Analogy</div>
+    <span class="tone-badge soft">Soft</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Strategy</div>
+      <div class="info-text">
+        The food comparison is the most universally relatable entry point for ingredient literacy. Everyone reads food labels — it's normalized, even expected behavior. This ad gently extends that same logic to skincare without preaching or shaming. The split layout lets the visual do the persuasion work. The Swedish caption grounds it firmly in the local market and signals Skinome as a genuinely Swedish brand speaking to its home audience first.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Food label comparison — behavior already normalized, zero friction</li>
+        <li>Split design creates instant visual tension without aggression</li>
+        <li>Swedish copy for the domestic market — authenticity signal</li>
+        <li>High save rate expected — "send to a friend" type content</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">Du läser innehållsförteckningen på din havre. Din quinoa. Din yoghurt. Din hud förtjänar samma omsorg. Vi har bara 6 ingredienser. Du känner igen dem alla.</div>
+        <div class="cap-tags">#skinome #lasetiketten #hudvård #mikrobiom #renttlista #naturligthudvård</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="campaign_01.html">← Previous</a>
+      <a href="campaign_03.html">Next →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  All 10 campaigns &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; The Label Campaign Series 2026
+</footer>
+
+</body>
+</html>

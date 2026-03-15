@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign 10 — The Industry's Lie — Skinome</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f6f3f0;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  .site-header {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .site-header .brand span { color: #f6f3f0; }
+
+  .pill-nav {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .pill-nav a {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 1px solid #2a2520;
+    color: #746c64;
+    transition: all 0.15s;
+  }
+  .pill-nav a:hover { background: #1e1e1e; color: #d5d0c9; }
+  .pill-nav a.soft.active   { background: #d5d0c9; color: #3d3935; border-color: #d5d0c9; }
+  .pill-nav a.medium.active { background: #fffdd9; color: #746c64; border-color: #fffdd9; }
+  .pill-nav a.tough.active  { background: #3d3935; color: #f6f3f0; border-color: #3d3935; }
+
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .ig-card {
+    width: 560px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e0dbd3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: #050505;
+  }
+  .ig-user { display: flex; align-items: center; gap: 12px; }
+  .ig-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: #0d0d0d;
+    border: 1px solid #2a2520;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif;
+    flex-shrink: 0;
+  }
+  .ig-user-info .ig-handle {
+    font-size: 14px; font-weight: 700; color: #f6f3f0;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .ig-user-info .ig-location {
+    font-size: 12px; color: #746c64;
+    font-family: 'Barlow', sans-serif;
+  }
+  .ig-more { font-size: 20px; color: #f6f3f0; letter-spacing: 2px; cursor: pointer; }
+
+  /* CREATIVE 10 — The Big Lie */
+  .post-creative {
+    width: 100%; aspect-ratio: 1;
+    background: #000;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: center;
+    padding: 28px;
+    gap: 0;
+  }
+
+  .c10-texture {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(61,57,53,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(255,253,217,0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .c10-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 700;
+    margin-bottom: 24px;
+    position: relative; z-index: 2;
+  }
+
+  .c10-statement {
+    position: relative; z-index: 2;
+    margin-bottom: 24px;
+  }
+  .c10-quote-mark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 0.8;
+    display: block;
+    margin-bottom: 0;
+    letter-spacing: -0.05em;
+  }
+  .c10-main-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f6f3f0;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    max-width: 280px;
+  }
+  .c10-main-text .accent { color: #fffdd9; }
+  .c10-main-text .dim { color: #3d3935; font-weight: 300; }
+
+  .c10-divider {
+    width: 32px; height: 1px;
+    background: #1e1e1e;
+    margin-bottom: 20px;
+    position: relative; z-index: 2;
+  }
+
+  .c10-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1.7;
+    max-width: 270px;
+    margin-bottom: 28px;
+    position: relative; z-index: 2;
+  }
+  .c10-sub strong { color: #aaa; font-weight: 500; }
+
+  .c10-bottom {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative; z-index: 2;
+  }
+  .c10-cta-pill {
+    background: #f6f3f0;
+    color: #0d0d0d;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 40px;
+  }
+  .c10-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: #3d3935;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .c10-edge-line {
+    position: absolute;
+    top: 20%; bottom: 20%; right: 28px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #1a1a1a, transparent);
+  }
+
+  .ig-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    background: #050505;
+  }
+  .ig-actions-left { display: flex; gap: 16px; align-items: center; }
+  .ig-icon { font-size: 24px; cursor: pointer; color: #f6f3f0; }
+
+  .ig-likes {
+    padding: 0 16px 6px;
+    font-size: 14px; font-weight: 700; color: #f6f3f0;
+    background: #050505;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .ig-caption {
+    padding: 0 16px 10px;
+    font-size: 14px; color: #746c64; line-height: 1.6;
+    font-family: 'Barlow', sans-serif;
+    background: #050505;
+  }
+  .ig-caption .handle { font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: #f6f3f0; }
+  .ig-hashtags { color: #3d3935; font-size: 13px; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+  .ig-comments {
+    padding: 0 16px 6px;
+    font-size: 13px; color: #3d3935;
+    font-family: 'Barlow', sans-serif;
+    background: #050505;
+  }
+  .ig-timestamp {
+    padding: 0 16px 16px;
+    font-size: 11px; color: #2a2520;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'Barlow', sans-serif;
+    background: #050505;
+  }
+
+  .info-col {
+    flex: 1;
+    padding-left: 60px;
+    padding-top: 8px;
+  }
+
+  .info-campaign-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #e8e2d8;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin-bottom: 8px;
+  }
+  .info-campaign-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .tone-badge {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .tone-badge.soft   { background: #d5d0c9; color: #3d3935; }
+  .tone-badge.medium { background: #fffdd9; color: #746c64; }
+  .tone-badge.tough  { background: #3d3935; color: #f6f3f0; }
+
+  .info-divider {
+    height: 1px;
+    background: #d5d0c9;
+    margin-bottom: 28px;
+  }
+
+  .info-section { margin-bottom: 28px; }
+  .info-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #746c64;
+    margin-bottom: 10px;
+  }
+  .info-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #3d3935;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .info-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .info-bullets li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #3d3935;
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+  }
+  .info-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: #d5d0c9;
+    font-weight: 700;
+  }
+
+  .caption-preview {
+    background: #fff;
+    border: 1px solid #e0dbd3;
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .caption-preview .cap-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #3d3935;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .caption-preview .cap-tags {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    line-height: 1.6;
+  }
+
+  .info-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #d5d0c9;
+  }
+  .info-nav a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #746c64;
+    transition: color 0.15s;
+  }
+  .info-nav a:hover { color: #0d0d0d; }
+  .info-nav a.disabled { color: #d5d0c9; pointer-events: none; }
+
+  .site-footer {
+    background: #0d0d0d;
+    padding: 24px 40px;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #2a2520;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; The Label Campaign</div>
+  <nav class="pill-nav">
+    <a href="campaign_01.html" class="soft">01</a>
+    <a href="campaign_02.html" class="soft">02</a>
+    <a href="campaign_03.html" class="soft">03</a>
+    <a href="campaign_04.html" class="medium">04</a>
+    <a href="campaign_05.html" class="medium">05</a>
+    <a href="campaign_06.html" class="medium">06</a>
+    <a href="campaign_07.html" class="medium">07</a>
+    <a href="campaign_08.html" class="tough">08</a>
+    <a href="campaign_09.html" class="tough">09</a>
+    <a href="campaign_10.html" class="tough active">10</a>
+  </nav>
+</header>
+
+<div class="main-wrap">
+
+  <div class="ig-card">
+    <div class="ig-post-header">
+      <div class="ig-user">
+        <div class="ig-avatar">S</div>
+        <div class="ig-user-info">
+          <div class="ig-handle">skinome_official ✓</div>
+          <div class="ig-location">Stockholm, Sweden</div>
+        </div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="post-creative">
+      <div class="c10-texture"></div>
+      <div class="c10-edge-line"></div>
+
+      <div class="c10-label">The industry's favourite phrase</div>
+
+      <div class="c10-statement">
+        <span class="c10-quote-mark">"</span>
+        <div class="c10-main-text">
+          Long shelf life<br>
+          <span class="dim">doesn't mean</span><br>
+          <span class="accent">good for your skin.</span>
+        </div>
+      </div>
+
+      <div class="c10-divider"></div>
+
+      <div class="c10-sub">
+        It means they chose <strong>preservation over your microbiome.</strong> A 3-year shelf life requires chemistry that your skin's bacterial flora was never meant to survive. Every day, millions of people apply this — and call it a skincare routine.
+      </div>
+
+      <div class="c10-bottom">
+        <div class="c10-cta-pill">We chose your skin</div>
+        <div class="c10-logo">SKINOME</div>
+      </div>
+    </div>
+
+    <div class="ig-actions">
+      <div class="ig-actions-left">
+        <span class="ig-icon">♡</span>
+        <span class="ig-icon">💬</span>
+        <span class="ig-icon">↗</span>
+      </div>
+      <span class="ig-icon">🔖</span>
+    </div>
+    <div class="ig-likes">31,087 likes</div>
+    <div class="ig-caption">
+      <span class="handle">skinome_official</span>&nbsp;
+      Vi vet att detta är obekvämt. Det är poängen. Skinome grundades på en obehaglig sanning: att traditionell hudvård aktivt skadar den bakteriella floran som din hud behöver för att vara frisk. Johanna Gillbro insåg det efter 20 år som hudforskare. Det var inte en åsikt. Det var vetenskap.
+      <div class="ig-hashtags">#skinome #mikrobiom #hudvårdsvetenskap #sanning #konserveringsfritt #johannagillbro</div>
+    </div>
+    <div class="ig-comments">View all 8,220 comments</div>
+    <div class="ig-timestamp">1 hour ago</div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-campaign-num">10</div>
+    <div class="info-campaign-name">The Industry's Lie</div>
+    <span class="tone-badge tough">Tough</span>
+
+    <div class="info-divider"></div>
+
+    <div class="info-section">
+      <div class="info-label">Strategy</div>
+      <div class="info-text">
+        The most confrontational ad in the set. Zero softening, zero qualification. Pitch-black aesthetic, near-invisible supporting elements, text stripped to the absolute minimum. The main statement stands completely alone. "We chose your skin" is the brand's thesis distilled to four words — it works precisely because everything else in this ad functions as an indictment. The founder story in the caption (Dr. Johanna Gillbro, 20 years of research, a personal truth discovered through science) adds gravitas and proof. Use this ad sparingly — it is a brand-defining moment, not a recurring tactic.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Key Angles</div>
+      <ul class="info-bullets">
+        <li>Brand manifesto in four words: "We chose your skin"</li>
+        <li>Pitch-black aesthetic makes every other design choice look like compromise</li>
+        <li>Founder credibility in caption — 20 years research, personal conviction</li>
+        <li>Deploy sparingly — this is a punctuation mark, not a paragraph</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">Caption Preview</div>
+      <div class="caption-preview">
+        <div class="cap-text">Vi vet att detta är obekvämt. Det är poängen. Skinome grundades på en obehaglig sanning: att traditionell hudvård aktivt skadar den bakteriella floran som din hud behöver för att vara frisk. Johanna Gillbro insåg det efter 20 år som hudforskare. Det var inte en åsikt. Det var vetenskap.</div>
+        <div class="cap-tags">#skinome #mikrobiom #hudvårdsvetenskap #sanning #konserveringsfritt #johannagillbro</div>
+      </div>
+    </div>
+
+    <div class="info-nav">
+      <a href="campaign_09.html">← Previous</a>
+      <a href="index.html" class="disabled">All campaigns</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  All 10 campaigns &nbsp;—&nbsp; skinome_official &nbsp;—&nbsp; The Label Campaign Series 2026
+</footer>
+
+</body>
+</html>
