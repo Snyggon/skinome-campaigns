@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKINOME — Utomhuskampanj Busskurer 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+  :root {
+    --bg-dark: #0a0a0a;
+    --bg-section: #111111;
+    --text-light: #f5f5f0;
+    --text-muted: #888888;
+    --accent-red: #c0392b;
+    --accent-yellow: #f39c12;
+    --accent-blue: #2980b9;
+    --accent-green: #1a7a5a;
+    --accent-coral: #e07c5a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 0 40px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 0;
+    overflow-x: auto;
+  }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    background: radial-gradient(ellipse at 50% 30%, rgba(224,124,90,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(41,128,185,0.08) 0%, transparent 50%),
+                var(--bg-dark);
+  }
+  .hero-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-coral);
+    margin-bottom: 32px;
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid rgba(224,124,90,0.3);
+    border-radius: 30px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-coral);
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    margin-top: 60px;
+    display: flex;
+    gap: 48px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero-meta span { display: flex; flex-direction: column; gap: 6px; }
+  .hero-meta strong { color: var(--text-light); font-weight: 600; font-size: 13px; }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .section-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .divider-line {
+    width: 60px;
+    height: 2px;
+    background: var(--accent-coral);
+    margin: 0 auto 80px;
+  }
+
+  /* ── STRATEGY SECTION ── */
+  .strategy {
+    background: var(--bg-section);
+    border-radius: 24px;
+    padding: 64px;
+    margin: 0 auto 40px;
+    max-width: 1000px;
+  }
+  .strategy h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--accent-coral);
+  }
+  .strategy p {
+    color: #bbb;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+  }
+  .strategy-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .strategy-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    color: var(--text-light);
+  }
+  .strategy-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* ── POSTER GRID ── */
+  .poster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+    justify-items: center;
+  }
+
+  /* ── POSTER CARD ── */
+  .poster-wrap {
+    width: 100%;
+    max-width: 320px;
+  }
+  .poster {
+    aspect-ratio: 9 / 16;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+    cursor: default;
+  }
+  .poster:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .poster-copy {
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    z-index: 2;
+    position: relative;
+  }
+  .poster-logo {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    z-index: 2;
+    opacity: 0.7;
+  }
+  .poster-number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.4;
+    z-index: 2;
+  }
+  .poster-subtext {
+    font-size: 11px;
+    font-weight: 400;
+    margin-top: 16px;
+    opacity: 0.5;
+    z-index: 2;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    position: relative;
+  }
+  .poster-label {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ── POSTER THEMES ── */
+
+  /* UTMANANDE - Red/Dark */
+  .poster.theme-challenge {
+    background: linear-gradient(170deg, #1a0000 0%, #3d0c0c 40%, #6b1515 100%);
+    color: #fff;
+    border: 1px solid rgba(192,57,43,0.3);
+  }
+  .poster.theme-challenge .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-challenge .poster-logo { color: rgba(255,255,255,0.5); }
+
+  /* Alt challenge */
+  .poster.theme-challenge-alt {
+    background: #c0392b;
+    color: #fff;
+  }
+  .poster.theme-challenge-alt .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+
+  /* HUMOR - Yellow/Warm */
+  .poster.theme-humor {
+    background: linear-gradient(170deg, #fef3e0 0%, #fde8c8 50%, #fad390 100%);
+    color: #2c1810;
+    border: 1px solid rgba(243,156,18,0.2);
+  }
+  .poster.theme-humor .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-humor .poster-logo { color: rgba(44,24,16,0.4); }
+
+  /* Alt humor */
+  .poster.theme-humor-alt {
+    background: #f39c12;
+    color: #1a0e00;
+  }
+  .poster.theme-humor-alt .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-humor-alt .poster-logo { color: rgba(26,14,0,0.4); }
+
+  /* SCIENCE - Blue/White */
+  .poster.theme-science {
+    background: linear-gradient(170deg, #f0f4f8 0%, #dce6f0 50%, #c8d8e8 100%);
+    color: #1a2a3a;
+    border: 1px solid rgba(41,128,185,0.15);
+  }
+  .poster.theme-science .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-science .poster-logo { color: rgba(26,42,58,0.4); }
+
+  /* Alt science */
+  .poster.theme-science-alt {
+    background: #1a3a5a;
+    color: #e8f0f8;
+  }
+  .poster.theme-science-alt .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-science-alt .poster-logo { color: rgba(232,240,248,0.4); }
+
+  /* INDUSTRY - Black/White */
+  .poster.theme-industry {
+    background: #000;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .poster.theme-industry .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-industry .poster-logo { color: rgba(255,255,255,0.4); }
+
+  /* Alt industry */
+  .poster.theme-industry-alt {
+    background: #fff;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .poster.theme-industry-alt .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-industry-alt .poster-logo { color: rgba(0,0,0,0.4); }
+
+  /* HAPPY - Coral/Warm gradient */
+  .poster.theme-happy {
+    background: linear-gradient(170deg, #fef0e8 0%, #fddcc8 30%, #f5b89a 70%, #e8946a 100%);
+    color: #2c1a10;
+    border: 1px solid rgba(224,124,90,0.2);
+  }
+  .poster.theme-happy .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-happy .poster-logo { color: rgba(44,26,16,0.4); }
+
+  /* Alt happy */
+  .poster.theme-happy-alt {
+    background: linear-gradient(170deg, #1a4a3a 0%, #1a7a5a 50%, #20a070 100%);
+    color: #e8fff4;
+  }
+  .poster.theme-happy-alt .poster-copy { font-size: clamp(22px, 3.5vw, 30px); }
+  .poster.theme-happy-alt .poster-logo { color: rgba(232,255,244,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 80px 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 80px;
+  }
+  footer p {
+    color: var(--text-muted);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+  footer .logo-big {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    margin-bottom: 16px;
+    color: var(--text-light);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { padding: 100px 24px 60px; }
+    .hero-meta { flex-direction: column; gap: 16px; }
+    .section { padding: 60px 20px; }
+    .strategy { padding: 32px 24px; }
+    .poster-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    nav { padding: 0 16px; }
+    nav ul { gap: 4px; }
+    nav a { font-size: 10px; padding: 5px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav>
+  <ul>
+    <li><a href="#hero">Start</a></li>
+    <li><a href="#strategi">Strategi</a></li>
+    <li><a href="#utmanande">Utmanande</a></li>
+    <li><a href="#humor">Humor</a></li>
+    <li><a href="#vetenskap">Vetenskap</a></li>
+    <li><a href="#branschen">Branschen</a></li>
+    <li><a href="#glada">Glada</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-badge">Kreativt koncept &mdash; Utomhusreklam 2026</div>
+  <h1>Skinome<br><em>Busskurkampanj</em></h1>
+  <p>60 copy-f&ouml;rslag f&ouml;r utomhusaffischer som utmanar, underhåller och utbildar &mdash; inspirerade av Oatlys tonalitet och Skinomes vetenskapliga DNA.</p>
+  <div class="hero-meta">
+    <span>Format<br><strong>9:16 Busskur</strong></span>
+    <span>Maxl&auml;ngd<br><strong>6&ndash;7 ord</strong></span>
+    <span>Tonalitet<br><strong>Oatly meets Science</strong></span>
+    <span>Kategorier<br><strong>5 st &agrave; 10 f&ouml;rslag</strong></span>
+  </div>
+</section>
+
+<!-- ═══════════ STRATEGY ═══════════ -->
+<section class="section" id="strategi">
+  <div class="section-header">
+    <div class="section-number">00 / Strategi</div>
+    <h2>Kreativ plattform</h2>
+    <p>Hur den b&auml;sta byr&aring;n hade t&auml;nkt</p>
+  </div>
+
+  <div class="strategy">
+    <h3>Insikten</h3>
+    <p>Majoriteten av svenska konsumenter sm&ouml;rjer in sig och sina barn med solskydd som inneh&aring;ller konserveringsmedel och hormonstörande UV-filter &mdash; utan att veta om det. De litar blint p&aring; branschen. Skinome &auml;r f&ouml;retaget som v&aring;gar s&auml;ga sanningen.</p>
+    <p>Precis som Oatly ifr&aring;gasatte mejeriindustrin, ifr&aring;gas&auml;tter Skinome solskyddsbranschen. Inte f&ouml;r att vara kontroversiella &mdash; utan f&ouml;r att de har vetenskapen p&aring; sin sida.</p>
+
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <h4>Position</h4>
+        <p>Utmanaren som st&auml;ller de obek&auml;va fr&aring;gorna. Skinome &auml;r Oatly f&ouml;r hudv&aring;rden &mdash; forskningsbaserat, transparent och lite fräckt.</p>
+      </div>
+      <div class="strategy-card">
+        <h4>M&aring;lgrupp</h4>
+        <p>Medvetna konsumenter 25&ndash;45 som l&auml;ser innehållsförteckningar, v&auml;ljer clean beauty och vill skydda sin familj. De som redan k&ouml;per ekologisk mat men inte t&auml;nkt p&aring; sitt solskydd.</p>
+      </div>
+      <div class="strategy-card">
+        <h4>Ton</h4>
+        <p>Smart humor + vetenskap. Aldrig elakt, alltid med substans. Varje rad ska g&aring; att backa upp med fakta. P&aring;st&aring;enden som provocerar &mdash; men som st&auml;mmer.</p>
+      </div>
+      <div class="strategy-card">
+        <h4>Princip</h4>
+        <p>Ett budskap. Stora bokst&auml;ver. Ingen &ouml;verfl&ouml;dig information. L&aring;t copyn g&ouml;ra allt jobb. Logotypen placeras diskret nedtill &mdash; l&aring;t m&auml;nniskor googla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════ -->
+<!-- KATEGORI 1: UTMANANDE                     -->
+<!-- ═════════════════════════════════════════ -->
+<section class="section" id="utmanande">
+  <div class="section-header">
+    <div class="section-number">01 / 05</div>
+    <h2>Utmanande &amp; Provocerande</h2>
+    <p>Raka p&aring;st&aring;enden som tvingar f&ouml;rbipasserande att stanna upp. H&auml;r tar Skinome en tydlig utmanarposition.</p>
+  </div>
+  <div class="divider-line"></div>
+
+  <div class="poster-grid">
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge">
+        <span class="poster-number">01</span>
+        <div class="poster-copy">Ditt solskydd<br>skyddar inte<br>din hud.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Paradox som v&auml;cker nyfikenhet &mdash; solskydd som inte skyddar?</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge-alt">
+        <span class="poster-number">02</span>
+        <div class="poster-copy">V&auml;nd flaskan.<br>L&auml;s.<br>Bli f&ouml;rbannad.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Uppmaning till handling. Kort, rytmiskt, provokativt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge">
+        <span class="poster-number">03</span>
+        <div class="poster-copy">Hormonst&ouml;rare<br>i solskyddet?<br>Helt normalt.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ironisk ton som avsl&ouml;jar en ob&auml;kvam sanning.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge-alt">
+        <span class="poster-number">04</span>
+        <div class="poster-copy">Sluta sm&ouml;rja<br>in dig med<br>problem.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Dubbel mening: &laquo;sm&ouml;rja in sig&raquo; = b&aring;de fysiskt och &laquo;luras&raquo;.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge">
+        <span class="poster-number">05</span>
+        <div class="poster-copy">Skyddar mot sol.<br>Skadar din hud.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Kontrast i tv&aring; korta meningar. Tv&aring; sanningar som krockar.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge-alt">
+        <span class="poster-number">06</span>
+        <div class="poster-copy">Vi hade aldrig<br>gjort ert<br>solskydd.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Direkt diskning av konkurrenter &mdash; &agrave; la Oatlys ton.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge">
+        <span class="poster-number">07</span>
+        <div class="poster-copy">Din hud<br>f&ouml;rtj&auml;nar b&auml;ttre.<br>Punkt.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Enkelt, resolut, inga omv&auml;gar.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge-alt">
+        <span class="poster-number">08</span>
+        <div class="poster-copy">Ditt barns hud<br>f&ouml;rtj&auml;nar<br>sanningen.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Emotionellt &mdash; st&auml;rkt av att Skinome vunnit &laquo;b&auml;sta barnsolskydd&raquo;.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge">
+        <span class="poster-number">09</span>
+        <div class="poster-copy">Fr&aring;ga ditt<br>solskydd vad<br>det d&ouml;ljer.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Personifierar produkten &mdash; skapar mysterium och misstanke.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-challenge-alt">
+        <span class="poster-number">10</span>
+        <div class="poster-copy">Ditt solskydd<br>har en smutsig<br>hemlighet.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Klassisk &laquo;dirty secret&raquo;-approach &mdash; om&ouml;jlig att inte l&auml;sa.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════ -->
+<!-- KATEGORI 2: HUMORISTISKA                  -->
+<!-- ═════════════════════════════════════════ -->
+<section class="section" id="humor">
+  <div class="section-header">
+    <div class="section-number">02 / 05</div>
+    <h2>Humoristiska &amp; Med Glimten i &Ouml;gat</h2>
+    <p>Charm, sj&auml;lvironi och smart humor &mdash; precis som Oatly g&ouml;r p&aring; havremj&ouml;lkspaketen.</p>
+  </div>
+  <div class="divider-line"></div>
+
+  <div class="poster-grid">
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor">
+        <span class="poster-number">11</span>
+        <div class="poster-copy">Bakterierna p&aring;<br>din hud<br>gillar oss.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ov&auml;ntat perspektiv &mdash; bakterierna &auml;r kunderna.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor-alt">
+        <span class="poster-number">12</span>
+        <div class="poster-copy">Sorry, gamla<br>solskydd. Vi<br>m&aring;ste prata.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">&laquo;Break-up&raquo;-format &mdash; som att g&ouml;ra slut med sitt solskydd.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor">
+        <span class="poster-number">13</span>
+        <div class="poster-copy">Fr&auml;schare &auml;n<br>ditt solskydd.<br>Bokstavligen.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Dubbel mening: f&auml;rskt (cool) + f&auml;rsktillverkat (USP).</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor-alt">
+        <span class="poster-number">14</span>
+        <div class="poster-copy">Ditt ansikte<br>hade valt oss.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Personifierar ansiktet &mdash; charmigt, sj&auml;lvs&auml;kert.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor">
+        <span class="poster-number">15</span>
+        <div class="poster-copy">Solskydd utan<br>&aring;ngest<br>p&aring; k&ouml;pet.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Relaterbart &mdash; vi k&auml;nner alla klimat&aring;ngest, produktångest etc.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor-alt">
+        <span class="poster-number">16</span>
+        <div class="poster-copy">Vi l&auml;ste ert<br>solskydds<br>inneh&aring;ll. Oj.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Det lilla &laquo;Oj&raquo; g&ouml;r hela jobbet. Understatement.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor">
+        <span class="poster-number">17</span>
+        <div class="poster-copy">Huden har<br>miljarder v&auml;nner.<br>Beh&aring;ll dem.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">V&auml;nskapstema &mdash; g&ouml;r bakterierna till n&aring;got positivt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor-alt">
+        <span class="poster-number">18</span>
+        <div class="poster-copy">Solen &auml;r inte<br>problemet.<br>Eller hur?</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Retorisk fr&aring;ga som v&auml;nder perspektivet.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor">
+        <span class="poster-number">19</span>
+        <div class="poster-copy">V&aring;r ingredienslista<br>&auml;r kortare<br>&auml;n din.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Lekfull t&auml;vling &mdash; minimalismen som styrka.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-humor-alt">
+        <span class="poster-number">20</span>
+        <div class="poster-copy">L&auml;s inneh&aring;llet.<br>Vi v&aring;gar.<br>V&aring;gar du?</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Utmaning till konsumenten &mdash; sj&auml;lvs&auml;ker transparens.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════ -->
+<!-- KATEGORI 3: UTBILDANDE / VETENSKAPLIGA    -->
+<!-- ═════════════════════════════════════════ -->
+<section class="section" id="vetenskap">
+  <div class="section-header">
+    <div class="section-number">03 / 05</div>
+    <h2>Utbildande &amp; Vetenskapliga</h2>
+    <p>Fakta som f&ouml;rv&aring;nar. Korta sanningar som f&aring;r folk att t&auml;nka till.</p>
+  </div>
+  <div class="divider-line"></div>
+
+  <div class="poster-grid">
+
+    <div class="poster-wrap">
+      <div class="poster theme-science">
+        <span class="poster-number">21</span>
+        <div class="poster-copy">Din hud har<br>fler bakterier<br>&auml;n celler.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Mind-blowing fakta som stannar kvar.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science-alt">
+        <span class="poster-number">22</span>
+        <div class="poster-copy">Solskydd som<br>st&auml;rker hudens<br>mikrobiom.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Tydligt USP-budskap &mdash; introducerar begreppet &laquo;mikrobiom&raquo;.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science">
+        <span class="poster-number">23</span>
+        <div class="poster-copy">Konserveringsmedel<br>d&ouml;dar hudens<br>goda bakterier.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ren faktaupplysning &mdash; enkel men kraftfull.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science-alt">
+        <span class="poster-number">24</span>
+        <div class="poster-copy">Stora molek&uuml;ler<br>som stannar<br>p&aring; huden.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">USP: UV-filtren tr&auml;nger inte igenom huden.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science">
+        <span class="poster-number">25</span>
+        <div class="poster-copy">Forskning.<br>Inte<br>marknadsf&ouml;ring.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Tre ord. Maximal kontrast. Ren Oatly-attityd.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science-alt">
+        <span class="poster-number">26</span>
+        <div class="poster-copy">Fritt fr&aring;n<br>hormonst&ouml;rande<br>UV-filter.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Rakt p&aring; sak &mdash; saklig men alarmerande genom kontrast.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science">
+        <span class="poster-number">27</span>
+        <div class="poster-copy">UV-skydd som<br>hudens bakterier<br>t&aring;l.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Positivt vinklat &mdash; skyddet som inte skadar.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science-alt">
+        <span class="poster-number">28</span>
+        <div class="poster-copy">Preservativfritt.<br>Precis som<br>huden vill.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ger huden en r&ouml;st &mdash; enkel, vetenskaplig insikt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science">
+        <span class="poster-number">29</span>
+        <div class="poster-copy">Utvecklat av<br>forskare. Inte<br>marknadsf&ouml;rare.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Trovärdighet genom kontrast &mdash; vetenskap vs. buzz.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-science-alt">
+        <span class="poster-number">30</span>
+        <div class="poster-copy">F&auml;rskt solskydd.<br>Ja, det &auml;r<br>en grej.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Sj&auml;lvironisk ton &mdash; introducerar ett nytt koncept med humor.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════ -->
+<!-- KATEGORI 4: UTMANA BRANSCHEN             -->
+<!-- ═════════════════════════════════════════ -->
+<section class="section" id="branschen">
+  <div class="section-header">
+    <div class="section-number">04 / 05</div>
+    <h2>Utmana Hudv&aring;rdsbranschen</h2>
+    <p>H&auml;r g&aring;r Skinome i klinch med en hel bransch &mdash; precis som Oatly gjorde med mejerisverige.</p>
+  </div>
+  <div class="divider-line"></div>
+
+  <div class="poster-grid">
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry">
+        <span class="poster-number">31</span>
+        <div class="poster-copy">Hudv&aring;rdsbranschen<br>hatar den h&auml;r<br>affischen.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Klassisk utmanare &mdash; g&ouml;r branschen till motst&aring;ndaren.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry-alt">
+        <span class="poster-number">32</span>
+        <div class="poster-copy">Om alla l&auml;ste<br>inneh&aring;lls&shy;f&ouml;rteckningen&hellip;</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ofullbordad mening &mdash; l&aring;ter l&auml;saren fylla i resten.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry">
+        <span class="poster-number">33</span>
+        <div class="poster-copy">Branschens b&auml;st<br>bevarade<br>hemlighet.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Konspirationsk&auml;nsla &mdash; vad vill de inte att du vet?</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry-alt">
+        <span class="poster-number">34</span>
+        <div class="poster-copy">Vi s&auml;ljer solskydd.<br>Inte<br>konserveringsmedel.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Enkel kontrast &mdash; vad vi g&ouml;r vs. vad de g&ouml;r.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry">
+        <span class="poster-number">35</span>
+        <div class="poster-copy">Hudv&aring;rden<br>beh&ouml;ver en<br>revolution.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Stort anslag &mdash; Skinome som revolutionären.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry-alt">
+        <span class="poster-number">36</span>
+        <div class="poster-copy">Varf&ouml;r accepterar vi<br>hormonst&ouml;rare<br>i solskydd?</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Retorisk fr&aring;ga &mdash; tvingar l&auml;saren att ta st&auml;llning.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry">
+        <span class="poster-number">37</span>
+        <div class="poster-copy">Branschen s&auml;tter<br>h&aring;llbarhet f&ouml;re<br>din hud.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ordlek: &laquo;h&aring;llbarhet&raquo; = b&aring;de h&aring;llbarhetstid och &laquo;sustainability&raquo;.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry-alt">
+        <span class="poster-number">38</span>
+        <div class="poster-copy">T&auml;nk om solskydd<br>faktiskt var<br>hudv&aring;rd.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Retoriskt &laquo;t&auml;nk om&raquo; &mdash; positionerar Skinome som svaret.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry">
+        <span class="poster-number">39</span>
+        <div class="poster-copy">Vi g&ouml;r solskydd.<br>P&aring; riktigt.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Understatement &mdash; antyder att andra inte g&ouml;r det &laquo;p&aring; riktigt&raquo;.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-industry-alt">
+        <span class="poster-number">40</span>
+        <div class="poster-copy">Dags att st&auml;lla<br>krav p&aring;<br>ditt solskydd.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Call to action &mdash; ger konsumenten makt.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════ -->
+<!-- KATEGORI 5: GLADA & SNÄLLA               -->
+<!-- ═════════════════════════════════════════ -->
+<section class="section" id="glada">
+  <div class="section-header">
+    <div class="section-number">05 / 05</div>
+    <h2>Glada, Snälla &amp; Positiva</h2>
+    <p>H&auml;r lyfter vi fram Skinomes fantastiska solskydd med v&auml;rme, k&auml;rlek och enkelhet.</p>
+  </div>
+  <div class="divider-line"></div>
+
+  <div class="poster-grid">
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">41</span>
+        <div class="poster-copy">Solskydd som<br>&auml;lskar din hud<br>tillbaka.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">K&auml;rlekstema &mdash; &ouml;msesidig omsorg.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">42</span>
+        <div class="poster-copy">Njut av solen.<br>Vi skyddar.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Enkel trygghet &mdash; k&auml;nns som en v&auml;ns l&ouml;fte.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">43</span>
+        <div class="poster-copy">Svenskt. F&auml;rskt.<br>Gjort med<br>k&auml;rlek.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Tre USP:er i tre ord &mdash; enkelt och varmt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">44</span>
+        <div class="poster-copy">Din hud.<br>V&aring;rt<br>hj&auml;rte&auml;mne.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ordlek: hj&auml;rte&auml;mne = favoritämne + hj&auml;rta.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">45</span>
+        <div class="poster-copy">Sol, bad och<br>tryggt solskydd.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Sommarlycka &mdash; m&aring;lar en bild av bekymmersfria dagar.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">46</span>
+        <div class="poster-copy">Hudv&aring;rd<br>v&auml;rd din hud.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Allitteration: &laquo;v&aring;rd&raquo; + &laquo;v&auml;rd&raquo; &mdash; musikaliskt och enkelt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">47</span>
+        <div class="poster-copy">Skydda det du<br>&auml;lskar mest.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Emotionellt &mdash; kan handla om hud, barn, familj.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">48</span>
+        <div class="poster-copy">Hela familjens<br>b&auml;sta<br>sommarkompis.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Familjev&auml;nligt &mdash; sommar + gemenskap.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">49</span>
+        <div class="poster-copy">Solskydd som g&ouml;r<br>huden glad.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Glatt och enkelt &mdash; positivt budskap.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">50</span>
+        <div class="poster-copy">Ge din hud<br>det allra b&auml;sta.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Klassisk &laquo;treat yourself&raquo; &mdash; generöst och varmt.</div>
+    </div>
+
+    <!-- BONUS: 10 extra happy/kind -->
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">51</span>
+        <div class="poster-copy">Solklart b&auml;st<br>f&ouml;r din hud.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Ordlek: &laquo;solklart&raquo; = uppenbart + sol.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">52</span>
+        <div class="poster-copy">K&auml;nn solen.<br>Inte kemikalierna.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Sensoriskt &mdash; vill att du k&auml;nner sol, inte oro.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">53</span>
+        <div class="poster-copy">Tillverkat i<br>Stockholm.<br>F&ouml;r din hud.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Lokalt, personligt, omtänksamt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">54</span>
+        <div class="poster-copy">Din hud &auml;r<br>unik. V&aring;rt<br>solskydd ocks&aring;.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Spegling &mdash; unikt m&ouml;ter unikt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">55</span>
+        <div class="poster-copy">Ren hud.<br>Rent solskydd.<br>Ren gl&auml;dje.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Trippel anafor &mdash; rytmiskt och minnesv&auml;rt.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">56</span>
+        <div class="poster-copy">Sommaren b&ouml;rjar<br>med r&auml;tt solskydd.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">S&auml;songsbundet &mdash; perfekt f&ouml;r v&aring;r/sommarkampanj.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">57</span>
+        <div class="poster-copy">Gjort f&ouml;r hud<br>som vill m&aring;<br>bra.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Wellness-vinkel &mdash; huden som levande organism.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">58</span>
+        <div class="poster-copy">Huden tackar.<br>Bakterierna ocks&aring;.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Glatt och oväntat &mdash; bakterier som tackar.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy">
+        <span class="poster-number">59</span>
+        <div class="poster-copy">V&aring;rt solskydd<br>&auml;r lika snällt<br>som solen.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Poetiskt &mdash; solen och solskyddet i harmoni.</div>
+    </div>
+
+    <div class="poster-wrap">
+      <div class="poster theme-happy-alt">
+        <span class="poster-number">60</span>
+        <div class="poster-copy">Sk&ouml;n sol.<br>Sk&ouml;nt solskydd.<br>Sk&ouml;nt.</div>
+        <div class="poster-logo">Skinome</div>
+      </div>
+      <div class="poster-label">Trippel &laquo;sk&ouml;nt&raquo; &mdash; avslappnat, somrigt, minnesv&auml;rt.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="logo-big">SKINOME</div>
+  <p>Kreativt koncept &mdash; Utomhuskampanj Busskurer &mdash; Mars 2026</p>
+  <p style="margin-top: 8px; opacity: 0.5;">Alla f&ouml;rslag &auml;r max 6&ndash;7 ord. Designade f&ouml;r 9:16-format.</p>
+</footer>
+
+</body>
+</html>
