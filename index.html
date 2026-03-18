@@ -1,11 +1,930 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=Skinome_Kampanjpresentation.html">
-<title>Skinome Kampanj</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinome — Campaign Library (50 Ads)</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Barlow:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eeece9;
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0d0d0d;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: #0d0d0d;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #746c64;
+  }
+  .site-header .brand span { color: #f6f3f0; }
+  .header-tag {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #3d3935;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 40px 56px;
+    border-bottom: 1px solid #ddd9d4;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #746c64;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    margin-bottom: 20px;
+  }
+  .hero-title span { color: #c8c2ba; font-weight: 300; }
+  .hero-body {
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    color: #746c64;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 32px;
+  }
+
+  /* Tone legend */
+  .tone-legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    letter-spacing: 0.06em;
+  }
+  .legend-pip {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-pip.soft   { background: #d5d0c9; }
+  .legend-pip.medium { background: #c8b84a; }
+  .legend-pip.tough  { background: #3d3935; }
+
+  /* ── GRID ── */
+  .grid-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  .series-block { margin-bottom: 56px; }
+  .series-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    margin-bottom: 6px;
+  }
+  .series-desc {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    font-weight: 300;
+    margin-bottom: 24px;
+    max-width: 560px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    border: 1px solid #e0dbd3;
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    display: block;
+  }
+  .card:hover {
+    border-color: #0d0d0d;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+  }
+
+  .card-preview {
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Series 1 previews */
+  .card-preview.soft-1  { background: linear-gradient(135deg, #f6f3f0, #e8e2d8); }
+  .card-preview.soft-2  { background: linear-gradient(135deg, #fffdd9, #f6f3f0); }
+  .card-preview.soft-3  { background: linear-gradient(135deg, #f6f3f0, #d5d0c9); }
+  .card-preview.med-1   { background: linear-gradient(135deg, #0d0d0d, #1a1a1a); }
+  .card-preview.med-2   { background: linear-gradient(135deg, #f6f3f0, #d5d0c9); }
+  .card-preview.med-3   { background: linear-gradient(135deg, #0b0b0b, #1e1e1e); }
+  .card-preview.med-4   { background: linear-gradient(135deg, #f6f3f0, #e8e2d8); }
+  .card-preview.tough-1 { background: linear-gradient(135deg, #0d0d0d, #111); }
+  .card-preview.tough-2 { background: #000; }
+  .card-preview.tough-3 { background: #000; }
+
+  /* Series 2 previews */
+  .card-preview.s2-med-a  { background: linear-gradient(135deg, #f6f3f0, #ebe5da); }
+  .card-preview.s2-med-b  { background: linear-gradient(135deg, #0a0a0a, #1c2020); }
+  .card-preview.s2-med-c  { background: linear-gradient(135deg, #dae8ed, #b8d4db); }
+  .card-preview.s2-med-d  { background: linear-gradient(135deg, #f6f3f0, #d5d0c9); }
+  .card-preview.s2-med-e  { background: linear-gradient(135deg, #fffdd9, #f0eecc); }
+  .card-preview.s2-med-f  { background: linear-gradient(135deg, #fdfbf4, #ede8d8); }
+  .card-preview.s2-med-g  { background: #000; }
+  .card-preview.s2-med-h  { background: linear-gradient(135deg, #0a0a14, #0d0d20); }
+  .card-preview.s2-med-i  { background: linear-gradient(135deg, #0a0a0a, #111118); }
+  .card-preview.s2-tough-a { background: #0a0a0a; }
+  .card-preview.s2-tough-b { background: #000; }
+  .card-preview.s2-tough-c { background: linear-gradient(135deg, #000, #0d0d0d); }
+  .card-preview.s2-tough-d { background: linear-gradient(135deg, #0d0005, #0a0a0a); }
+  .card-preview.s2-tough-e { background: linear-gradient(135deg, #050008, #0a0a0a); }
+  .card-preview.s2-tough-f { background: linear-gradient(135deg, #fdfbf4, #ede8d8); }
+  .card-preview.s2-tough-g { background: linear-gradient(135deg, #0a0a0a, #1a1a1a); }
+  .card-preview.s2-tough-h { background: linear-gradient(135deg, #1a1a1a, #0d0d0d); }
+
+  /* Series 3 previews */
+  .card-preview.s3-dark-a  { background: #0d0d0d; }
+  .card-preview.s3-dark-b  { background: linear-gradient(135deg, #0d0d0d, #111); }
+  .card-preview.s3-dark-c  { background: linear-gradient(135deg, #0d1117, #1a2030); }
+  .card-preview.s3-dark-d  { background: linear-gradient(135deg, #111310, #1e2018); }
+  .card-preview.s3-dark-e  { background: linear-gradient(135deg, #1a1520, #0d0d0d); }
+  .card-preview.s3-light-a { background: #ffffff; border-bottom: 1px solid #e8e2d8; }
+  .card-preview.s3-light-b { background: linear-gradient(135deg, #f6f3f0, #ede9e3); }
+  .card-preview.s3-light-c { background: linear-gradient(135deg, #fdf8f0, #f0e8d8); }
+  .card-preview.s3-light-d { background: linear-gradient(135deg, #f5f0e8, #e8dfc8); }
+  .card-preview.s3-split-a { background: linear-gradient(to right, #d5d0c9 50%, #0d3d30 50%); }
+  .card-preview.s3-navy    { background: linear-gradient(135deg, #1a1f2e, #101520); }
+
+  .preview-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    opacity: 0.14;
+    user-select: none;
+  }
+  .preview-num.dark  { color: #0d0d0d; }
+  .preview-num.light { color: #f6f3f0; }
+
+  .preview-tone {
+    position: absolute;
+    bottom: 10px; left: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .preview-tone.soft   { background: #d5d0c9; color: #3d3935; }
+  .preview-tone.medium { background: #fffdd9; color: #746c64; }
+  .preview-tone.tough  { background: #3d3935; color: #f6f3f0; }
+
+  .card-body {
+    padding: 18px 18px 20px;
+    border-top: 1px solid #f0ebe5;
+  }
+  .card-meta {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #b0a89e;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0d0d0d;
+    letter-spacing: -0.01em;
+    margin-bottom: 7px;
+    line-height: 1.2;
+  }
+  .card-desc {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: #746c64;
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+  .card-cta {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b0a89e;
+    transition: color 0.15s;
+  }
+  .card:hover .card-cta { color: #0d0d0d; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid #ddd9d4;
+    padding: 28px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #0d0d0d;
+    text-transform: uppercase;
+  }
+  .footer-copy {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: #b0a89e;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  /* ── NEW CAMPAIGN BANNER ── */
+  .campaign-banner {
+    background: linear-gradient(135deg, #1a0a00 0%, #3d1a0a 40%, #6b3520 100%);
+    padding: 0 40px;
+  }
+  .campaign-banner a {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 0;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .campaign-banner a:hover { opacity: 0.85; }
+  .banner-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .banner-badge {
+    background: rgba(224,124,90,0.2);
+    border: 1px solid rgba(224,124,90,0.4);
+    color: #e8946a;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .banner-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f6f3f0;
+    letter-spacing: -0.01em;
+  }
+  .banner-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    color: #a09080;
+    font-weight: 300;
+    margin-top: 2px;
+  }
+  .banner-arrow {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #e8946a;
+    font-size: 22px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .campaign-banner a:hover .banner-arrow { transform: translateX(4px); }
+  @media (max-width: 600px) {
+    .campaign-banner { padding: 0 20px; }
+    .banner-text { font-size: 13px; }
+    .banner-badge { display: none; }
+  }
+</style>
 </head>
 <body>
-<p>Omdirigerar till <a href="Skinome_Kampanjpresentation.html">kampanjpresentationen</a>...</p>
+
+<div class="campaign-banner">
+  <a href="Skinome_Kampanjpresentation.html">
+    <div class="banner-left">
+      <span class="banner-badge">Nytt</span>
+      <div>
+        <div class="banner-text">Solskyddskampanj — 60 utomhusaffischer</div>
+        <div class="banner-sub">Busskurkampanj 2026 &middot; Oatly-inspirerad copy i 9:16-format</div>
+      </div>
+    </div>
+    <span class="banner-arrow">&rarr;</span>
+  </a>
+</div>
+
+<header class="site-header">
+  <div class="brand"><span>SKINOME</span> &nbsp;—&nbsp; Campaign Mockups</div>
+  <div class="header-tag">The Label Campaign Series</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Skinome — Instagram Campaign Mockups</div>
+  <h1 class="hero-title">Campaign<br><span>Library</span></h1>
+  <p class="hero-body">50 Instagram campaigns across tre serier. Series 1 bygger på ingrediensnytt. Series 2 utmanar med data och forskning. Series 3 retas med hudvårdsindustrin direkt.</p>
+  <div class="tone-legend">
+    <div class="legend-item"><div class="legend-pip soft"></div><span>Soft</span></div>
+    <div class="legend-item"><div class="legend-pip medium"></div><span>Medium</span></div>
+    <div class="legend-item"><div class="legend-pip tough"></div><span>Tough</span></div>
+  </div>
+</section>
+
+<div class="grid-wrap">
+
+  <!-- SERIES 1 -->
+  <div class="series-block">
+    <div class="series-label">Series 1 — The Label Campaign · 01–10</div>
+    <div class="series-desc">Ingredient curiosity — från varsam utbildning till direkt branschutmaning.</div>
+    <div class="grid">
+
+      <a href="campaign_01.html" class="card">
+        <div class="card-preview soft-1"><div class="preview-num dark">01</div><div class="preview-tone soft">Soft</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 01</div>
+          <div class="card-title">The Gentle Invitation</div>
+          <div class="card-desc">6 vs 27+ — ett enkelt tal som säger allt. Varm, nyfiken, ingen predikan. Idealisk första kontakt med kalla målgrupper.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_02.html" class="card">
+        <div class="card-preview soft-2"><div class="preview-num dark">02</div><div class="preview-tone soft">Soft</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 02</div>
+          <div class="card-title">The Food Analogy</div>
+          <div class="card-desc">Du läser din havremjölksetikett. Varför inte din ansiktskräm? Delad visuell, svensk bildtext — universellt relaterbar ingångspunkt.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_03.html" class="card">
+        <div class="card-preview soft-3"><div class="preview-num dark">03</div><div class="preview-tone soft">Soft</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 03</div>
+          <div class="card-title">The Side-by-Side</div>
+          <div class="card-desc">Två ingredienslistor. Ingen kommentar behövs. Avslutas med "That's it." — hög save- och share-rate förväntas.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_04.html" class="card">
+        <div class="card-preview med-1"><div class="preview-num light">04</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 04</div>
+          <div class="card-title">Count Them</div>
+          <div class="card-desc">Räkna din fuktighetskräms ingredienser. Skriv ditt antal i kommentarerna. Högst kommentarsengagemang i serien.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_05.html" class="card">
+        <div class="card-preview med-2"><div class="preview-num dark">05</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 05</div>
+          <div class="card-title">Shelf Life</div>
+          <div class="card-desc">Best Before 2028. Förvandlar Skinomes 3-månaders utgångsdatum från upplevd svaghet till bevis på renhet.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_06.html" class="card">
+        <div class="card-preview med-3"><div class="preview-num light">06</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 06</div>
+          <div class="card-title">The 60% Stat</div>
+          <div class="card-desc">60% av det du applicerar absorberas i blodet. "Read. The. Label." — statistikdriven, vetenskapligt underbyggd.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_07.html" class="card">
+        <div class="card-preview med-4"><div class="preview-num dark">07</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 07</div>
+          <div class="card-title">Pronounce It</div>
+          <div class="card-desc">Försök säga Methylchloroisothiazolinone. Om du inte kan uttala det — ska det ligga på ditt ansikte? Beprövad viral mekanism.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_08.html" class="card">
+        <div class="card-preview tough-1"><div class="preview-num light">08</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 08</div>
+          <div class="card-title">Congratulations</div>
+          <div class="card-desc">Grattis. Du betalade just för konserveringsmedel. Konfrontativ öppning, pedagogisk vändning. Varumärket tar verklig kommersiell ställning.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_09.html" class="card">
+        <div class="card-preview tough-2"><div class="preview-num light">09</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 09</div>
+          <div class="card-title">Name Them</div>
+          <div class="card-desc">7 riktiga konserveringsmedel namngivna och klassificerade. "Thought you should know." Skinome: noll av dessa.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_10.html" class="card">
+        <div class="card-preview tough-3"><div class="preview-num light">10</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 10</div>
+          <div class="card-title">The Industry's Lie</div>
+          <div class="card-desc">"Lång hållbarhet betyder inte bra för din hud." Varumärkesmanifest i fyra ord: We chose your skin.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SERIES 2 -->
+  <div class="series-block">
+    <div class="series-label">Series 2 — Confrontational · 11–30</div>
+    <div class="series-desc">Sex psykologiska ramverk: Villain Principle, Tribe Signal, Specificity Rule, Underdog Frame, Paradox Mechanism, Earned Authority.</div>
+    <div class="grid">
+
+      <a href="campaign_11.html" class="card">
+        <div class="card-preview s2-med-a"><div class="preview-num dark">11</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 11</div>
+          <div class="card-title">Why Does It Last 3 Years?</div>
+          <div class="card-desc">Retorisk fråga som krok. Om den håller 3 år på en hylla — vad håller den egentligen "färsk"?</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_12.html" class="card">
+        <div class="card-preview s2-med-b"><div class="preview-num light">12</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 12</div>
+          <div class="card-title">Best Before: Never vs 90 Days</div>
+          <div class="card-desc">Delad panel VS-format. Mörkt mot ljust. Två utgångsdatum som ett binärt val. Ingen text behövs.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_13.html" class="card">
+        <div class="card-preview s2-tough-a"><div class="preview-num light">13</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 13</div>
+          <div class="card-title">Formaldehyde-Releasing</div>
+          <div class="card-desc">Ingrediensdossié-format. DMDM Hydantoin profilerad kliniskt. Jättelikt "FORMALDEHYDE"-vattenmärke. Mörkt. Specifikt. Verifierbart.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_14.html" class="card">
+        <div class="card-preview s2-tough-b"><div class="preview-num light">14</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 14</div>
+          <div class="card-title">Microbiome System Error</div>
+          <div class="card-desc">Terminal hacker-estetik. Grönt på nästan svart. Diagnostisk output eskalerar [!] → [X] CRITICAL. Djupt konfrontativ.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_15.html" class="card">
+        <div class="card-preview s2-med-c"><div class="preview-num dark">15</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 15</div>
+          <div class="card-title">Clean Water, Dirty Skincare</div>
+          <div class="card-desc">Dalarnas vattenkvalitet mot en ingredienslista full av konserveringsmedel. Ursprungsberättelse möter avslöjande.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_16.html" class="card">
+        <div class="card-preview s2-tough-c"><div class="preview-num light">16</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 16</div>
+          <div class="card-title">They Know.</div>
+          <div class="card-desc">Ren svart. Ingen bild. Bara text: "They know. They made a calculation. Shelf life won. You lost." Minimalt och åklagaraktigt.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_17.html" class="card">
+        <div class="card-preview s2-med-d"><div class="preview-num dark">17</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 17</div>
+          <div class="card-title">Shelf Life vs Skin Life</div>
+          <div class="card-desc">Förloppsindikatorer: konkurrent på 100%, Skinome på 25% — och den kortare stapeln vinner. Inverterar visuell dominans.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_18.html" class="card">
+        <div class="card-preview s2-tough-d"><div class="preview-num light">18</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 18</div>
+          <div class="card-title">The Science Was There</div>
+          <div class="card-desc">Två kolumner: vänster = forskningsrön per år, höger = branschens åtgärd ("Nothing. Nothing. Nothing. Skinome.").</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_19.html" class="card">
+        <div class="card-preview s2-med-e"><div class="preview-num dark">19</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 19</div>
+          <div class="card-title">We Refrigerate Because We Respect You</div>
+          <div class="card-desc">Isblå frostpalette. Kylkedja som varumärkesfilosofi — värme genom kyla.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_20.html" class="card">
+        <div class="card-preview s2-tough-e"><div class="preview-num light">20</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 20</div>
+          <div class="card-title">The Receipt</div>
+          <div class="card-desc">Specificerat kvitto. Aktiva ingredienser: 12 SEK. Varumärkesskatt: 254 SEK. "Ingredienser som rör din hud: 15.50 kr."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_21.html" class="card">
+        <div class="card-preview s2-med-e"><div class="preview-num dark">21</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 21</div>
+          <div class="card-title">#1 Killer of Your Microbiome</div>
+          <div class="card-desc">120px jätte-"#1" på ljusgult. Svarslåda namnger Methylisothiazolinone. Krok-och-avslöjande-struktur för maximalt scroll-stopp.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_22.html" class="card">
+        <div class="card-preview s2-tough-f"><div class="preview-num dark">22</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 22</div>
+          <div class="card-title">Read It. Really Read It.</div>
+          <div class="card-desc">Annoterad ingredienslista med trestegssystem: gult = allergen, rött = mikrobiomstörande, lila = hormonstörande. Rättsmedicinskdokumentestetik.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_23.html" class="card">
+        <div class="card-preview s2-tough-f"><div class="preview-num dark">23</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 23</div>
+          <div class="card-title">Certificate of Preservatives</div>
+          <div class="card-desc">Ornamenterat guldkantscertifikat. Konserveringsmedel listade som "utmärkelser". Signerat av "The Cosmetics Industry, since 1960."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_24.html" class="card">
+        <div class="card-preview s2-tough-g"><div class="preview-num light">24</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 24</div>
+          <div class="card-title">1,000 Species. Protect All of Them.</div>
+          <div class="card-desc">JS-genererad punktrutnätsdatavisualisering. Vänster: mestadels mörka punkter. Höger: ~98% ljusa. Visuellt bevis på mikrobiomens påverkan.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_25.html" class="card">
+        <div class="card-preview s2-med-f"><div class="preview-num dark">25</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 25</div>
+          <div class="card-title">Shelf-Stable vs. Fresh</div>
+          <div class="card-desc">Ordboksdefinitionsformat. Två definitioner: shelf·sta·ble (åtalsakt) och fresh / se även: Skinome (firande).</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_26.html" class="card">
+        <div class="card-preview s2-med-g"><div class="preview-num light">26</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 26</div>
+          <div class="card-title">Ours Goes Bad. On Purpose.</div>
+          <div class="card-desc">Punkstämpel på svart. "EXPIRES in 90 days." Förvandlar upplevd svaghet till hederstecken. "If it doesn't expire, ask why."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_27.html" class="card">
+        <div class="card-preview s2-med-h"><div class="preview-num light">27</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 27</div>
+          <div class="card-title">We Ship Cold. No Exceptions.</div>
+          <div class="card-desc">Fraktlabel/logistikformat. Spec-rader: Förvaring "2°C–8°C ALLTID", Konserveringsmedel "Inga. Inte nödvändiga. Inte tillstädes."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_28.html" class="card">
+        <div class="card-preview s2-med-i"><div class="preview-num light">28</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 28</div>
+          <div class="card-title">20 Years of Research. One Answer.</div>
+          <div class="card-desc">Vertikal tidslinje från 1999 till 2019. Viktiga forskningshöjdpunkter kulminerar i en enda fylld punkt: "Skinome."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_29.html" class="card">
+        <div class="card-preview s2-tough-h"><div class="preview-num light">29</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 29</div>
+          <div class="card-title">Dear Skincare Industry.</div>
+          <div class="card-desc">Öppet brev. IM Fell English kursiv serif på pergament. "You knew this. You chose shelf life anyway." Signerat: Dr. Johanna Gillbro.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_30.html" class="card">
+        <div class="card-preview s2-tough-b"><div class="preview-num light">30</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 30</div>
+          <div class="card-title">3 vs 36</div>
+          <div class="card-desc">Seriens avslutning. Två jättesiffror på en delad mörk panel. "36" nästan osynlig. "3" ljus. "One was designed for you. One wasn't."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SERIES 3 -->
+  <div class="series-block">
+    <div class="series-label">Series 3 — Industry Tease · 31–50</div>
+    <div class="series-desc">Parodiformat som nästan retas med branschen direkt — tombstones, wanted posters, EU-förordningar, falska ursäktsbrev, spelodds, periodiska systemet.</div>
+    <div class="grid">
+
+      <a href="campaign_31.html" class="card">
+        <div class="card-preview s3-dark-a"><div class="preview-num light">31</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 31</div>
+          <div class="card-title">GRATTIS.</div>
+          <div class="card-desc">Sarkasmgrattis. "Din fuktighetskräm tillverkades 2022. Du kallade det hudvård." Rad för rad till magplask. 80px svensk "Grattis" som krok.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_32.html" class="card">
+        <div class="card-preview s3-light-a"><div class="preview-num dark">32</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 32</div>
+          <div class="card-title">Three Charges</div>
+          <div class="card-desc">Rättslig åtalspunktsformat. Tre numrerade åtal mot konventionell hudvård. Mörk domspanel: "Guilty." / "Skinome: not charged."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_33.html" class="card">
+        <div class="card-preview s3-light-a"><div class="preview-num dark">33</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 33</div>
+          <div class="card-title">WARNING: None of These</div>
+          <div class="card-desc">Inverterad varningsetikett på gult. Sex konserveringsmedel med ✕-markeringar. "I Skinome hittar du inte ett enda." Delningsbar grafik.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_34.html" class="card">
+        <div class="card-preview s3-dark-a"><div class="preview-num light">34</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 34</div>
+          <div class="card-title">Industry Translator</div>
+          <div class="card-desc">Tvåkolumns rutnät. Vänster: branschpåstående (dämpad). Höger: vad det betyder (ljust). "Dermatologist tested" → "One test. Paid for by us."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_35.html" class="card">
+        <div class="card-preview s3-light-a"><div class="preview-num dark">35</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 35</div>
+          <div class="card-title">Purchase Receipt</div>
+          <div class="card-desc">Shoppingkvitto som åtalsakt. Varje konkurrentprodukt genomstruken. Dold kostnad: mikrobiomskada. "Thank you for shopping with chemicals."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_36.html" class="card">
+        <div class="card-preview s3-light-b"><div class="preview-num dark">36</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 36</div>
+          <div class="card-title">Data Table</div>
+          <div class="card-desc">Vetenskaplig jämförelsetabell. Sex rader. Branschstandardkolumnen genomstruken. Slutsats: "Only one of these is skincare."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_37.html" class="card">
+        <div class="card-preview s3-navy"><div class="preview-num light">37</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 37</div>
+          <div class="card-title">EU Regulation</div>
+          <div class="card-desc">Officiell EU-förordningsparodidokument. Mörkblå, EU-stjärnor, riktigt reg-nummer. "Lagligt ≠ bra." Tre klausuler avslöjar vad som tillåts.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_38.html" class="card">
+        <div class="card-preview s3-light-d"><div class="preview-num dark">38</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 38</div>
+          <div class="card-title">The Skin Gazette</div>
+          <div class="card-desc">Tidningsförstasida. "Skincare Brand Sold You Products Made 3 Years Ago." Pullcitat: "We expire in 90 days. That's the proof it's fresh."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_39.html" class="card">
+        <div class="card-preview s3-dark-d"><div class="preview-num light">39</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 39</div>
+          <div class="card-title">R.I.P. Microbiome</div>
+          <div class="card-desc">Gravstensminne för din hudmikrobiom. "Blomstrande · Tills du började ta hand om den." Namngivna konserveringsmedel på epitafiet.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_40.html" class="card">
+        <div class="card-preview s3-dark-a"><div class="preview-num light">40</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 40</div>
+          <div class="card-title">WE REFUSE.</div>
+          <div class="card-desc">Varumärkesmanifest. Fyra numrerade vägran. "Att tillsätta konserveringsmedel som utökar våra marginaler på bekostnad av din mikrobiom."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_41.html" class="card">
+        <div class="card-preview s3-light-b"><div class="preview-num dark">41</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 41</div>
+          <div class="card-title">Ingredient Autopsy</div>
+          <div class="card-desc">Jämförande obduktion av två fuktighetskrämer. Fem kliniska fynd vardera. Beige mot mörkt. "Only one of these is skincare."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_42.html" class="card">
+        <div class="card-preview s3-light-c"><div class="preview-num dark">42</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 42</div>
+          <div class="card-title">The Apology Letter</div>
+          <div class="card-desc">Falskt ursäktsbrev från hudvårdsindustrin — det de aldrig kommer skicka. Genomstrukna meningar avslöjar den verkliga företagsrösten.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_43.html" class="card">
+        <div class="card-preview s3-dark-c"><div class="preview-num light">43</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 43</div>
+          <div class="card-title">Betting Odds Board</div>
+          <div class="card-desc">Live speloddsboard. Branschrader: 14/1, 22/1, 8/1 — alla misslyckas. Skinome: 1/1 — pass. "Skinome. Always evens."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_44.html" class="card">
+        <div class="card-preview s3-light-a"><div class="preview-num dark">44</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 44</div>
+          <div class="card-title">Product Recall</div>
+          <div class="card-desc">Officiellt återkallningsmeddelande för "alla produkter tillverkade för mer än 90 dagar sedan." Liten text: "Not a real recall." Det borde det nog vara.</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_45.html" class="card">
+        <div class="card-preview s3-dark-e"><div class="preview-num light">45</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 45</div>
+          <div class="card-title">Wanted: Phenoxyethanol</div>
+          <div class="card-desc">Western-eftersökt affisch för ett specifikt konserveringsmedel. Anklagelser, metod, status. I Skinome: "Not present. Not now. Not ever."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_46.html" class="card">
+        <div class="card-preview s3-dark-a"><div class="preview-num light">46</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 46</div>
+          <div class="card-title">Industry Awards</div>
+          <div class="card-desc">"Celebrating 30 Years of Doing It Wrong." Kategorier: Bästa Felangivelse, Längsta Hylla-till-Hud-Tid. Skinome: "Not eligible. Too different to compete."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_47.html" class="card">
+        <div class="card-preview s3-split-a"><div class="preview-num dark">47</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 47</div>
+          <div class="card-title">36 vs 90</div>
+          <div class="card-desc">Delad panel. 36 månader vänster, 90 dagar höger. Visuell förväntan (fler = bättre) vänds av text. "Löper ut fort för att den faktiskt är färsk."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_48.html" class="card">
+        <div class="card-preview s3-light-a"><div class="preview-num dark">48</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 48</div>
+          <div class="card-title">Terms & Conditions</div>
+          <div class="card-desc">Tre juridiska klausuler — vad du godkände när du köpte konventionell hudvård. Tillverkningsdatum undanhållet. Skinomes T&C: "No small print."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_49.html" class="card">
+        <div class="card-preview s3-dark-a"><div class="preview-num light">49</div><div class="preview-tone medium">Medium</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 49</div>
+          <div class="card-title">Periodic Table</div>
+          <div class="card-desc">Periodiska systemet för hudvårdsingredienser. Övre raden: fyra konserveringsmedel (röda). Nedre raden: fyra Skinome-egenskaper (gröna).</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+      <a href="campaign_50.html" class="card">
+        <div class="card-preview s3-light-c"><div class="preview-num dark">50</div><div class="preview-tone tough">Tough</div></div>
+        <div class="card-body">
+          <div class="card-meta">Campaign 50</div>
+          <div class="card-title">Academic Abstract</div>
+          <div class="card-desc">Seriens avslutning. Peer-reviewed artikelformat. Dr Johanna Gillbro, 20 års forskning. "Fresh is not a marketing word. It is a measurable property."</div>
+          <div class="card-cta">Visa kampanj →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">Skinome — Campaign Library</div>
+  <div class="footer-copy">50 kampanjer · skinome_official · 2026</div>
+</footer>
+
 </body>
 </html>
